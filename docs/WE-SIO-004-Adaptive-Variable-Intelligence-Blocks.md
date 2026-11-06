@@ -8,7 +8,7 @@
 
 ## Abstract
 
-Variable-size indexing blocks adjust spatial or logical partition granularity to the distribution of stored entities. WE-SIO proposes a further, explicitly hypothetical generalization: **Perspective-Adaptive Variable Blocks (PAVB)** can vary not only their boundaries and population but also their *representation, evidence handling, and computational intelligence*. An **Adaptive Variable-Intelligence Block (AVIB)** is a bounded, versioned, perspective-dependent unit that selects from lightweight indexing, metric resolution, relational inference, residual analysis, and delegated intelligence services under explicit budgets and conformance contracts. This paper distinguishes the block's physical storage form from its logical intelligence responsibilities; defines candidate data structures, adaptation policies, correctness invariants, and evolution operators; and proposes falsifiable experiments against fixed-granularity and conventional adaptive-index baselines. It is a design for investigation, not a claim that AVIBs outperform established data structures.
+Variable-size indexing blocks adjust spatial or logical partition granularity to the distribution of stored entities. WE-SIO proposes a further, explicitly hypothetical generalization: **Perspective-Adaptive Variable Blocks (PAVB)** can vary not only their boundaries and population but also their *representation, evidence handling, and computational intelligence*. An **Adaptive Variable-Intelligence Block (AVIB)** is a bounded, versioned, perspective-dependent unit that selects from lightweight indexing, metric resolution, relational inference, residual analysis, and delegated intelligence services under explicit budgets and conformance contracts. This paper distinguishes the block's physical storage form from its logical intelligence responsibilities; defines candidate data structures, adaptation policies, correctness invariants, and evolution operators; and proposes falsifiable experiments against fixed-granularity and conventional adaptive-index baselines. The updated proposal adds **Mask-First computation**, preservation of mature structural pathways, and explicit separation of established knowledge, open knowledge, and residual evidence. It is a design for investigation, not a claim that AVIBs outperform established data structures.
 
 ## 1. Origin and research question
 
@@ -46,6 +46,7 @@ The term *intelligence* here means task-oriented operations such as resolving am
 
 - **Partition adaptation:** split, merge, rebalance, migrate, or revise membership.
 - **Capability adaptation:** activate, deactivate, delegate, specialize, or revise reasoning/evidence services.
+- **Activation-view adaptation:** mask, unmask, or remask nodes, edges, perspectives, operations, depth, and budgets without necessarily changing stored topology.
 
 These axes should be measured separately. Increasing the number of blocks need not increase intelligence; adding an inference service need not change partition boundaries.
 
@@ -65,6 +66,9 @@ AdaptiveVariableIntelligenceBlock {
   parentAndCrossViewLinks
   indexStrategy
   capabilityProfile
+  maskPolicyRef
+  activeViewContract
+  epistemicViewRefs
   evidenceReferences
   uncertaintySummary
   residualReferences
@@ -158,13 +162,18 @@ A more rigorous decision objective compares estimated marginal benefit against c
 - `Delegate(B, service)`: invoke a shared MLIU, evaluator, or agent through a bounded interface.
 - `Specialize(B, policy)`: choose a different inference or matching strategy.
 - `EscalateResidual(B, residualRef)`: submit an unexplained discrepancy for cross-block or cross-perspective review.
+- `Mask(B, context, policy)`: produce a task-scoped active computation view without changing persistent membership.
+- `Unmask(B, scope)`: restore eligible routes or operators subject to authorization and query contracts.
+- `Remask(B, feedback)`: revise a prior active view using observed cost, coverage, uncertainty, or failure evidence.
 
 ### 5.3 Example adaptation policy
 
 ```text
 observe block metrics and query outcomes
 verify freshness and provenance of signals
-propose partition and/or capability changes
+propose a task-scoped mask or local learning update first where appropriate
+compare against full-view or verified reference execution
+propose partition and/or capability changes only when warranted
 estimate quality gain, cost, and risk
 reject candidates violating hard contracts
 run shadow evaluation or bounded sandbox trial
@@ -193,6 +202,8 @@ This last step is the proposed **Two-Ways CCC** extension: forward localization 
 Adaptive execution must not silently sacrifice recall or completeness when the API promises exact results. Approximate search is allowed only under an explicit contract specifying error/recall targets and evaluation procedures. Changing a capability tier must not change the meaning of entity identity or the truth conditions of an exact predicate.
 
 ## 7. Residual-first block intelligence
+
+**Epistemic boundary:** an unanswered question is *open knowledge*, not automatically a residual. A residual requires a declared expectation, constraint, model, or explanatory baseline and traceable evidence of a discrepancy. A Residual Evidence Registry (RER) is therefore distinct from an Open Knowledge Registry; neither is an untyped miscellaneous bucket.
 
 A residual is not automatically a discovery. It is a traceable discrepancy requiring interpretation:
 
@@ -362,6 +373,89 @@ A research relay should preserve: **claim → contract → evidence → countere
 - **SPEC-003/004/006:** formalization and conformance work.
 
 **Next research milestone:** implement a small benchmark with fixed versus variable-size partitions, fixed versus adaptive capabilities, explicit identity/coverage checks, and a recorded residual registry. Only after this should AVIB complexity be justified or reduced.
+
+---
+
+## 17. Mask-First computation and mature-structure preservation (v0.1.0 update)
+
+This update incorporates the hypotheses developed in `extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md`. It treats established structural pathways as accumulated computational assets, while allowing task-specific activation to change frequently. The biological analogy is limited: selective neural activation and gating motivate the design, but do not demonstrate that the brain uses a single explicit mask data structure or that this architecture is faster.
+
+### 17.1 Stored substrate versus active computational view
+
+Let `S_v` be a versioned, authorized structural substrate and `q, p, c, b` a task, perspective, context, and budget. A mask generator produces:
+
+```text
+M = GenerateMask(S_v, task=q, perspective=p, context=c, budget=b)
+V = ApplyMask(S_v, M)            # transient effective computational view
+result = Execute(V, q)
+audit = Evaluate(result, reference, evidence, budget)
+```
+
+`M` may gate nodes, edges, metric descriptors, operation classes, depth, or budget allocations. Boolean masks, sparse selections, weighted gates, and hierarchical policies are all admissible representations. A mask does **not** change entity identity, source data, index ownership, or authorization. Masking is a *logical selection mechanism*, not necessarily a physical speedup: implementations must verify that excluded computation is actually skipped and that mask-generation overhead does not exceed the savings.
+
+A mask should carry `maskId`, `policyVersion`, `substrateVersion`, `taskScope`, `perspectiveRefs`, `selectedNodesOrPredicates`, `selectedOperations`, `budget`, `authorizationScope`, `completenessMode`, `evidenceRefs`, and `provenance`. A cached mask is invalidated when its relevant structural, schema, authorization, or perspective assumptions change.
+
+### 17.2 Mask/Unmask/Remask semantics
+
+- **Mask:** construct an eligible, task-scoped active view; no persistent structural mutation is implied.
+- **Unmask:** broaden or restore eligibility only within the caller's permissions and declared query contract.
+- **Remask:** revise the active view after feedback; record policy changes and reasons.
+
+For exact retrieval, the mask must be **coverage-safe**: it cannot exclude any record that may satisfy the declared predicate. If coverage cannot be certified, use full-view fallback, safe expansion, or an explicitly approximate API with measured recall. Evidence or audit paths required by a contract must remain accessible even when expensive inference paths are inactive. A mask must never circumvent row-level or column-level SQL security policies.
+
+### 17.3 Adaptation preference, not universal hierarchy
+
+A candidate preference is: **reuse mature pathways → update locally → remask execution → extend or reconstruct persistent structure when justified**. This is not a mandatory sequence: a corrupt index, changed legal constraint, or incompatible schema may require immediate reconstruction. The governing rule is to choose the lowest-risk, contract-conformant option with demonstrable net benefit, rather than always favoring a mask.
+
+## 18. Activation Delta, Knowledge Delta, and Structural Delta
+
+Three changes must be tracked separately:
+
+| Delta | What changes | Typical persistence | Conformance concern |
+|---|---|---|---|
+| Activation / Mask Delta | Task-specific eligible routes, nodes, operators, budgets | Transient or cached policy | Completeness, authorization, cost |
+| Knowledge / Epistemic Delta | Evidence, beliefs, uncertainty, hypothesis status | Versioned knowledge record | Provenance, validation, rollback |
+| Structural Delta | Block boundaries, index topology, service organization | Persistent substrate | Identity, coverage, consistency |
+
+These deltas can interact but are not interchangeable. A revised mask does not by itself establish new knowledge; an epistemic update does not imply that the world changed; a block split does not prove that inference improved. World/source-state changes remain separately typed under `WE-SIO-009`. CDE may govern candidate transitions with application-specific constraints and reversibility policies; the D-BTP path no-reuse rule is not a universal CDE axiom.
+
+A proposed policy score may combine measured task quality, execution cost, mask-generation overhead, stability of mature pathways, evidence loss, and structural-change cost. The weights and baselines must be declared before evaluation; they are not claims of a universal objective function.
+
+## 19. Epistemic views and Residual Evidence Registry
+
+For each `(entityRef, perspectiveId, applicabilityContext, version)` the AVIB/MLIU may expose:
+
+- **Established Knowledge View:** evidence-supported assertions valid within a declared scope; *established* never means infallible.
+- **Open Knowledge View:** unresolved questions, untested candidate metrics, provisional explanations, and unknown values.
+- **Residual Evidence Registry (RER):** discrepancies against explicit expectations, predictions, constraints, or explanatory baselines.
+
+These are logical views, not necessarily separate physical stores. A hypothesis may be open under one perspective and established under another. A SQL `NULL` is not inherently a residual or a well-defined epistemic status. Residual records must identify the comparison basis, observation, uncertainty, provenance, and competing explanations; a pure unknown without such a basis belongs in the open view.
+
+**Knowledge promotion contract:** transitions `open → established`, `established → revised`, or `established → withdrawn` require evidence criteria, an evaluator or governance policy, version history, and rollback/appeal where feasible. A residual may motivate a candidate hypothesis but never automatically promote it.
+
+## 20. Updated conformance tests and research hypotheses
+
+**Candidate conformance checks:**
+
+1. `MASK-001`: an exact masked query returns the same complete set as a verified full-view reference, or fails closed.
+2. `MASK-002`: no mask or remask bypasses entity-, row-, column-, or operation-level authorization.
+3. `MASK-003`: changing only an activation mask does not alter persistent block identity, topology, or evidence history.
+4. `MASK-004`: stale masks are invalidated after relevant substrate, perspective, or permission changes.
+5. `MASK-005`: cost accounting includes mask generation, materialization, cache invalidation, and fallback.
+6. `EPI-001`: unknown/open records cannot enter RER without a documented discrepancy basis.
+7. `EPI-002`: promotion, demotion, and withdrawal of knowledge are versioned and evidence-traceable.
+8. `RELAY-001`: shared mask policies declare transfer assumptions and are independently evaluated on target tasks.
+
+**Proposed falsifiable hypotheses** (to be synchronized with `TESTABLE-HYPOTHESES.md` and the research registry):
+
+- `WEH-031`: Mask-first AVIB execution reduces end-to-end resource cost for some workload classes relative to eager full-view execution at matched correctness.
+- `WEH-032`: mature-pathway preservation plus local adaptation reduces measured reconfiguration cost or forgetting in selected continual workloads.
+- `WEH-033`: explicit established/open/residual separation reduces epistemic misclassification and improves evidence traceability.
+- `WEH-034`: validated mask-policy relay transfers useful computational selection strategies across compatible tasks without unacceptable recall loss.
+
+**Evaluation design:** compare full-view, static hand-designed masks, learned masks, partition-only adaptation, and combined mask-plus-CDE adaptation. Report accuracy/recall, false exclusions, runtime, memory, energy where measurable, mask overhead, rebuild frequency, drift sensitivity, rollback events, and transfer degradation. Include adversarial negative cases: high mask-generation cost, rapidly shifting workloads, weak cross-perspective mappings, and unknown unknowns. Treat all benefits as hypotheses until independently reproduced.
+
+**Cross-references:** `EXT-005` supplies the general mechanism; `EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md` provides a proposed SQL-facing testbed. Formal contracts should be synchronized into `SPEC-003` and `SPEC-005` before claiming conformance.
 
 ---
 

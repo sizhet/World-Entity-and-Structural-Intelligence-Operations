@@ -8,7 +8,7 @@
 
 ## Abstract
 
-World Entity (WE) systems must reason about changes in the world, changes in observations, changes in what an intelligent system believes, and changes in its own indexing and operational structures. Treating all of these as one undifferentiated *delta* invites false causal conclusions, inconsistent state updates, and unsafe adaptation. This paper develops a typed delta model distinguishing **World Delta**, **Observation Delta**, **Knowledge (Epistemic) Delta**, and **Operational/Structural Delta**. It proposes an integration with **Constrained Delta Evolution (CDE)** in which transitions are explicit, evidence and provenance are preserved, constraints are testable, and reversibility is qualified rather than presumed. The model connects WE-HDT indexing, Metric-Leaf Intelligence Units (MLIUs), residual registries, Two-Ways CCC, perspective discovery, and Collective Learning Relay. All claims about generality and performance remain hypotheses pending conformance tests and comparative evaluation.
+World Entity (WE) systems must reason about changes in the world, changes in observations, changes in what an intelligent system believes, and changes in its own indexing and operational structures. Treating all of these as one undifferentiated *delta* invites false causal conclusions, inconsistent state updates, and unsafe adaptation. This paper develops a typed delta model distinguishing **World Delta**, **Observation Delta**, **Knowledge (Epistemic) Delta**, and **Operational/Structural Delta**, and the separately typed **Activation/Mask Delta**. It further separates transient **Activation/Mask Delta** from persistent structural changes, incorporates epistemic separation and qualified Residual Evidence Registry (RER) semantics, and proposes an integration with **Constrained Delta Evolution (CDE)** in which transitions are explicit, evidence and provenance are preserved, constraints are testable, and reversibility is qualified rather than presumed. The model connects WE-HDT indexing, Metric-Leaf Intelligence Units (MLIUs), residual registries, Two-Ways CCC, perspective discovery, and Collective Learning Relay. All claims about generality and performance remain hypotheses pending conformance tests and comparative evaluation.
 
 **Keywords:** World Entity, World Delta, Epistemic Delta, Knowledge Delta, Observation Delta, Constrained Delta Evolution, WE-HDT, residual, provenance, temporal modeling, structural intelligence.
 
@@ -73,9 +73,15 @@ Examples: revising a route hypothesis; discovering that two records refer to the
 
 ### 3.4 Operational / Structural Delta (ΔS)
 
-A **Structural Delta** changes internal execution or representation machinery: a WE-HDT split or merge, index rebuild, MLIU activation, cache invalidation, relay routing, or capability allocation. Some structural changes also carry semantic changes, so each delta must declare which state components it affects.
+A **Structural Delta** changes persistent internal organization: a WE-HDT split or merge, index rebuild, durable service topology, or persistent capability policy. An MLIU activation, task-scoped routing choice, or transient cache selection is **not automatically** a structural mutation. Such operations are more precisely typed as Activation/Mask Delta (ΔA) when they only change an effective computation view. Some operational changes are persistent, so each delta MUST declare the state components actually affected.
 
-### 3.5 The four-way distinction
+### 3.4a Activation / Mask Delta (ΔA)
+
+An **Activation Delta** changes task-scoped eligibility, weights, or selection of nodes, edges, metrics, operations, depth, and budgets without changing the underlying durable substrate. `Mask`, `Unmask`, and `Remask` generate or revise an **Active Computational View**. An activation policy can be cached or versioned without making every use a structural reorganization. ΔA must carry authorization scope, task context, substrate and perspective versions, completeness mode, and provenance.
+
+An activation-only operation does not by itself change a scientific claim (ΔK), an observation (ΔO), or the world (ΔW). A policy change that is persisted as durable control topology MAY also generate a separately identified ΔS.
+
+### 3.5 The five-way distinction
 
 | Delta | Primary referent | Example | Common validation question |
 |---|---|---|---|
@@ -385,6 +391,147 @@ WE-SIO requires a disciplined distinction between the world, observations of the
 The central proposition is not that all change is the same. It is that **different kinds of change can be coordinated without erasing their differences**. Preserving those distinctions is a prerequisite for trustworthy structural learning and traceable Collective Learning Relay.
 
 ---
+
+
+## 19. Mask-First Delta Evolution: A Fifth Change Type (2026-11-05 Update)
+
+The original four-way classification distinguished world, observation, knowledge, and operational/structural changes. The refinement here is **five-way**: separate transient computation selection from persistent structure. This corrects a potential ambiguity in treating every capability activation or relay-route choice as ΔS.
+
+| Type | State affected | Example | Must not imply |
+|---|---|---|---|
+| ΔW — World | Referent/event state (asserted with uncertainty) | A vehicle actually moves | Observation was timely or complete |
+| ΔO — Observation | Source reports and measured evidence | A delayed sensor report arrives | The event happened at receipt time |
+| ΔK — Knowledge | Claims, hypotheses, evidence assessments, perspective acceptance | A candidate metric is rejected | The world or index changed |
+| ΔS — Structural | Persistent WE-HDT topology, block membership, durable service architecture | Split a block | New knowledge was discovered |
+| ΔA — Activation/Mask | Effective computation view for a task | Mask irrelevant metrics, remask after feedback | Persistent topology or claims changed |
+
+The notation `ΔA` is proposed to avoid overloading `ΔS`. It does not assert that five categories exhaust all possible domain changes. An atomic real-world workflow may produce several **typed** deltas, linked by causality and transaction metadata rather than flattened into one event.
+
+### 19.1 Typed transition envelope
+
+```yaml
+DeltaEvent:
+  deltaId: immutable-id
+  deltaType: world | observation | knowledge | structural | activation
+  targetRefs: []
+  preconditionSnapshot: versioned-reference
+  perspectiveAndContextRefs: []
+  beforeRef: optional-versioned-reference
+  afterRef: optional-versioned-reference
+  causalParentRefs: []
+  effectiveTime: optional
+  recordedTime: required
+  authorizationAndPolicyRefs: []
+  evidenceAndProvenanceRefs: []
+  reversibility:
+    kind: reversible | compensatable | irreversible | unknown
+    conditions: []
+  validation:
+    requiredContracts: []
+    resultRefs: []
+  rollbackOrCompensationRef: optional
+```
+
+**D-5-01:** Every material delta MUST declare what state it changes. A record MAY represent a composite event only if its component deltas remain separately auditable.
+
+**D-5-02:** ΔA MUST preserve entity identity, durable block membership, evidence history, and the underlying perspective contract unless a separate authorized ΔS or ΔK is committed.
+
+**D-5-03:** A changed mask MUST NOT silently upgrade an approximate result into an exact one, or remove mandatory evidence and provenance from a purportedly complete result.
+
+**D-5-04:** ΔW claims MUST retain their evidence and uncertainty; a database transaction is a source-state change and is not sufficient evidence of a physical-world change.
+
+**D-5-05:** Delta composition MUST preserve temporal and causal ordering or explicitly record partial-order ambiguity. Rollback of a representation does not undo an external world event.
+
+## 20. CDE as a Typed, Constrained Transition Coordinator
+
+CDE is proposed as a **transition and candidate-evolution framework**, not a claim to supersede event sourcing, dynamic programming, branch-and-bound, database transactions, or control theory.
+
+A candidate transition is:
+
+```text
+(State, Constraints, Objective, Evidence, Budget)
+  -> Generate typed Delta candidates
+  -> Validate preconditions and contracts
+  -> Estimate cost, benefit, reversibility, and uncertainty
+  -> Choose Mask/Local Update/Structural Revision/No-op
+  -> Apply authorized transition
+  -> Evaluate against baseline
+  -> Commit, compensate, rollback, or retain explicit leftover
+```
+
+**Mature-structure preservation** is a preference under suitable conditions: reuse an existing pathway, perform a local update, or remask before expensive reconstruction when these choices satisfy correctness and governance requirements. It is **not** an absolute rule. Corrupt indexes, changed permissions, and incompatible semantic contracts can require immediate rebuilding.
+
+The decision should include mask-generation overhead, cache invalidation, recall/coverage risks, cost of reconstructing mature pathways, and long-term maintenance. A cheap mask that silently loses candidates is not a successful optimization.
+
+### 20.1 State-container and path constraints
+
+A CDE State-Container may hold persistent substrate versions, active view references, epistemic state, outstanding residuals, resource budgets, and a ledger of applied transitions. Path-memory and loop-back controls MAY constrain candidate generation. The D-BTP-specific no-delta-reuse rule MUST NOT be generalized as a universal CDE axiom; applications need explicit admissibility and termination policies.
+
+### 20.2 Example: changing a SQL investigation
+
+1. A SQL query is scoped to authorized tables and columns: a **ΔA** selects an effective computational view.
+2. A previously unknown variable is logged as **Open Knowledge**, not a residual: a **ΔK** may record the open question.
+3. A predicted total conflicts with an observed total under a declared comparator: a qualified **RER** record is created through **ΔO/ΔK** as appropriate.
+4. A duplicate-producing JOIN explains the discrepancy: the residual assessment is revised through **ΔK**; no new scientific mechanism is asserted.
+5. If repeated workloads justify a new index or durable grouping, that is a **ΔS**, independently evaluated.
+6. An `UPDATE` changes database source state. Whether the represented external world changed remains a separately evidenced **ΔW** question.
+
+SQL access-control policies constrain every step; Mask/Unmask/Remask cannot bypass them.
+
+## 21. Epistemic Separation and Residual Qualification Across Deltas
+
+The MLIU/WE-SIO epistemic interface distinguishes:
+
+- **Established Knowledge:** evidence-supported claims under explicit scope, conditions, perspective, and version.
+- **Open Knowledge:** unanswered questions, untested hypotheses, missing variables, and contested explanations.
+- **Residual Evidence Registry (RER):** discrepancies against declared baselines, constraints, or expectations, supported by observation and comparison provenance.
+
+**Unknown ≠ Residual.** An SQL NULL, absent measurement, or unexplored possibility MUST NOT enter RER merely because it is unknown. A structural contradiction MAY qualify when its expectation and comparison contract are explicit. A residual is not proof of a new law.
+
+Promotion `Open → Established` requires validation, decision authority, and versioned evidence. Demotion or withdrawal must retain a dependency-aware audit trail. Knowledge-status changes are **ΔK**; they do not require **ΔS** and cannot be inferred from **ΔA** alone.
+
+### 21.1 Causal provenance versus evidence provenance
+
+A causal link between deltas (`ΔO` informs `ΔK`) is not equivalent to independent evidence supporting the resulting claim. Multi-agent agreement or repeated processing of one underlying observation does not multiply independent evidence. Relay records SHOULD preserve both causal ancestry and source independence.
+
+## 22. Conformance Tests for Five-Way Delta Semantics
+
+The following are additive candidate checks; they do not renumber prior tests.
+
+| ID | Fixture | Required outcome |
+|---|---|---|
+| D5-001 | Task mask changes selected metrics | ΔA recorded; ΔS/ΔK not silently asserted |
+| D5-002 | Masked exact query omits a valid candidate | Safe fallback or explicit conformance failure |
+| D5-003 | Unmask requests unauthorized SQL column | Access denied |
+| D5-004 | Cached mask uses stale schema/perspective version | Invalidated or revalidated |
+| D5-005 | WE-HDT split with no new evidence | ΔS only; no fabricated ΔK |
+| D5-006 | New observation describes old event | ΔO with distinct event and receipt times |
+| D5-007 | Hypothesis promoted without independent validation | Promotion blocked |
+| D5-008 | Unknown variable without comparator | Open Knowledge, not RER |
+| D5-009 | Explicit relational constraint contradicted by observation | Typed RER assessment with provenance |
+| D5-010 | Database UPDATE with no confirmed external change | Source-state update not asserted as proven ΔW |
+| D5-011 | Rollback after irreversible external action | Compensation/limitation recorded; no fictitious reversal |
+| D5-012 | Multiple agents relay one original evidence source | Independence not overstated |
+| D5-013 | Remask changes performance but not output | Cost/coverage measured, persistent substrate unchanged |
+| D5-014 | CDE candidate violates path or budget policy | Rejected with reason and explicit leftover |
+
+**Hypotheses for evaluation:**
+- `H-D5-01`: Five-way typing reduces cross-layer change misclassification relative to the original four-way model.
+- `H-D5-02`: Mask-first adaptation reduces end-to-end cost on some workload classes at matched correctness.
+- `H-D5-03`: Explicit ΔA/ΔS separation improves rollback and audit accuracy under mixed workloads.
+- `H-D5-04`: Knowledge-state and residual qualification rules reduce false scientific-discovery claims.
+
+Evaluate against four-way typing, eager structural adaptation, fixed masks, and full-view execution. Report latency, resource cost, exactness/recall, false classifications, audit completeness, and independent replication. No improvement is presumed.
+
+## 23. Research Position and Remaining Questions
+
+WE-HDT and CDE remain complementary **candidate SIF Localization/Addressing pillars**: WE-HDT localizes candidate entities and perspective-specific access paths; CDE explores constrained state and structural transitions. This is a research positioning statement, not a claim of validated architectural superiority.
+
+Open questions include the minimal sufficient delta taxonomy; cross-agent transaction semantics; formal mask completeness guarantees; efficient preservation of mature pathways; compensation for irreversible external effects; epistemic rollback under conflicting evidence; and transferability of mask policies across SQL, graph, scientific, and self-modeling domains.
+
+**Related updates:** `extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md`; `extensions/EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md`; `docs/WE-SIO-004-Adaptive-Variable-Intelligence-Blocks.md`; `docs/WE-SIO-005-Metric-Leaf-Intelligence-and-SI-Operations.md`; `docs/WE-SIO-007-Residual-First-Scientific-Discovery.md`; `specs/SPEC-003-WE-HDT-Node-Block-and-Metric-Leaf-Contract.md`; `specs/SPEC-005-Residual-Evidence-and-Metric-Discovery-Contract.md`.
+
+**Status:** Research hypothesis and candidate contracts only. The revised five-way taxonomy requires counterexample testing and empirical comparison before adoption as an implementation standard.
 
 ### Related WE-SIO documents
 

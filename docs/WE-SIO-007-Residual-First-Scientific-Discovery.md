@@ -8,7 +8,7 @@
 
 ## Abstract
 
-Scientific models simplify reality. Their residuals—differences between observations and expectations—may reflect measurement error, confounding, distribution shift, incomplete representation, or a genuine missing mechanism. This paper proposes **Residual-First Scientific Discovery (RFSD)** as a WE-SIO research architecture: preserve residuals as addressable, evidence-linked, perspective-aware objects; use them to drive questions and candidate explanations; and require independent validation before promoting hypotheses into models or operational decisions. The proposal integrates World Entity (WE) representations, WE Hybrid Differential Trees (WE-HDT), Metric-Leaf Intelligence Units (MLIU), Two-Ways CCC, Constrained Delta Evolution (CDE), and Collective Learning Relay. The claim is architectural, not that residual analysis or anomaly-driven science is new. The research question is whether interoperable residual records and governed bidirectional exploration improve discovery quality, reproducibility, or efficiency relative to established workflows.
+Scientific models simplify reality. Their residuals—differences between observations and expectations—may reflect measurement error, confounding, distribution shift, incomplete representation, or a genuine missing mechanism. This paper proposes **Residual-First Scientific Discovery (RFSD)** as a WE-SIO research architecture: preserve residuals as addressable, evidence-linked, perspective-aware objects; use them to drive questions and candidate explanations; and require independent validation before promoting hypotheses into models or operational decisions. This updated version explicitly separates established knowledge, open questions, and qualified residual evidence, and proposes a Residual Evidence Registry (RER) rather than an untyped residual bucket. The proposal integrates World Entity (WE) representations, WE Hybrid Differential Trees (WE-HDT), Metric-Leaf Intelligence Units (MLIU), Two-Ways CCC, Constrained Delta Evolution (CDE), and Collective Learning Relay. The claim is architectural, not that residual analysis or anomaly-driven science is new. The research question is whether interoperable residual records and governed bidirectional exploration improve discovery quality, reproducibility, or efficiency relative to established workflows.
 
 ## 1. Research Origin and Scope
 
@@ -41,7 +41,17 @@ A residual is **evidence of a gap between observation and expectation**, not nec
 
 An epistemic revision may change the expectation without changing the world. A sensor correction may change the observation without any new world event. Therefore, residual histories must retain versions rather than silently overwrite prior records.
 
-### 2.3 Established foundations and proposed extension
+### 2.3 Epistemic separation: unknown is not residual
+
+Three logically distinct views should be maintained for each entity, perspective, applicability scope, and version:
+
+- **Established Knowledge:** evidence-supported statements with explicit scope, uncertainty, and revision rights; established does not mean infallible.
+- **Open Knowledge:** unanswered questions, missing measurements, candidate explanations, and unvalidated metrics, whether or not a discrepancy has been observed.
+- **Residual Evidence:** a documented discrepancy against an identified expectation, constraint, model, or explanation baseline, with evidence and comparison semantics.
+
+A missing value, SQL `NULL`, unsupported claim, or unexamined hypothesis is **not** automatically a residual. An established statement may be revised after a qualifying residual is independently evaluated; an open question may be motivated by a residual without becoming a residual itself. These are *logical epistemic views*, not mandatory separate physical tables. Their statuses are context- and perspective-dependent.
+
+### 2.4 Established foundations and proposed extension
 
 Residual diagnostics, anomaly detection, model criticism, outlier analysis, active learning, causal inference, and scientific abduction already exist. WE-SIO's **hypothesized contribution** is their integration into an addressable structural intelligence workflow with explicit perspective contracts, cross-entity relay, and definition evolution. Comparative evaluation is required before asserting an advantage.
 
@@ -358,6 +368,109 @@ WE-SIO provides a proposed world-entity and perspective substrate. **WE-HDT** su
 
 These connections are architectural proposals, not evidence that the integrated system has been built or empirically validated.
 
+## Addendum A — Residual Evidence Registry (RER): qualification and lifecycle (v0.1.0 update)
+
+This section incorporates the epistemic separation and Mask-First principles developed in `extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md`. The term **Residual Evidence Registry (RER)** is preferred over *Residual Bucket* to avoid implying that all unclassified, unknown, or low-confidence knowledge belongs in one container. Existing uses of *residual registry* remain valid when they satisfy the qualification contract below.
+
+### 19.1 Admission criteria
+
+A candidate record qualifies for RER only if it includes, or explicitly references:
+
+1. **Target and scope:** entity or population, perspective, context, temporal window, and versions.
+2. **Comparison basis:** a prediction, model, constraint, expected relation, or explanation baseline that can be evaluated.
+3. **Observation or counterevidence:** a traceable measurement, event report, or other evidence bearing on that basis.
+4. **Discrepancy semantics:** a typed comparator and result (numeric, categorical, relational, directional, or structured), with uncertainty and missing-data rules.
+5. **Provenance:** source identifiers, transformation lineage, evaluator, and timestamps.
+6. **Qualification status:** provisional, qualified, rejected, resolved, or reopened, with explicit reasons.
+
+A record that lacks a valid comparison basis remains in the **Open Knowledge Registry** or evidence intake queue, not in RER. A contradiction between two well-specified claims can qualify as a structured residual even without scalar subtraction. The system must not invent a numerical baseline merely to admit a record.
+
+### 19.2 Candidate schema
+
+```yaml
+ResidualEvidenceRecord:
+  residualId: stable-identifier
+  entityOrCohortRef: versioned-reference
+  perspectiveRef: typed-descriptor-and-version
+  applicabilityScope: {conditions: [], timeWindow: null}
+  expectationRef: model-or-constraint-and-version
+  observationRefs: []
+  comparisonContract: {kind: typed, units: optional, tolerance: declared}
+  discrepancy: {valueOrStructure: null, uncertainty: declared}
+  qualityChecks: {measurement: pending, leakage: pending, confounding: pending}
+  alternativeExplanations: []
+  hypothesisRefs: []
+  status: provisional
+  provenance: {sources: [], evaluator: null, timestamps: []}
+  transitions: []
+  permissionsAndRetention: declared
+```
+
+The schema is illustrative, not a mandatory serialization format. Privacy-sensitive evidence may remain behind access-controlled references. Registry membership must not override source authorization or imply independent validation.
+
+### 19.3 Lifecycle and governance
+
+```text
+Observation / Claim / Question
+          |
+   Epistemic classification
+       /        |        \
+Established    Open     Candidate discrepancy
+knowledge      question         |
+   |             |       Compare against typed baseline
+   |             |              |
+   |             |       RER provisional / rejected
+   |             |              |
+   |             +<--- Question / hypothesis generation
+   |                            |
+   +<--- Independent testing and evidence review
+                 |
+       Promote / revise / withdraw
+```
+
+- **Provisional → qualified:** comparator, provenance, uncertainty, and initial error checks meet a declared policy.
+- **Provisional → rejected:** no meaningful baseline, invalid comparison, duplicate, or identified artifact; preserve a reasoned audit record.
+- **Qualified → resolved:** discrepancy is explained, corrected, or superseded; retain original evidence and versions.
+- **Resolved → reopened:** new independent evidence or changed assumptions justify renewed investigation.
+
+No status transition automatically establishes a new scientific mechanism. Promotion of a hypothesis into Established Knowledge requires a separate **Knowledge Promotion Contract**, including independent tests, appropriate controls, reproducibility criteria, domain review where necessary, and reversible versioning. Established claims can be downgraded or withdrawn.
+
+## Addendum B — Mask-First residual investigation and separation of deltas
+
+**Mask-First discovery** can select relevant entities, perspectives, relations, operators, and computation budgets without splitting or rebuilding mature WE-HDT/AVIB structures. A mask is a *task-scoped active computation view*, not a change in the underlying scientific evidence or the physical world.
+
+A candidate investigation sequence is:
+
+1. Generate a permission-constrained, versioned Mask for the question and comparison contract.
+2. Retrieve expectations and observations while preserving full evidence lineage.
+3. Evaluate discrepancies with declared uncertainty and error checks.
+4. Expand or remask when evidence coverage, alternative explanations, or recall is insufficient.
+5. Record the investigation as an **Activation Delta** (selection), **Knowledge Delta** (belief/evidence revision), or **Structural Delta** (persistent index/representation change), without conflating them.
+6. Compare against a full-view or independently verified reference for exact tasks; report approximation and false-exclusion risk for exploratory tasks.
+
+**Mask safety:** an exact-query mask must not exclude eligible evidence; when completeness cannot be guaranteed, use safe expansion, fallback, or an explicitly approximate contract. Mask generation and validation costs count toward the claimed computational savings. A mask cannot bypass SQL row/column security or other access restrictions. Stable structures are preferred when beneficial, not preserved unconditionally.
+
+This framework also supports **Collective Learning Relay**: a reusable mask policy or residual diagnosis must carry its source conditions, evidence, validation outcomes, failure cases, and transfer limits. Consensus among agents is not independent confirmation.
+
+## Addendum C — Updated conformance and falsifiable experiments
+
+| ID | Required behavior | Failure case |
+|---|---|---|
+| EPI-SEP-01 | Open unknowns remain distinct from qualified residuals | Missing observation automatically labeled anomaly |
+| RER-QUAL-01 | Every qualified residual has a typed comparison basis and evidence | Unattributed difference or incompatible units |
+| RER-QUAL-02 | Provisional/rejected/resolved records preserve provenance | Silent deletion of negative or corrected evidence |
+| RER-QUAL-03 | Non-numeric contradictions can be represented without fabricated distance | Directional relation forced into Euclidean metric |
+| EPI-PROM-01 | Knowledge promotion, demotion, and withdrawal require reviewable evidence | One anomalous result becomes established law |
+| MASK-RER-01 | Masked exact investigation preserves required evidence coverage | Critical cohort excluded by selection mask |
+| MASK-RER-02 | Remasking changes activation state without silently changing world/knowledge state | Query filter interpreted as data update |
+| RELAY-RER-01 | Cross-agent reuse retains provenance and independent validation criteria | Repeated agreement mistaken for replication |
+
+**Research hypotheses:** `WEH-033` proposes that epistemic separation improves classification and traceability; `WEH-034` proposes that validated mask-policy relay transfers useful selection behavior across compatible tasks. These hypotheses are shared with EXT-005 and must not be double-counted as independent evidence. Additional domain-specific tests should compare (a) a single undifferentiated anomaly bucket, (b) separate Open Knowledge and RER views, and (c) the same views with mask-first execution. Report false-residual rate, missed discrepancies, evidence coverage, investigator time, validation cost, and downstream hypothesis quality. Include adversarial tests for noise, distribution shift, confounding, selection bias, model misspecification, missing-not-at-random data, and incompatible perspectives.
+
+**Integration points:** `WE-SIO-005` (MLIU views and operations), `WE-SIO-008` (metric promotion), `WE-SIO-009` (Delta typing), `SPEC-005` (formal qualification and evidence contracts), `EXT-005` (Mask-First and epistemic separation), and `EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md` (SQL-facing conformance cases).
+
+---
+
 ## 18. Conclusion
 
 Residual-first scientific discovery does not elevate every mismatch into a breakthrough. It asks that unexplained differences be **preserved with context, made addressable, compared under valid perspective contracts, and transformed into testable questions**. A successful WE-SIO implementation would improve the discipline of learning from what current models fail to explain while retaining the right to conclude that an anomaly was noise, bias, or error.
@@ -377,6 +490,9 @@ The next research step is to convert this architecture into explicit contracts a
 - **Fig-008-World-Delta-vs-Epistemic-Delta.png** — after Section 10.
 
 ## Related WE-SIO Documents
+
+- `extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md`
+- `extensions/EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md`
 
 - `WE-SIO-001-From-Variable-Size-Blocks-to-World-Entity.md`
 - `WE-SIO-002-World-Entity-Representation-and-Perspective-Indices.md`

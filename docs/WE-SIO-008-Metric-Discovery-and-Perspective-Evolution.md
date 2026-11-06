@@ -8,7 +8,7 @@
 
 ## Abstract
 
-A World Entity (WE) can be represented through multiple perspectives, yet the perspectives available at any moment need not be complete. Existing measurements may fail to explain observations, differentiate entities, or support a particular task. This paper proposes a controlled process for **metric discovery and perspective evolution** within WE-SIO: preserve unexplained residuals; propose candidate measurements, dissimilarities, directional relations, or relational descriptors; evaluate them against explicit semantic and empirical contracts; and revise perspective registries and search structures without confusing representation changes with changes in the world. The proposed process links Residual-First Scientific Discovery (WE-SIO-007), Two-Ways CCC (WE-SIO-006), Metric-Leaf Intelligence Units (WE-SIO-005), WE-HDT (WE-SIO-003), and Constrained Delta Evolution (CDE). The aim is a falsifiable architecture for learning *what to measure and how to represent it*, rather than an assertion that a new metric is always discoverable or scientifically meaningful.
+A World Entity (WE) can be represented through multiple perspectives, yet the perspectives available at any moment need not be complete. Existing measurements may fail to explain observations, differentiate entities, or support a particular task. This paper proposes a controlled process for **metric discovery and perspective evolution** within WE-SIO: preserve qualified discrepancies without conflating them with unknowns; propose candidate measurements, dissimilarities, directional relations, or relational descriptors; evaluate them against explicit semantic and empirical contracts; and revise perspective registries and search structures without confusing representation changes with changes in the world. The revised architecture separates Established Knowledge, Open Knowledge, and qualified Residual Evidence Registry (RER) records; uses Mask-First exploration where coverage-safe; and distinguishes Activation/Mask Delta from Knowledge and Structural Delta. The proposed process links Residual-First Scientific Discovery (WE-SIO-007), Two-Ways CCC (WE-SIO-006), Metric-Leaf Intelligence Units (WE-SIO-005), WE-HDT (WE-SIO-003), and Constrained Delta Evolution (CDE). The aim is a falsifiable architecture for learning *what to measure and how to represent it*, rather than an assertion that a new metric is always discoverable or scientifically meaningful.
 
 ## 1. Scope and research position
 
@@ -399,6 +399,160 @@ These are proposed interoperability directions, not verified runtime integration
 - **Fig-006 — Two-Ways CCC Cross-Metric Discovery:** after Section 4, emphasizing forward and backward pathways.
 - **Fig-007 — Residual-Driven Scientific Discovery Loop:** after Section 6, showing candidate status and validation gates.
 - **Fig-009 — Definition Evolution Loop:** after Section 17, emphasizing versioned contracts and counterexamples.
+
+
+## 22. Epistemic Separation in Perspective Discovery (2026-11-05 Update)
+
+A discovery framework must distinguish a *missing explanatory variable* from a *demonstrated mismatch*. WE-SIO therefore proposes three versioned, context-scoped logical views:
+
+| View | Admission rule | Role in perspective discovery |
+|---|---|---|
+| Established Knowledge (`EK`) | Evidence-supported claims with scope, provenance, and review status | Supplies accepted baselines, constraints, and calibrated perspectives |
+| Open Knowledge (`OK`) | Unverified candidates, missing variables, unknown relationships, contested claims | Supplies questions and candidate perspectives without implying observed failure |
+| Residual Evidence Registry (`RER`) | Qualified mismatch against an explicit expectation, comparator, or constraint | Supplies evidence-backed triggers for targeted explanation and hypothesis testing |
+
+**Unknown ≠ Residual.** A missing SQL value, absent metric, untested relation, or unanswered question does not qualify as residual evidence merely because it is unknown. A residual must identify a versioned baseline or rule, an observation, a meaningful comparison, evidence lineage, and qualification status. Logical or relational contradictions can qualify if their comparison contract is explicit; a numerical subtraction is not required.
+
+An `EK` claim is **established only for its declared context and version**, not universally true. A perspective can be accepted for one population or task and remain open in another. Physical storage MAY be shared, but the logical statuses MUST remain distinguishable.
+
+### 22.1 Candidate provenance and status
+
+```yaml
+PerspectiveCandidate:
+  candidateId: immutable-id
+  perspectiveKind: measurement | metric | pseudometric | similarity | relational | directional
+  origin:
+    trigger: open-question | qualified-residual | task-gap | independent-proposal
+    openQuestionRefs: []
+    residualEvidenceRefs: []
+  semantics:
+    entityDomain: declared
+    applicabilityContext: declared
+    observationOrDerivationRule: versioned-reference
+    comparatorOrRelationContract: optional-versioned-reference
+    unitsAndCalibration: optional
+    missingnessPolicy: declared
+  evidence:
+    supportingRefs: []
+    contradictingRefs: []
+    uncertaintyAndDependencies: declared
+  evaluation:
+    preregisteredCriteriaRef: optional
+    baselinePerspectiveRefs: []
+    holdoutAndNegativeControlRefs: []
+    metricAxiomAssessmentRef: optional
+  lifecycle:
+    status: proposed | sandbox | validated-for-scope | promoted | rejected | withdrawn
+    authorityRef: declared
+    version: required
+  operational:
+    maskPolicyRef: optional
+    indexPlanRef: optional
+    resourceBudget: declared
+```
+
+A candidate triggered by a residual MUST NOT inherit the residual's evidence as proof that the candidate explanation is correct. Alternative explanations, confounding, and source dependence must remain visible.
+
+## 23. Mask-First Candidate Exploration and Perspective Selection
+
+The **Mask-First** proposal from `EXT-005` separates persistent knowledge/index structure from an effective computation view. Candidate exploration may selectively activate relevant perspectives, nodes, relationships, inference operators, depths, and budgets without rebuilding WE-HDT or modifying the accepted perspective registry.
+
+```text
+Task / Qualified Residual / Open Question
+               |
+    Authorization + Context
+               |
+   Generate Perspective/Metric Mask
+               |
+    Active Computational View
+               |
+  Two-Ways CCC + MLIU Investigation
+               |
+  Compare to full-view / safe baseline
+               |
+    Evaluate evidence and overhead
+               |
+   Remask / Expand / Fallback / Propose Delta
+```
+
+Masking does **not** guarantee faster execution. Generation, cache maintenance, invalidation, fallback, and false exclusions are costs to measure. An exact discovery/retrieval contract MUST use a coverage-safe mask or full-view fallback; approximate modes MUST disclose recall and omitted candidate risks. A mask cannot override access controls or suppress contradictory evidence required for validation.
+
+### 23.1 Two distinct feedback loops
+
+- **Fast computation loop:** `Mask → Execute → Evaluate → Remask`, producing **Activation Delta (ΔA)** and no necessary change to the stored knowledge or index.
+- **Slow knowledge/structure loop:** `Candidate → Test → Review → Promote/Withdraw → Optional Reindex`, producing a **Knowledge Delta (ΔK)** and, only when justified, a **Structural Delta (ΔS)**.
+
+A new observation is separately typed as **Observation Delta (ΔO)**. A supported claim about an external event is a **World Delta (ΔW)** assertion, not inferred from a database UPDATE or index rebuild.
+
+The **mature-structure preservation** heuristic prefers reuse and selective computation when conformance and net benefit permit. It is not mandatory: corrupt indexes, permission changes, or incompatible semantics may require immediate reconstruction.
+
+## 24. Perspective Promotion, Demotion, and Rollback
+
+**Promotion is a governed epistemic transition, not automatic schema evolution.**
+
+1. **Propose:** record a typed candidate and its originating open question or qualified residual.
+2. **Specify:** define domain, comparator/relation semantics, units if applicable, uncertainty, missingness, privacy, and applicability.
+3. **Test:** compare against established alternatives with held-out evidence, negative controls, and relevant confounder checks.
+4. **Review:** evaluate evidence independence, false discovery risk, performance cost, and alternative explanations.
+5. **Promote for scope:** version the decision, evidence, authority, and permissible operations.
+6. **Deploy selectively:** optionally build or change an index after structural conformance checks; promotion need not entail reindexing.
+7. **Monitor and withdraw:** retain dependency references, negative evidence, and rollback or compensation plans.
+
+**Metric semantics are not transferable by naming.** A candidate called a “metric” MUST satisfy nonnegativity, identity of indiscernibles, symmetry, and triangle inequality on its claimed domain before receiving metric-dependent guarantees. A pseudometric, similarity, asymmetric score, or relation may still be valuable without those guarantees.
+
+### 24.1 Knowledge-state transition invariants
+
+- `OK → EK` requires validation criteria, evidence, decision authority, and versioning.
+- `EK → revised/withdrawn` requires a traceable reason and downstream dependency review.
+- `RER → candidate` is an investigative trigger, **not** a promotion.
+- `ΔA` does not itself constitute `ΔK`; `ΔK` does not itself constitute `ΔS` or `ΔW`.
+- Evidence provenance and correlation must survive multi-agent relay; repeated processing is not independent replication.
+
+## 25. Conformance and Falsifiable Evaluation Additions
+
+The following proposed checks extend, rather than renumber, the original Section 15 tests.
+
+| ID | Test fixture | Pass criterion |
+|---|---|---|
+| PE-001 | Missing variable without baseline | Routed to Open Knowledge, not RER |
+| PE-002 | Model-observation mismatch with explicit comparator | Qualified/provisional RER with evidence and version |
+| PE-003 | Relational contradiction | Typed logical comparison preserved; no fake Euclidean metric |
+| PE-004 | Candidate metric violates symmetry | No metric label or triangle-inequality pruning |
+| PE-005 | Candidate promoted without holdout/declared review | Promotion rejected or marked unvalidated |
+| PE-006 | Promoted perspective later contradicted | Versioned reassessment and dependency notification |
+| PE-007 | Mask excludes a valid exact-query candidate | Safe expansion/fallback or explicit failure |
+| PE-008 | Unmask requests unauthorized column/edge | Access denied |
+| PE-009 | Schema/perspective change makes mask stale | Invalidation or revalidation |
+| PE-010 | Mask changes but no evidence changes | ΔA only; no fabricated ΔK |
+| PE-011 | Perspective promotion requires new index | ΔK and ΔS separately committed and audited |
+| PE-012 | Two agents cite the same underlying observation | Source dependence recorded; no false independence |
+| PE-013 | SQL JOIN duplicates observations | Aggregation artifact diagnosed, not promoted as discovery |
+| PE-014 | Candidate fails under distribution shift | Scope narrowed, demoted, or withdrawn with trace |
+
+**Candidate hypotheses:**
+- `H-PE-01`: explicit EK/OK/RER separation reduces false residual classifications relative to an untyped registry;
+- `H-PE-02`: mask-first candidate exploration lowers total investigation cost for selected workloads at matched discovery recall;
+- `H-PE-03`: governed promotion reduces unsupported perspective adoption and post-deployment reversal rates;
+- `H-PE-04`: five-way delta typing improves audit accuracy during iterative perspective evolution.
+
+Use full-view, fixed-mask, learned-mask, conventional feature engineering, and index-only baselines. Report validated discovery yield, false-discovery rate, recall, latency, mask overhead, drift sensitivity, reproducibility, and the cost of rejected candidates. No gain is presumed.
+
+## 26. SQL-Native Testbed and Research Boundaries
+
+`EXT-006` proposes SQL as a practical testbed because relational schemas provide explicit metadata, transactions, query plans, and access policies. The mapping is **conditional**, not one-to-one: a table may encode a relation or event rather than an entity type; a row is not necessarily a unique world entity; a column is an attribute or perspective *candidate*, not automatically a mathematical metric; a JOIN is not automatically identity evidence; and SQL NULL does not itself determine epistemic status.
+
+A SQL-based experiment SHOULD compare:
+- schema-aware baseline retrieval and conventional query optimization;
+- Mask-First selection over authorized tables, columns, relationships, and operations;
+- Open Knowledge questions and qualified residual investigations;
+- independently validated perspective promotion with safe, optional index updates.
+
+The proposed research contribution is **evidence-governed perspective discovery and evolution layered over existing engines**, not a claim that SQL AI is an unexplored field or that the framework has already been implemented.
+
+**Related specifications and extensions:** `SPEC-003` (mask-safe WE-HDT/AVIB/MLIU interfaces), `SPEC-005` (epistemic separation, residual qualification, promotion), `WE-SIO-004`, `WE-SIO-005`, `WE-SIO-007`, `WE-SIO-009`, `EXT-005`, and `EXT-006`.
+
+**Research status:** All new contracts, hypotheses, and benefits remain proposals awaiting implementation, counterexamples, and independent validation.
+
 
 ## 21. Conclusion
 

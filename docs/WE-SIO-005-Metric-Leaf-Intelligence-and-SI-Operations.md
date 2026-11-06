@@ -8,7 +8,7 @@
 
 ## Abstract
 
-World Entity Hybrid Differential Trees (WE-HDT) need more than a means of locating candidates. They need a controlled way to interpret entity evidence under heterogeneous perspectives, identify unresolved discrepancies, and relay findings to other perspectives or research processes. This paper proposes the **Metric-Leaf Intelligence Unit (MLIU)** as a logical, addressable intelligence unit and defines six candidate Structural Intelligence (SI) operations: **Locate, Resolve, Relate, Infer, Question, and Evolve**. A metric leaf need not be a physical tree leaf, a mathematical metric, or an autonomous agent. The design distinguishes observation from hypothesis, indexing from interpretation, and evidence from inference. It specifies operation contracts, lifecycle and governance rules, two-way discovery, residual propagation, conformance tests, and falsifiable research hypotheses.
+World Entity Hybrid Differential Trees (WE-HDT) need more than a means of locating candidates. They need a controlled way to interpret entity evidence under heterogeneous perspectives, identify unresolved discrepancies, and relay findings to other perspectives or research processes. This paper proposes the **Metric-Leaf Intelligence Unit (MLIU)** as a logical, addressable intelligence unit and defines six candidate Structural Intelligence (SI) operations: **Locate, Resolve, Relate, Infer, Question, and Evolve**. A metric leaf need not be a physical tree leaf, a mathematical metric, or an autonomous agent. The design distinguishes observation from hypothesis, indexing from interpretation, and evidence from inference. It specifies operation contracts, lifecycle and governance rules, two-way discovery, residual propagation, conformance tests, and falsifiable research hypotheses. This updated edition also separates established and open knowledge from residual evidence, and introduces task-scoped Metric/Operation Masks without confusing computational activation with knowledge validation.
 
 ## 1. Research problem and scope
 
@@ -50,7 +50,13 @@ MetricLeafIntelligenceUnit:
   uncertainty:
     representation: declared-method
     limitations: []
-  residuals: []
+  establishedKnowledgeRefs: []  # evidence-supported, scoped, versioned
+  openKnowledgeRefs: []         # questions and candidate hypotheses
+  residualEvidenceRefs: []     # discrepancies with explicit baselines
+  epistemicStatePolicyRef: declared
+  maskPolicyRef: optional-task-scoped-policy
+  activeComputationViewRef: optional-transient-view
+  residuals: []               # legacy compatibility alias; not a catch-all
   openQuestions: []
   supportedOperations: [Locate, Resolve, Relate, Infer, Question, Evolve]
   resourceBudget:
@@ -71,7 +77,7 @@ This is an illustrative schema, **not** a frozen wire format. Fields may be stor
 1. **Identity separation:** a change of perspective or index location must not silently change the entity identity.
 2. **Semantic typing:** a directional score must not be presented as a mathematical distance without verification.
 3. **Evidence separation:** raw observation, derived feature, inference, and hypothesis have distinguishable statuses.
-4. **Explicit unknown:** missing evidence, inapplicability, uncertainty, and negative evidence are distinct states.
+4. **Explicit unknown:** missing evidence, inapplicability, uncertainty, and negative evidence are distinct states. Open questions are not residuals unless a specific discrepancy baseline is recorded.
 5. **Traceability:** every material result records its perspective, version, source lineage, and applied operation.
 6. **Budget governance:** potentially expensive operations can be denied, deferred, delegated, or degraded without corrupting stored evidence.
 7. **Revisability:** new evidence may revise interpretation while preserving earlier versions for audit.
@@ -364,6 +370,121 @@ ownerOrReviewAuthority: declared
 ```
 
 Research trace files should record why a definition changed, not just its latest wording. In particular, `HYPOTHESIS-REGISTRY.md`, `DEFINITION-REGISTRY.md`, `COUNTEREXAMPLE-REGISTRY.md`, `DECISION-LOG.md`, and `UNRESOLVED-RESIDUALS.md` should link to stable operation/test identifiers.
+
+## 17A. Epistemic separation: established, open, and residual (v0.1.0 update)
+
+This section extends the original MLIU contract in response to `extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md`. A Metric Index is an addressing and comparison structure; it must not implicitly certify the epistemic status of everything indexed. Three **logical views** are required for research-grade operation, although they need not be three physical tables or indexes.
+
+| View | Admission criterion | Typical SI operations | Exclusion rule |
+|---|---|---|---|
+| **Established Knowledge** | Evidence-supported assertion with scope, applicability, provenance, version and validation policy | Locate, Resolve, Infer, Relate | Never equate “established” with universally true |
+| **Open Knowledge** | Explicit unknown, question, untested hypothesis, candidate metric or unresolved relation | Question, Infer (provisional), Evolve (proposal) | Do not treat absence of data as measured deviation |
+| **Residual Evidence Registry (RER)** | Observation/constraint/model discrepancy with an explicit baseline and evidence lineage | Resolve, Question, Relate, Evolve (proposal) | Do not use as a miscellaneous unknown bucket |
+
+**Unknown ≠ Residual.** An unmeasured material property belongs to Open Knowledge. A measured property contradicting a stated prediction may create a residual, provided the prediction, observation, uncertainty and provenance are documented. A candidate explanation remains Open until evaluated; it is not promoted simply because a residual exists.
+
+Epistemic status is **perspective-, context-, time-, and version-scoped**. An assertion may be established under one measurement contract and open under another. A SQL `NULL` may mean missing, unknown, withheld or inapplicable; it cannot be classified as a residual by syntax alone. Inferences, measurements, hypotheses, and entity identity remain separate objects.
+
+### 17A.1 Suggested typed records
+
+```yaml
+EpistemicAssertion:
+  assertionId: stable-id
+  entityRef: versioned-reference
+  perspectiveId: versioned-descriptor
+  proposition: typed-claim
+  status: established | open | revised | withdrawn
+  applicability: context-and-time-scope
+  evidenceRefs: []
+  uncertainty: declared
+  evaluatorPolicyRef: versioned
+  provenance: required
+  revisionHistory: []
+
+ResidualEvidence:
+  residualId: stable-id
+  entityRef: versioned-reference
+  perspectiveId: versioned-descriptor
+  baselineRef: prediction-or-constraint-or-explanatory-model
+  observationRefs: []
+  discrepancySemantics: numeric | logical | structural | explanatory
+  uncertaintyAndConfounders: []
+  diagnosticStatus: untriaged | investigating | explained | unresolved
+  candidateHypothesisRefs: []
+  provenance: required
+```
+
+An explanatory residual requires a declared explanatory commitment or constraint; mere curiosity about an unknown is not sufficient. A registry must preserve negative evidence and mundane failure explanations (measurement error, drift, leakage, join multiplicity, selection bias) before proposing a new mechanism.
+
+### 17A.2 Promotion, demotion and rollback
+
+A transition from `open` to `established` requires a declared validation gate, sufficient evidence, evaluator identity, applicability conditions and versioned decision. Counterevidence may trigger `established → revised/withdrawn`, without erasing the original evidence. Repeated agent agreement does not by itself count as independent validation. In regulated settings, access restrictions and approval policies govern what can be viewed or promoted.
+
+## 17B. Metric Mask and operation-scoped computational activation
+
+A **Metric Mask** selects which perspective descriptors, candidate metrics, relations or metric-leaf services are eligible for a particular task. It does not redefine the mathematical semantics of the selected descriptors. A **Node/Edge Mask** restricts traversals; an **Operation Mask** limits callable SI operations; **Depth/Budget Masks** bound exploration. These may be composed into a task-scoped active view while preserving the underlying MLIU identity and stored evidence.
+
+```text
+request = (task, entityScope, perspectiveScope, authorization, budget)
+mask = GenerateMask(request, substrateVersion, policyVersion)
+view = ApplyMask(eligibleMLIUs, mask)
+result = ExecuteSI(view, requestedOperation)
+report = ValidateCoverageAndEvidence(result, request)
+feedback = RemaskOrEscalate(report)
+```
+
+Mask, Unmask and Remask are **execution-control operations**, not new evidence-producing SI operations by default. They may be exposed as control-plane interfaces to the six canonical operations. `Unmask` never widens permissions beyond the caller's authorization. Mask policy changes should be recorded as **Activation Delta**, not silently conflated with Knowledge Delta or persistent Structural Delta.
+
+### 17B.1 Mask contract
+
+A reproducible mask record should include: `maskId`, `taskId`, `perspectiveRefs`, `substrateVersion`, `policyVersion`, `authorizationScope`, `selectedEntityOrNodePredicates`, `selectedMetricOrRelationRefs`, `allowedOperations`, `depthLimit`, `resourceBudget`, `completenessMode`, `evidenceRefs`, and `provenance`.
+
+For exact queries, a mask must preserve candidate **coverage**. If that cannot be established, the implementation must expand/fallback to a verified reference path or explicitly declare approximate results with measured recall. Masking cannot erase audit trails or circumvent database row/column security. Cache validity must be checked when schemas, perspective definitions, permissions, or data distributions change.
+
+The cost model must include mask generation, compilation, execution, fallback, and cache invalidation. A mask that merely suppresses output but still performs full computation does not demonstrate computational savings.
+
+### 17B.2 Separation of computational and epistemic states
+
+- **Activation Delta:** changes which MLIUs, metrics and operations are active for a task.
+- **Knowledge Delta:** changes evidence-backed epistemic assertions, hypotheses or uncertainty.
+- **Structural Delta:** changes persistent topology, membership, indexing or capability organization.
+- **World/Source-State Delta:** changes the represented external state or source records; not equivalent to a change in belief.
+
+An effective mask may remain stable while knowledge changes, and knowledge may be revised without splitting a block. `WE-SIO-009` and CDE govern candidate evolution and application-specific constraints; no universal “never reuse a delta” rule is assumed.
+
+## 17C. Updated operation contracts and conformance
+
+The six canonical operations retain their original names and meanings, with the following additional obligations:
+
+| Operation | Epistemic obligation | Mask obligation |
+|---|---|---|
+| Locate | Return typed status and evidence reference when requested | Preserve exact-query coverage or declare approximation |
+| Resolve | Distinguish identity ambiguity, open knowledge and genuine discrepancy | Expand mask when needed to resolve conflicting evidence |
+| Relate | Preserve directionality, provenance and scope of relations | Do not infer absent edges solely from masked-out edges |
+| Infer | Mark provisional versus validated conclusions | Record mask/perspective limitations and excluded evidence risk |
+| Question | Route unknowns to Open Knowledge; discrepancies to RER | May propose expanded exploration masks |
+| Evolve | Produce proposals subject to validation/promotion contracts | Distinguish activation, knowledge and structural changes |
+
+**Candidate conformance checks** (to be synchronized with `SPEC-003`, `SPEC-004`, and `SPEC-005`):
+
+1. `MLIU-EPI-001`: a missing measurement without a baseline remains Open, not Residual.
+2. `MLIU-EPI-002`: residual admission requires baseline, observation, discrepancy semantics and provenance.
+3. `MLIU-EPI-003`: established assertions carry perspective, context, uncertainty and evidence lineage.
+4. `MLIU-EPI-004`: promotion/demotion/withdrawal decisions are versioned and auditable.
+5. `MLIU-MASK-001`: exact masked retrieval matches a full-view reference or fails closed.
+6. `MLIU-MASK-002`: mask selection and remasking never bypass access controls.
+7. `MLIU-MASK-003`: activation-only changes leave persistent entity identity and topology intact.
+8. `MLIU-MASK-004`: mask performance reports include generation and fallback costs.
+9. `MLIU-MASK-005`: stale masks are invalidated on relevant policy/schema/perspective changes.
+10. `MLIU-RELAY-001`: shared masks disclose task and substrate compatibility and require target-task validation.
+
+### 17C.1 Proposed experiments and falsification
+
+Compare full-view execution, static masks, learned masks, and adaptive remasking across (a) structured metric retrieval, (b) mixed metric/relational inference, and (c) SQL-backed schema/column selection. Evaluate answer quality, recall, false exclusions, end-to-end latency, total compute, epistemic misclassification, residual false positives, auditability, and cross-task transfer. Include counterexamples where mask generation is more expensive than execution, masking omits decisive evidence, or a misleading residual arises from SQL JOIN duplication. These are hypotheses for validation, **not measured outcomes**.
+
+**Related research:** `EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md` establishes the general framework; `EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md` develops a SQL-facing testbed; `WE-SIO-004` treats AVIB activation and mature-structure preservation; `WE-SIO-007` formalizes residual diagnosis; `WE-SIO-008` covers candidate metric promotion.
+
+---
 
 ## 17. Conclusion
 

@@ -1,0 +1,42 @@
+{
+  "title": "World Entity and Structural Intelligence Operations: From Variable-Size Block Indexing to Open-Ended World Modeling, Metric Discovery, and Self-Referential Intelligence",
+  "upload_type": "publication",
+  "publication_type": "workingpaper",
+  "description": "<p><strong>World Entity and Structural Intelligence Operations (WE-SIO), v0.1.0</strong> is a hypothesis-driven research framework connecting World Entity representations, typed perspectives, WE-Hybrid Differential Trees (WE-HDT), Perspective-Adaptive Variable Blocks (PAVB), Adaptive Variable-Intelligence Blocks (AVIB), Metric Leaf Intelligence Units (MLIU), Two-Ways CCC, residual-first scientific discovery, candidate metric and perspective generation, Constrained Delta Evolution (CDE), self-modeling, and collective learning.</p><p>The release supplies conceptual papers, specifications, case studies, extensions, research-trace registries, counterexamples, testable hypotheses, and a validation roadmap. Proposed architectures and scientific-discovery mechanisms remain research hypotheses; no empirical validation or clinical effectiveness is claimed. The project prioritizes specifications and contracts before runtime, conformance before performance, evidence before promotion, and explicit preservation of unresolved research questions.</p>",
+  "creators": [
+    {
+      "name": "Tan, Sizhe"
+    },
+    {
+      "name": "GPT-Obot",
+      "affiliation": "AI research collaborator"
+    }
+  ],
+  "version": "0.1.0",
+  "publication_date": "2026-11-05",
+  "access_right": "open",
+  "license": "Apache-2.0",
+  "keywords": [
+    "structural intelligence",
+    "world entity",
+    "perspective-aware indexing",
+    "WE-HDT",
+    "adaptive intelligence blocks",
+    "metric leaf intelligence",
+    "Two-Ways CCC",
+    "residual-first scientific discovery",
+    "metric discovery",
+    "constrained delta evolution",
+    "self-modeling",
+    "collective learning",
+    "research trace"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/sizhet/World-Entity-and-Structural-Intelligence-Operations",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Initial research-framework release (v0.1.0). DOI will be assigned by Zenodo upon publication. The listed AI collaborator is credited consistently with the repository CITATION.cff; confirm repository and Zenodo authorship policies before publication."
+}

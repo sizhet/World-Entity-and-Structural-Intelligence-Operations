@@ -93,6 +93,8 @@ These specifications are proposed research contracts. They are not evidence of a
 - `EXT-002-Multi-Agent-WE-SI-and-Collective-Learning.md`
 - `EXT-003-Structural-Scientific-Discovery-and-Metric-Generation.md`
 - `EXT-004-Self-Referential-World-Entity-and-Subjective-SI.md`
+- `EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md`
+- `EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md`
 
 ### Added — research trace (`research-trace/`)
 

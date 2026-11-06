@@ -84,6 +84,8 @@ Clinical examples are research illustrations, **not** medical advice or clinical
 - [`EXT-002`](extensions/EXT-002-Multi-Agent-WE-SI-and-Collective-Learning.md): multi-agent collaboration, adversarial checking, and relay.
 - [`EXT-003`](extensions/EXT-003-Structural-Scientific-Discovery-and-Metric-Generation.md): residuals, AQSI, candidate metric generation, and validation gates.
 - [`EXT-004`](extensions/EXT-004-Self-Referential-World-Entity-and-Subjective-SI.md): self-reference and interfaces with SSI, without consciousness claims.
+- [`EXT-005`](extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md): Mask-First Structural Intelligence and Epistemic Separation.
+- [`EXT-006`](extensions/EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md): SQL-Native Structural Intelligence and Knowledge Evolution.
 
 ## 5. The architecture at a glance
 

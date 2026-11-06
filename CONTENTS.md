@@ -53,6 +53,8 @@
 - [EXT-002-Multi-Agent-WE-SI-and-Collective-Learning.md](extensions/EXT-002-Multi-Agent-WE-SI-and-Collective-Learning.md) — EXT 002 Multi Agent WE SI and Collective Learning.
 - [EXT-003-Structural-Scientific-Discovery-and-Metric-Generation.md](extensions/EXT-003-Structural-Scientific-Discovery-and-Metric-Generation.md) — EXT 003 Structural Scientific Discovery and Metric Generation.
 - [EXT-004-Self-Referential-World-Entity-and-Subjective-SI.md](extensions/EXT-004-Self-Referential-World-Entity-and-Subjective-SI.md) — EXT 004 Self Referential World Entity and Subjective SI.
+- [EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md](extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md) - EXT 005 Mask-First Structural Intelligence and Epistemic Separation
+- [EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md](extensions/EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md) - EXT 006 SQL-Native Structural Intelligence and Knowledge Evolution
 
 ### 2.5 Research Trace
 

@@ -636,6 +636,8 @@ explicit_leftovers: []
 - `../extensions/EXT-002-Multi-Agent-WE-SI-and-Collective-Learning.md`: collective relay and correlated evidence.
 - `../extensions/EXT-003-Structural-Scientific-Discovery-and-Metric-Generation.md`: discovery and metric validation.
 - `../extensions/EXT-004-Self-Referential-World-Entity-and-Subjective-SI.md`: self-reference and SSI boundaries.
+- `../extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md`:  discuss Mask-First Structural Intelligence and Epistemic Separation.
+- `../extensions/EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md`: discuss SQL-Native Structural Intelligence and Knowledge Evolution.
 
 ## 8. Explicit leftovers
 

@@ -170,6 +170,8 @@ The tree is the **target release layout**. Check the actual repository before pu
 - [EXT-002 — Multi-Agent WE-SI and Collective Learning](extensions/EXT-002-Multi-Agent-WE-SI-and-Collective-Learning.md)
 - [EXT-003 — Structural Scientific Discovery and Metric Generation](extensions/EXT-003-Structural-Scientific-Discovery-and-Metric-Generation.md)
 - [EXT-004 — Self-Referential World Entity and Subjective SI](extensions/EXT-004-Self-Referential-World-Entity-and-Subjective-SI.md)
+- [EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md](extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md)
+- [EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md](extensions/EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md)
 
 ### 6.5 Research trace (`research-trace/`)
 

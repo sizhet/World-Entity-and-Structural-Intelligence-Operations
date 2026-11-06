@@ -21,7 +21,7 @@ The original research trajectory moves from variable-size spatial blocks and two
 
 - **ID:** `WEH-###`, stable across versions. Never reuse an identifier.
 - **State:** `Proposed`, `Specified`, `Testing`, `Supported`, `Mixed`, `Refuted`, `Suspended`, or `Superseded`.
-- **Initial state:** All entries below are `Proposed`. A drafted test protocol does not constitute a completed experiment.
+- **Initial state:** All 40 entries below are `Proposed`. A drafted test protocol does not constitute a completed experiment.
 - **Class:** Architecture, Algorithm, Discovery, Governance, Collective Learning, Self-Model, or Definition.
 - **Evidence grade:** `E0` conjecture only; `E1` reproducible synthetic observation; `E2` independently controlled benchmark; `E3` independent external replication; `E4` multi-setting robust evidence. These are project-specific tracking labels, not universal scientific standards.
 - **Comparison:** a matched baseline, workload, outcome metric, resource budget, and confidence interval or uncertainty estimate.
@@ -68,6 +68,16 @@ Every executed test should produce a manifest with dataset provenance, licenses/
 | WEH-028 | Algorithm | WE-SIO adds value beyond SQL/index baselines in selected tasks | Quality-cost frontier | Proposed | E0 |
 | WEH-029 | Discovery | Residual-driven clinical subgroup hypotheses survive external tests | External validity | Proposed | E0 |
 | WEH-030 | Governance | Claim-scoped evidence gates reduce unsupported conclusions | Unsupported claim rate | Proposed | E0 |
+| WEH-031 | Algorithm | Task-conditioned masking reduces net compute on suitable workloads | Total cost at matched correctness | Proposed | E0 |
+| WEH-032 | Architecture | Selective reuse reduces unnecessary rebuilds without excess forgetting | Rebuild cost and regression rate | Proposed | E0 |
+| WEH-033 | Governance | Distinct EK/OK/RER views reduce category errors | False epistemic classification rate | Proposed | E0 |
+| WEH-034 | Collective Learning | Versioned mask policies transfer with net benefit | Transfer gain after overhead | Proposed | E0 |
+| WEH-035 | Architecture | Typed SQL-to-WE mapping reduces semantic mapping errors | Critical mapping error rate | Proposed | E0 |
+| WEH-036 | Algorithm | Mask-first schema selection improves cost at noninferior correctness | Cost at matched answer correctness | Proposed | E0 |
+| WEH-037 | Governance | EK/OK/RER separation reduces false knowledge promotions | False promotion rate | Proposed | E0 |
+| WEH-038 | Discovery | Qualified RER improves attribution and reproducibility | Attribution accuracy/reproduction | Proposed | E0 |
+| WEH-039 | Collective Learning | Reusable mask policies transfer across compatible schemas | Net cross-schema benefit | Proposed | E0 |
+| WEH-040 | Governance | Promotion/withdrawal contracts reduce unsupported claims | Unsupported derived claim rate | Proposed | E0 |
 
 ## 4. Hypothesis cards: representation, indexing, and intelligence
 
@@ -296,6 +306,180 @@ Every executed test should produce a manifest with dataset provenance, licenses/
 **Falsifier:** No reduction or prohibitive review overhead.  
 **Sources:** SPEC-005; SPEC-006; EXT-002; EXT-003.
 
+## 9A. Extension hypothesis cards: Mask-First, epistemic separation, SQL-native SI
+
+**Update scope:** WEH-031–040 are imported from the expanded `TESTABLE-HYPOTHESES.md` as a synchronized research registry. They remain **Proposed / E0**; no measurements, implementations, or independent replications are claimed. Every experiment must record counterexamples, authorization violations, false omissions, and negative findings. The project-specific evidence grades do not imply scientific consensus.
+
+### WEH-031 — Mask-first efficiency under matched correctness
+
+**Prediction:** Task-conditioned masking reduces net compute on suitable workloads.
+
+**Discriminating experiment:** Compare adaptive task-conditioned node/edge/metric/operation masks against full-view execution, fixed masks, and eager structural rebuild across stratified tasks. Include mask construction, invalidation, fallback and selection overhead.
+
+**Primary endpoint:** End-to-end compute/time at exact correctness or preregistered recall noninferiority.
+
+**Potential refutation:** No net savings or unsafe omissions after overhead is counted.
+
+**Threats to validity:** Mask training leakage; workload cherry-picking; stale policies.
+
+**Source cross-references:** EXT-005; WE-SIO-004/005/009; SPEC-003; MCT; D5.
+
+**Required evidence:** frozen protocol, matched baseline, independent evaluation where feasible, complete cost accounting, counterexamples, uncertainty and linked registry decision.
+
+### WEH-032 — Mature-structure retention versus premature reconstruction
+
+**Prediction:** Selective reuse reduces unnecessary rebuilds without excess forgetting.
+
+**Discriminating experiment:** Run workload and evidence drift sequences with reuse-first, eager-rebuild, and static baselines; inject corrupt indexes and incompatible schema updates as counterexamples.
+
+**Primary endpoint:** Total lifecycle cost, reconstruction frequency, correctness regression and stale-knowledge rate.
+
+**Potential refutation:** Reuse causes unacceptable stale results or costs more than appropriate rebuilding.
+
+**Threats to validity:** Nonstationarity, caching confounds, unmeasured maintenance.
+
+**Source cross-references:** EXT-005; WE-SIO-004/009; SPEC-003.
+
+**Required evidence:** frozen protocol, matched baseline, independent evaluation where feasible, complete cost accounting, counterexamples, uncertainty and linked registry decision.
+
+### WEH-033 — Epistemic separation prevents unknown/residual confusion
+
+**Prediction:** Distinct EK/OK/RER views reduce category errors.
+
+**Discriminating experiment:** Blind annotators or implementations classify synthetic and domain-grounded unknowns, missing values, qualified contradictions, and rejected residuals with typed EK/OK/RER versus untyped buckets.
+
+**Primary endpoint:** False residual admission and false established-claim classification.
+
+**Potential refutation:** No reduction, or added categories increase misclassification at matched effort.
+
+**Threats to validity:** Annotation disagreement, ambiguous baselines, class imbalance.
+
+**Source cross-references:** EXT-005; WE-SIO-007; SPEC-005; ESC/RQC.
+
+**Required evidence:** frozen protocol, matched baseline, independent evaluation where feasible, complete cost accounting, counterexamples, uncertainty and linked registry decision.
+
+### WEH-034 — Mask policy relay yields transferable benefit
+
+**Prediction:** Versioned mask policies transfer with net benefit.
+
+**Discriminating experiment:** Transfer versioned mask policies between held-out compatible tasks; compare fresh policy training, static masks and no masks, charging transfer validation and adaptation.
+
+**Primary endpoint:** Net cost-quality gain and transfer failure rate.
+
+**Potential refutation:** No positive net gain or policy reuse violates coverage/security.
+
+**Threats to validity:** Task overlap, schema similarity, hidden transfer leakage.
+
+**Source cross-references:** EXT-005; SPEC-003; WE-SIO-004.
+
+**Required evidence:** frozen protocol, matched baseline, independent evaluation where feasible, complete cost accounting, counterexamples, uncertainty and linked registry decision.
+
+### WEH-035 — SQL-to-WE mapping fidelity
+
+**Prediction:** Typed SQL-to-WE mapping reduces semantic mapping errors.
+
+**Discriminating experiment:** Evaluate typed mappings across normalized schemas, event tables, many-to-many JOINs, NULL semantics and key collisions against naive row=entity/column=metric mapping and expert-designed rules.
+
+**Primary endpoint:** Critical semantic mapping errors per schema/task.
+
+**Potential refutation:** No lower error rate or excessive false identity claims.
+
+**Threats to validity:** Schema selection, annotation bias, baseline weakness.
+
+**Source cross-references:** EXT-006; SPEC-001/002/005.
+
+**Required evidence:** frozen protocol, matched baseline, independent evaluation where feasible, complete cost accounting, counterexamples, uncertainty and linked registry decision.
+
+### WEH-036 — Mask-first SQL schema localization
+
+**Prediction:** Mask-first schema selection improves cost at noninferior correctness.
+
+**Discriminating experiment:** Compare full-schema retrieval, strong schema-linking methods and authorized task-conditioned masks on broad SQL workloads, including schema drift and security tests.
+
+**Primary endpoint:** End-to-end cost at preregistered noninferior answer correctness.
+
+**Potential refutation:** Correctness loss, access leakage, or no net savings after mask overhead.
+
+**Threats to validity:** Database optimizer effects, workload difficulty, schema caching.
+
+**Source cross-references:** EXT-006; SPEC-003; MIC.
+
+**Required evidence:** frozen protocol, matched baseline, independent evaluation where feasible, complete cost accounting, counterexamples, uncertainty and linked registry decision.
+
+### WEH-037 — SQL epistemic-state reliability
+
+**Prediction:** EK/OK/RER separation reduces false knowledge promotions.
+
+**Discriminating experiment:** Inject unknown variables, NULLs, data defects, conflicting rows and legitimate model residuals into SQL workflows; compare EK/OK/RER contracts against undifferentiated analysis.
+
+**Primary endpoint:** False promotion and epistemic misclassification rate.
+
+**Potential refutation:** No improvement after matched reviewer effort.
+
+**Threats to validity:** Fixture realism, error-label reliability, implementation skill.
+
+**Source cross-references:** EXT-006; SPEC-005; ESC/KPC.
+
+**Required evidence:** frozen protocol, matched baseline, independent evaluation where feasible, complete cost accounting, counterexamples, uncertainty and linked registry decision.
+
+### WEH-038 — Qualified residual diagnosis
+
+**Prediction:** Qualified RER improves attribution and reproducibility.
+
+**Discriminating experiment:** Use controlled sensor error, JOIN fanout, confounding, drift, model misspecification and true synthetic effects; compare RER baseline-qualified records with generic anomaly logs.
+
+**Primary endpoint:** Correct root-cause attribution and independent reproducibility.
+
+**Potential refutation:** No gain, or false novelty attribution increases.
+
+**Threats to validity:** Known ground-truth design, selection bias, synthetic realism.
+
+**Source cross-references:** EXT-006; WE-SIO-007; SPEC-005; RQC.
+
+**Required evidence:** frozen protocol, matched baseline, independent evaluation where feasible, complete cost accounting, counterexamples, uncertainty and linked registry decision.
+
+### WEH-039 — Cross-schema mask policy relay
+
+**Prediction:** Reusable mask policies transfer across compatible schemas.
+
+**Discriminating experiment:** Transfer versioned mask strategies across compatible but nonidentical SQL schemas; explicitly charge adaptation, invalidation and permission revalidation costs.
+
+**Primary endpoint:** Net transfer benefit and safety/correctness failure rate.
+
+**Potential refutation:** Transfer cost exceeds benefit or unsafe mask reuse occurs.
+
+**Threats to validity:** Schema family leakage, small schema diversity.
+
+**Source cross-references:** EXT-006; SPEC-003; MIC.
+
+**Required evidence:** frozen protocol, matched baseline, independent evaluation where feasible, complete cost accounting, counterexamples, uncertainty and linked registry decision.
+
+### WEH-040 — Governed SQL-derived knowledge evolution
+
+**Prediction:** Promotion/withdrawal contracts reduce unsupported claims.
+
+**Discriminating experiment:** Compare contract-gated evidence review, promotion, retraction and dependency tracking with unconstrained agent-generated SQL claims under adversarial and held-out evidence.
+
+**Primary endpoint:** Unsupported derived claims, successful withdrawals and audit completeness.
+
+**Potential refutation:** No reduction in unsupported claims or excessive governance failure.
+
+**Threats to validity:** Reviewer bias, dependence among evidence sources, prompt sensitivity.
+
+**Source cross-references:** EXT-006; SPEC-005; KPC.
+
+**Required evidence:** frozen protocol, matched baseline, independent evaluation where feasible, complete cost accounting, counterexamples, uncertainty and linked registry decision.
+
+### 9A.1 Cross-cutting contract and delta constraints
+
+- **EK / OK / RER:** An unknown, SQL `NULL`, or unanswered question is not by itself a qualified residual. RER admission needs a baseline, comparator, observation, uncertainty, and provenance. Promoting a claim to EK requires scoped evidence and authorization.
+- **Five-way Delta:** `ΔW` external-world assertion; `ΔO` observation; `ΔK` knowledge-state change; `ΔS` durable structure; `ΔA` task-scoped mask/activation. A mask update must not silently become knowledge promotion, structural reconstruction, or a claim of world change.
+- **Correctness before speed:** An exact result requires coverage-safe masking or a sound fallback; approximate modes must state recall and false omission risks.
+- **Security:** Mask/unmask/remask and SQL schema localization must respect row- and column-level authorization and version invalidation.
+- **Promotion:** Metric-like operators must satisfy the axioms claimed for them; source agreement is not independent evidence. Governance and rollback must preserve dependency and decision history.
+
+**Cross-document traceability:** `extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md`; `extensions/EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md`; `specs/SPEC-003-WE-HDT-Node-Block-and-Metric-Leaf-Contract.md`; `specs/SPEC-005-Residual-Evidence-and-Metric-Discovery-Contract.md`; `docs/WE-SIO-004-Adaptive-Variable-Intelligence-Blocks.md`; `docs/WE-SIO-007-Residual-First-Scientific-Discovery.md`; `docs/WE-SIO-008-Metric-Discovery-and-Perspective-Evolution.md`; `docs/WE-SIO-009-World-Delta-Knowledge-Delta-and-CDE.md`.
+
 ## 10. Cross-hypothesis dependencies
 
 The hypotheses should not be tested as if they were independent:
@@ -416,11 +600,15 @@ Some linked files are planned components of the repository and may not yet exist
 - A shared benchmark suite spanning SQL, spatial, scientific, chess, and self-modeling tasks has not been built.
 - No WE-SIO benchmark results, external replications, or clinical findings are reported in this version.
 - The threshold for promoting a candidate perspective to a trusted operational metric remains domain-dependent.
+- Mask-first coverage guarantees, policy invalidation, and end-to-end overhead remain untested.
+- Epistemic Separation and RER qualification have no reported inter-annotator or external validation results.
+- SQL-to-WE mappings, SQL security conformance, and cross-schema policy transfer have not been benchmarked.
+- Five-way Delta typing and knowledge promotion/withdrawal governance require adversarial conformance fixtures.
 - Governance of autonomous definition evolution requires authorization, rollback, and conflict-resolution policies.
 
 ## 16. Release note
 
-**v0.1.0:** Initial registry of 30 cross-document research hypotheses. Every entry is `Proposed / E0`; tests and evaluation criteria are designs for future work, not claims of completed experiments. Updates should be additive, versioned, and traceable to a decision log.
+**v0.1.0 (2026-11-05 extension update):** Registry expanded from 30 to 40 cross-document research hypotheses; WEH-031–040 added without changing existing identifiers. Every entry is `Proposed / E0`; tests and evaluation criteria are designs for future work, not claims of completed experiments. Updates should be additive, versioned, and traceable to a decision log.
 
 ---
 

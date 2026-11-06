@@ -11,7 +11,7 @@
 
 ## 1. Purpose and scope
 
-This specification defines interoperable, testable contracts for three distinct but cooperating constructs in a World Entity Hybrid Differential Tree (WE-HDT): **index nodes**, **adaptive blocks**, and **metric-leaf intelligence units (MLIUs)**. It specifies identifiers, interfaces, invariants, versioning, evidence handling, resource budgets, failure semantics, and conformance tests. It does not prescribe a particular storage engine, machine-learning model, agent framework, or physical tree topology.
+This specification defines interoperable, testable contracts for three distinct but cooperating constructs in a World Entity Hybrid Differential Tree (WE-HDT): **index nodes**, **adaptive blocks**, and **metric-leaf intelligence units (MLIUs)**. It specifies identifiers, interfaces, invariants, versioning, evidence handling, resource budgets, failure semantics, and conformance tests. It does not prescribe a particular storage engine, machine-learning model, agent framework, or physical tree topology. The updated contract additionally specifies **Mask-First active computational views**, mature-structure preservation, and explicit separation of activation, knowledge, and structural changes.
 
 WE-HDT combines candidate localization, perspective-aware resolution, and optional intelligence operations. An index node is a routing or retrieval construct; a block is a managed partition or grouping with independently adjustable granularity and capability; an MLIU is a logical intelligence interface scoped to an entity or entity set and a perspective. **An MLIU need not be a physical leaf, and a block need not host an agent.**
 
@@ -43,6 +43,8 @@ WE-HDT combines candidate localization, perspective-aware resolution, and option
 6. **Evidence precedes epistemic promotion.** Hypotheses and residuals remain distinct from validated claims.
 7. **Conformance before runtime.** Operations have explicit preconditions, postconditions, and failure modes.
 8. **Explicit leftovers.** Unresolved conflicts and unanswered questions remain addressable relay artifacts.
+9. **Mask is not mutation.** Task-scoped activation changes MUST NOT silently modify persistent structure or epistemic records.
+10. **Unknown is not residual.** Missing knowledge is not qualified discrepancy evidence without an explicit baseline and comparator.
 
 ## 4. Logical architecture and separation of concerns
 
@@ -168,6 +170,9 @@ An adaptive block groups references for localization, storage, execution, or int
 - `deactivateCapability(block, capability)`: MUST preserve durable evidence and residual references required by retention policy.
 - `delegate(block, task, target)`: MUST propagate scope, authorization, guarantee, and provenance.
 - `rollback(adaptationId)`: MUST distinguish reversible structural changes from irreversible world actions.
+- `mask(block, taskContext, policyRef)`: MUST create a task-scoped active computational view without silently modifying durable membership or identity.
+- `unmask(view, scope)`: MUST expand eligible computation only within the caller’s authorization and declared guarantees.
+- `remask(view, feedback)`: MUST produce a traceable revised selection with version checks and completeness handling.
 
 The adaptation controller SHOULD evaluate density, heterogeneity, uncertainty, task relevance, observed benefit, and cost. Any scoring function is a configurable heuristic, not a universal optimality theorem.
 
@@ -413,3 +418,149 @@ Revision MAY narrow, split, or reject a proposed abstraction; evolution is not s
 **Research principle:** Define the invariant, not the inventory. Preserve not only successful results, but also their assumptions, provenance, counterexamples, and unresolved questions.
 
 **License intent:** Apache-2.0 (subject to the repository's `LICENSE`).
+
+---
+
+
+## 22. Mask-First active computational view contract (2026-11-05 update)
+
+This extension formalizes the proposed Mask-First Structural Intelligence (MFSI) layer from `EXT-005` and its WE-HDT/AVIB/MLIU implementation boundary. A mature, versioned substrate can serve many transient task-specific execution views. A Mask is a **selection policy over eligible computation**, not an entity identity, a scientific conclusion, a persistent index mutation, or an authorization grant.
+
+### 22.1 Typed mask and active view
+
+```yaml
+MaskPolicy:
+  maskId: stable-id
+  policyVersion: version
+  substrateSnapshotRef: snapshot-id
+  taskRef: task-id
+  perspectiveRefs: []
+  selection:
+    nodeRefs: []
+    blockRefs: []
+    metricOrRelationRefs: []
+    edgeOrPredicateRefs: []
+    allowedOperations: []
+    depthLimit: optional
+  budget: {compute: declared, memory: declared, externalCalls: declared}
+  authorizationContextRef: access-policy-and-principal
+  guaranteeMode: exact | conservative | approximate
+  fallbackPolicy: full-view | expand | fail-closed | declared-approximation
+  provenance: {generatorRef: versioned, inputs: [], evidenceRefs: []}
+  expirationOrInvalidation: declared
+
+ActiveComputationalView:
+  viewId: stable-id
+  maskPolicyRef: versioned-reference
+  substrateSnapshotRef: snapshot-id
+  effectiveSelectionRef: versioned-reference
+  declaredGuarantees: []
+  resourceUsage: {maskBuild: measured, execution: measured, fallback: measured}
+  validationStatus: untested | checked | invalidated
+```
+
+The schema is illustrative. Implementations MAY use sparse bitmaps, predicate programs, learned gates, hierarchical masks, or delegated services, provided observable semantics remain equivalent under the declared profile.
+
+### 22.2 Normative requirements
+
+- **MASK-001 — Nonmutation:** `mask`, `unmask`, and `remask` MUST NOT silently change entity identity, node/block membership, persistent topology, stored observations, or knowledge status.
+- **MASK-002 — Authorization:** effective selection MUST be intersected with existing access-control constraints. `unmask` MUST NOT expand permissions; SQL row/column security and source restrictions remain authoritative.
+- **MASK-003 — Exact coverage:** a view claiming exact retrieval MUST be provably coverage-safe for its query contract or invoke an equivalent verified fallback. Unknown recall MUST NOT be represented as exactness.
+- **MASK-004 — Guarantee preservation:** pruning and metric assumptions MUST derive from declared perspective contracts; a relational or directional score MUST NOT inherit Euclidean/metric pruning without proof.
+- **MASK-005 — Snapshot coherence:** all view references MUST identify compatible versions of source data, topology, perspective descriptors, and relevant access policy, or return a version conflict.
+- **MASK-006 — Invalidation:** cached masks MUST be revalidated or invalidated when relevant evidence, schema, permissions, topology, or perspective semantics change.
+- **MASK-007 — Evidence visibility:** a view advertised as evidence-complete MUST preserve required negative, contradictory, and provenance evidence; omitted evidence MUST be disclosed for approximate exploration.
+- **MASK-008 — Resource accounting:** comparative performance MUST include mask generation, compilation, caching, invalidation, fallback, and adaptation overhead.
+- **MASK-009 — Traceable remasking:** a remask MUST record its predecessor, feedback trigger, revised policy, decision rationale, and validation outcome.
+- **MASK-010 — Safe degradation:** if a selected service is unavailable or exceeds budget, the implementation MUST preserve durable evidence and MUST either use a declared fallback or return an explicit incomplete/error result.
+
+### 22.3 Operation contracts
+
+```text
+mask(substrateRef, task, perspectiveRefs, policy, auth) -> ActiveView | Error
+unmask(activeViewRef, requestedScope, auth)       -> ActiveView | Denied
+remask(activeViewRef, feedback, policyVersion)    -> ActiveView | Conflict
+execute(activeViewRef, query, guaranteeMode)      -> Result + Audit | Error
+validateMask(activeViewRef, referenceOracle)      -> CoverageReport
+```
+
+Each operation MUST specify preconditions, resource budget, output guarantees, and failure semantics. A mask policy MAY be learned, but learned selection alone is not proof of coverage or safety.
+
+## 23. Mature-structure preservation and Delta typing
+
+A candidate adaptation preference is **Mask before Rebuild; Reuse before Regenerate; Validate before Promote**. This is a testable heuristic, not a universal invariant: stale, corrupt, unsafe, or structurally incompatible substrates MAY require immediate rebuilding.
+
+| Change type | Affects | Does not by itself imply |
+|---|---|---|
+| `ActivationDelta` | Task-scoped selected nodes, relations, operations, budgets | New knowledge or persistent topology mutation |
+| `KnowledgeDelta` | Evidence, hypothesis status, validated claims | Physical world change or block split |
+| `StructuralDelta` | Persistent partition, index topology, service organization | Improved inference quality or changed entity identity |
+| `WorldOrSourceStateDelta` | External event or source-data mutation | Automatically validated epistemic explanation |
+
+- **DELTA-001:** the change log MUST type every material delta and record its target and version.
+- **DELTA-002:** an activation-only operation MUST NOT increment a persistent structural revision solely because a transient mask changed; policy versions MAY advance independently.
+- **DELTA-003:** structural changes MUST preserve declared coverage, identity, authorization, and evidence-reference invariants or explicitly downgrade guarantees.
+- **DELTA-004:** knowledge promotion/withdrawal MUST follow `SPEC-005`; it MUST NOT be implemented as an unreviewed side effect of `remask` or `split`.
+- **DELTA-005:** CDE MAY coordinate proposed transitions and rollback, but application-specific cycle/path constraints MUST be declared. A reversible record operation does not reverse an irreversible world event.
+
+## 24. MLIU epistemic interfaces and RER boundary
+
+An MLIU MAY expose three logically distinct interfaces without requiring separate physical stores:
+
+```yaml
+MLIUEpistemicInterfaces:
+  establishedKnowledgeViewRef: versioned-and-scoped
+  openKnowledgeViewRef: versioned-and-scoped
+  residualEvidenceRegistryRef: versioned-and-scoped
+  maskPolicyRefs: []
+  activeViewRefs: []
+  promotionAuthorityRef: declared
+```
+
+- **EPI-001:** established knowledge MUST retain perspective, applicability scope, supporting evidence, and version; it is revisable, not absolute.
+- **EPI-002:** open knowledge MUST distinguish missingness, provisional hypotheses, contested claims, and untested questions where relevant.
+- **EPI-003:** RER admission MUST satisfy the explicit baseline, observation, comparator, and provenance conditions of `SPEC-005`. **Unknown ≠ Residual.**
+- **EPI-004:** `Locate`, `Resolve`, `Relate`, `Infer`, `Question`, and `Evolve` MUST declare which knowledge view(s) they read or write and whether they operate under an exact or approximate mask.
+- **EPI-005:** a mask MUST NOT silently promote an open hypothesis to established knowledge or manufacture a qualified residual from missing data.
+- **EPI-006:** shared MLIUs and relayed mask policies MUST preserve data-access restrictions and source dependence; agreement between agents is not independent evidence.
+
+## 25. Additive conformance fixtures
+
+The tests below supplement, rather than renumber, existing tests in this specification. The `MCT` prefix avoids collision with `SPEC-005`'s `CT-029`–`CT-042`.
+
+| ID | Fixture | Expected result |
+|---|---|---|
+| MCT-001 | Mask a subset, inspect persistent node/block revision | No silent structural mutation |
+| MCT-002 | Exact query with excluded valid candidate | Coverage proof fails; safe fallback or explicit failure |
+| MCT-003 | Approximate query with intentionally pruned candidates | Recall/completeness status disclosed |
+| MCT-004 | Unmask a restricted SQL column | Access denied; no leakage |
+| MCT-005 | Change perspective definition after mask caching | Mask invalidated/revalidated |
+| MCT-006 | Use asymmetric relation with metric pruning | Rejected unless guarantee proved |
+| MCT-007 | Remask under compute budget exhaustion | Explicit degraded/fallback outcome |
+| MCT-008 | Unknown fact without comparison baseline | Open knowledge, not RER |
+| MCT-009 | Validated residual with expectation and observation | RER qualification and lineage retained |
+| MCT-010 | Change only active view | ActivationDelta, not StructuralDelta |
+| MCT-011 | Split block under overlapping membership | Coverage and deduplication verified |
+| MCT-012 | Relay learned mask across incompatible schema | Reject or revalidate before use |
+| MCT-013 | Mask hides contradictory evidence in evidence-complete mode | Conformance failure |
+| MCT-014 | Compare masked/full-view cost | Include generation, fallback, and cache overhead |
+
+**Suggested profiles:** `Mask-Core` (MASK-001,002,005,006,009; MCT-001,004,005), `Mask-Exact` (Mask-Core plus MASK-003,004,007; MCT-002,006,013), `Mask-Operational` (Mask-Exact plus MASK-008,010; MCT-003,007,014), and `MLIU-Epistemic` (EPI-001–006; MCT-008,009,012). Profile adoption is optional; claims MUST identify the exact profile and tests passed.
+
+## 26. Evaluation program and research limitations
+
+**P0 — Contract correctness:** synthetic trees, overlapping blocks, relational-only entities, adversarial missingness, authorization tests, and exhaustive small-dataset retrieval oracles.
+
+**P1 — Mask efficiency:** compare full-view execution, static expert masks, adaptive/learned masks, and structural reindexing at matched correctness. Measure end-to-end latency, memory, mask-generation overhead, recall, cache invalidation, and fallback rate.
+
+**P2 — Mature-structure retention:** controlled changing-workload experiments measuring reconstruction frequency, structural churn, transfer performance, stale-path failures, and any operational forgetting.
+
+**P3 — Epistemic governance and relay:** independent residual qualification, knowledge promotion audits, shared mask transfer across schema changes, and negative controls for correlated evidence.
+
+Proposed falsifiable hypotheses include `WEH-031` (net mask efficiency), `WEH-032` (mature-pathway retention), `WEH-033` (epistemic classification), and `WEH-034` (validated mask-policy transfer). These are research hypotheses, not results.
+
+**Explicit leftovers:** efficient proof of coverage for learned masks; policy compilation cost; nonstationary workload drift; mask-driven selection bias; uncertainty preservation across perspective translations; source-level authorization changes; and the conditions where immediate reconstruction is better than reuse.
+
+**Integration references:** `EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md`, `EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md`, `WE-SIO-004`, `WE-SIO-005`, `WE-SIO-007`, and `SPEC-005-Residual-Evidence-and-Metric-Discovery-Contract.md`.
+
+**Research status:** candidate interface specification only; no certified implementation or empirically demonstrated performance advantage is asserted.

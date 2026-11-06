@@ -3,7 +3,7 @@
 **Project:** World Entity and Structural Intelligence Operations (WE-SIO)  
 **Version:** 0.1.0 — Candidate Research Specification  
 **Status:** Proposed; not an implementation standard  
-**Scope:** Residual registry, evidence provenance, candidate perspective discovery, validation, promotion, and rollback  
+**Scope:** Residual qualification, epistemic separation, evidence provenance, candidate perspective discovery, mask-safe investigation, validation, promotion, and rollback  
 **Dependencies:** WE-SIO-002, WE-SIO-006–009; SPEC-001–004  
 **License:** Apache-2.0 (repository-level license, when adopted)
 
@@ -11,7 +11,7 @@
 
 This specification defines how a WE-SIO implementation MAY record discrepancies between observations and expectations, preserve the evidence underlying those discrepancies, propose new measurement or relational perspectives, and validate such proposals before they influence authoritative reasoning or retrieval. The central goal is **accountable discovery**, not automatic scientific truth production.
 
-A residual is evidence of a gap between a stated expectation and an observation under a declared context. It is **not** by itself proof of an undiscovered causal mechanism, a new mathematical metric, or a physical law.
+A residual is evidence of a gap between a stated expectation and an observation under a declared context. **Unknown is not a residual**: absence of a prediction, missing data, an unasked question, or an SQL NULL MUST NOT automatically qualify for the Residual Evidence Registry (RER). It is **not** by itself proof of an undiscovered causal mechanism, a new mathematical metric, or a physical law.
 
 Normative terms **MUST**, **MUST NOT**, **SHOULD**, and **MAY** apply to implementations claiming conformance to this *candidate* specification. These terms do not imply external standardization.
 
@@ -420,3 +420,193 @@ Revisions MAY narrow, split, or deprecate concepts; they need not always general
 **Research principle:** *Unknown is not zero. Unexplained is not useless. A residual is evidence of a gap, not automatically evidence of a new law.*
 
 **Relay principle:** *Preserve not only what we know, but also how we arrived there, what challenged it, and what remains unknown.*
+
+
+## 19. Epistemic Separation Contract (ESC) — 2026-11-05 update
+
+This section refines, rather than replaces, Sections 2–9. An implementation claiming the **ESC profile** MUST maintain three logically distinguishable views, even when they share one physical database or index:
+
+| View | Admission criterion | Example | Prohibited inference |
+|---|---|---|---|
+| Established Knowledge (`EK`) | Evidence-supported claim with explicit scope, perspective, conditions, and version | A calibrated measurement within a declared range | “Established” means absolute or timeless truth |
+| Open Knowledge (`OK`) | Unknown, untested, contested, or provisional claim/question | A candidate explanatory variable without a tested prediction | Unknown automatically implies observed discrepancy |
+| Residual Evidence Registry (`RER`) | A qualified, evidence-linked discrepancy against a declared comparison baseline | Observed response deviates from a versioned prediction | Discrepancy proves a new mechanism |
+
+**ESC-001 — Logical separation.** An implementation MUST expose the knowledge state of a material claim, including its applicable context and version. A shared physical table MAY implement all three views if their semantic boundaries remain testable.
+
+**ESC-002 — Scope relativity.** Knowledge status MUST be evaluated relative to entity, perspective, population/context, observation time, and definition/model version. A claim MAY be established in one scope and open in another.
+
+**ESC-003 — Missingness.** Missing, not applicable, withheld, unobserved, uncertain, negative evidence, and contradicted MUST NOT be silently mapped to one another. SQL `NULL` alone does not determine epistemic status.
+
+**ESC-004 — Provenance.** Every material established assertion MUST identify supporting evidence, applicable conditions, validation authority or rule, and the current version. Open claims MUST identify why they remain open where known.
+
+**ESC-005 — No automatic truth promotion.** A residual, repeated model output, high similarity score, or multi-agent consensus MUST NOT automatically convert an open hypothesis into established knowledge.
+
+**ESC-006 — Non-destructive revision.** Promotion, revision, withdrawal, and demotion MUST preserve prior versions and downstream dependency references where legally and operationally permitted. Erasure required by privacy law MUST be honored through appropriately designed redaction/audit mechanisms.
+
+## 20. Residual Qualification Contract (RQC)
+
+The term **Residual Evidence Registry (RER)** denotes the qualified residual record collection, not a miscellaneous bucket for unanswered questions. The existing `ResidualRecord` of Section 3 remains the base record; conformant implementations MUST additionally provide, directly or by resolvable reference, the following semantic fields:
+
+```yaml
+ResidualQualification:
+  residualId: stable-identifier
+  entityRefs: [versioned-entity-reference]
+  perspectiveRef: versioned-perspective-and-comparator-contract
+  context: {scope: declared, timeWindow: declared}
+  baseline:
+    kind: prediction | expectation | constraint | explicit-explanatory-claim
+    reference: versioned-model-or-rule
+    conditions: declared
+    expectedValueOrAssertion: typed
+  observation:
+    evidenceRefs: [source-linked-evidence]
+    observedValueOrAssertion: typed
+    uncertainty: declared
+  discrepancy:
+    comparatorRef: typed-versioned-comparison
+    result: typed-discrepancy
+    thresholdOrDecisionRule: declared
+    uncertaintyAssessment: declared
+  qualification:
+    status: qualified | provisional | rejected | superseded
+    assessor: policy-or-authority-reference
+    reasons: [coded-or-text-reasons]
+  investigation:
+    alternativeExplanations: []
+    followUpQuestions: []
+    maskPolicyRef: optional
+  provenance: {createdAt: timestamp, versions: [], lineage: []}
+```
+
+**RQC-001 — Baseline required.** RER admission MUST reference an explicit baseline or constraint and a comparator that is meaningful for the perspective. A numerical difference is not required for a relational or logical contradiction, but the comparison rule MUST be declared.
+
+**RQC-002 — Observation required.** Admission MUST identify the observation and evidence lineage. A purely hypothetical counterexample with no observed case belongs in an open question or test-fixture registry unless explicitly labeled as synthetic.
+
+**RQC-003 — Qualification decision.** The registry MUST distinguish `provisional`, `qualified`, `rejected`, and `superseded`; an implementation MUST NOT present a provisional mismatch as an independently validated discovery.
+
+**RQC-004 — Error and confounding controls.** Before scientific interpretation or promotion, investigators SHOULD assess measurement error, model miscalibration, data leakage, duplicate observations, selection bias, confounding, and distribution shift. Unassessed alternatives MUST remain explicit leftovers.
+
+**RQC-005 — Unknown routing.** A record lacking a defensible baseline/comparator MUST be routed to `OK` (or an appropriately typed non-residual queue) rather than RER. The implementation MUST expose this routing decision for audit.
+
+**RQC-006 — No residual laundering.** Repeated observations of the same source, correlated agents, or derivative datasets MUST NOT be counted as independent confirmation without an explicit dependence model.
+
+**RQC-007 — Version sensitivity.** If an expectation or comparator changes, the earlier residual MUST remain attributable to its original baseline; recalculation creates a new assessment or linked revision, not a silent overwrite.
+
+**RQC-008 — Privacy.** Residual evidence may reveal sensitive facts even when aggregate values seem harmless. Access control, minimization, retention, and relay restrictions MUST apply to residuals and their references.
+
+### 20.1 Illustrative boundary fixtures
+
+| Fixture | Input | Expected classification |
+|---|---|---|
+| `RER-B01` | Unknown patient variable, no predictive baseline | Open Knowledge |
+| `RER-B02` | SQL NULL without declared missingness meaning | Missing/undetermined, not RER |
+| `RER-B03` | Observed outcome differs from calibrated prediction; provenance retained | Qualified or provisional RER according to evidence checks |
+| `RER-B04` | Explicit constraint contradicted by authenticated observation | RER, comparator `logical-constraint` |
+| `RER-B05` | A hypothesis disagrees with another hypothesis; neither tested | Contested Open Knowledge, not automatically RER |
+| `RER-B06` | Apparent deviation caused by duplicate JOIN rows | Rejected or superseded residual with error diagnosis retained |
+| `RER-B07` | Baseline version changes after observation | Original residual version retained; new assessment linked |
+| `RER-B08` | Mask excludes relevant observation from an exact investigation | Conformance failure or safe full-view fallback |
+
+## 21. Knowledge Promotion and Withdrawal Contract (KPC)
+
+Knowledge promotion is a controlled **epistemic transition**, not a structural reindexing and not a world-state mutation.
+
+```text
+Open Candidate
+   | candidate test + declared criteria
+   v
+Validated-for-Scope  -- independent review --> Established-for-Scope
+   |                                            |
+   +-- failed / inconclusive --> Open / Rejected|
+                                                v
+                                        Revised / Withdrawn
+```
+
+**KPC-001 — Promotion gate.** An `OK → EK` transition MUST record the claim and scope, predeclared acceptance criteria where feasible, evidence, validation results, relevant negative tests, responsible evaluator, and decision version.
+
+**KPC-002 — Scientific controls.** For predictive or explanatory claims, the evaluation SHOULD include held-out evidence, independent replication when feasible, confounding checks, multiple-testing controls, and comparison with simpler baselines. Passing a test does not prove a causal law.
+
+**KPC-003 — Status is not certainty.** `Established-for-Scope` MUST remain revisable. Contradictory evidence SHOULD trigger reassessment rather than forced deletion or immediate unreviewed replacement.
+
+**KPC-004 — Withdrawal and rollback.** A withdrawal MUST record reason, affected claims, downstream dependencies, and the action taken to suspend or revise dependent decisions. Epistemic rollback MUST NOT be represented as reversal of an irreversible external world event.
+
+**KPC-005 — Candidate metric semantics.** A newly promoted perspective MUST retain its actual type: metric, pseudometric, similarity, relational, or directional. It MUST NOT gain triangle-inequality pruning or symmetry guarantees unless those properties are established under the declared domain.
+
+**KPC-006 — Relay authority.** Multi-agent votes, repeated execution, and copied evidence are not independent validation. Promotion authority and provenance MUST be explicit.
+
+## 22. Mask-First Investigation and Delta Separation (MIC)
+
+A **Mask** selects an effective computational view over eligible nodes, perspectives, relationships, operations, depth, or budget; it is not a replacement for evidence, access control, or persistent storage. Mask-first is a candidate efficiency preference, not a universal requirement.
+
+**MIC-001 — No mutation by selection.** `Mask`, `Unmask`, and `Remask` MUST NOT silently modify the underlying WE identity, source observation, established claim, or RER record.
+
+**MIC-002 — Authorization monotonicity.** Unmasking MUST NOT expose data or operations beyond the requesting principal's authorization. Source database row/column permissions remain authoritative.
+
+**MIC-003 — Exactness and completeness.** An investigation advertised as complete MUST use a coverage-safe mask, a proven conservative superset, or a verified full-view fallback. Approximate investigation MUST disclose its completeness/recall limits.
+
+**MIC-004 — Evidence visibility.** A mask MUST NOT suppress mandatory provenance, contradictory evidence, or audit requirements while presenting the result as fully validated.
+
+**MIC-005 — Invalidation.** Cached masks MUST be invalidated or revalidated when relevant schema, evidence, perspective, structural version, authorization, or policy changes.
+
+**MIC-006 — Cost accounting.** Performance studies MUST include mask construction, maintenance, invalidation, fallback, and missed-candidate costs.
+
+**MIC-007 — Delta typing.** Implementations MUST distinguish:
+- `ActivationDelta`: task-scoped selection of computation;
+- `KnowledgeDelta`: claim/evidence/hypothesis-status revision;
+- `StructuralDelta`: persistent index or service topology change;
+- `WorldOrSourceStateDelta`: independently recorded external or source-data change.
+
+An `ActivationDelta` does not itself establish knowledge. A `KnowledgeDelta` does not imply a physical world change. A `StructuralDelta` must preserve applicable identity, access, and coverage invariants. CDE MAY coordinate these transitions subject to domain-specific constraints.
+
+## 23. Additional Conformance Cases and Profiles
+
+The existing CT-001–028 remain applicable. The following identifiers are additive and MUST NOT be interpreted as renumbering prior tests.
+
+| ID | Scenario | Pass criterion |
+|---|---|---|
+| CT-029 | Unknown without baseline | Routed to Open Knowledge, not RER |
+| CT-030 | SQL NULL | No automatic residual or certainty classification |
+| CT-031 | Typed relational contradiction | Comparator and explicit constraint preserved |
+| CT-032 | Residual baseline version update | Earlier assessment and provenance remain resolvable |
+| CT-033 | Duplicate/correlated evidence | Independence not overstated |
+| CT-034 | Unsupported knowledge promotion | Promotion rejected or remains provisional |
+| CT-035 | Contradictory post-promotion evidence | Review/withdrawal path and dependency impact recorded |
+| CT-036 | Metric candidate fails symmetry or triangle inequality | No unauthorized metric label/pruning |
+| CT-037 | Masked exact investigation excludes a valid case | Detect and fallback/fail closed |
+| CT-038 | Unmask attempts unauthorized SQL column | Denied; no leakage |
+| CT-039 | Cached mask with changed evidence/policy | Invalidation or revalidation required |
+| CT-040 | Activation-only change | No persistent structural or knowledge mutation |
+| CT-041 | Residual from JOIN duplication | Error diagnosis, qualification correction, history retained |
+| CT-042 | Multi-agent consensus from one underlying source | Not accepted as independent corroboration |
+
+**Optional profiles** (extensions to Section 13):
+- `ESC-Core`: ESC-001–006 plus CT-029–030.
+- `RER-Qualified`: `ESC-Core` plus RQC-001–008 and CT-031–033, CT-041.
+- `Knowledge-Governed`: `RER-Qualified` plus KPC-001–006 and CT-034–036, CT-042.
+- `Mask-Safe-Investigation`: `Knowledge-Governed` plus MIC-001–007 and CT-037–040.
+
+Profile names describe proposed conformance scopes; they do not certify implementation maturity.
+
+## 24. Updated Validation Priorities and Explicit Leftovers
+
+**P0 — Semantic fixtures:** unknown-vs-residual, baseline/comparator typing, SQL missingness, knowledge-state versioning, and qualified RER admission.
+
+**P1 — Governance:** blinded promotion decisions, negative controls, evidence-dependence handling, demotion, rollback, and downstream notification.
+
+**P2 — Mask experiments:** compare full-view, static mask, adaptive mask, and mask-plus-structural adaptation at matched exactness or declared recall. Report generation overhead and stale-mask failures.
+
+**P3 — Discovery experiments:** assess independently validated discovery yield, false-discovery rates, time to diagnosis, and transfer to new perspectives or datasets.
+
+**Unresolved:** semantic classification of structural contradictions without numerical observations; uncertainty calibration across incompatible perspectives; privacy-preserving audit; cost-effective mask coverage certification; selective attention bias; and governance for contested “established” claims. These are research questions, not solved capabilities.
+
+### Integration references
+
+- `docs/WE-SIO-004-Adaptive-Variable-Intelligence-Blocks.md` — Mask/Unmask/Remask and delta distinctions.
+- `docs/WE-SIO-005-Metric-Leaf-Intelligence-and-SI-Operations.md` — MLIU epistemic views and operation interfaces.
+- `docs/WE-SIO-007-Residual-First-Scientific-Discovery.md` — unknown/residual separation and investigation pipeline.
+- `extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md` — foundational proposal.
+- `extensions/EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md` — SQL-facing boundary and security cases.
+- `specs/SPEC-003-WE-HDT-Node-Block-and-Metric-Leaf-Contract.md` — complementary mask-safe node and block contract.
+
+**Research status:** These additions are proposed, falsifiable contracts. They are not claims of an implemented, independently certified, or empirically validated system.

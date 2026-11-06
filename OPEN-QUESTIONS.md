@@ -211,6 +211,80 @@ proposed_decision: ""
 review_status: proposed
 ```
 
+## 15A. New open questions: Mask-First, epistemic separation, SQL-native SI, and five-way Delta (2026-11-05 update)
+
+The following questions **extend OQ-001–040 without renumbering them**. They reflect candidate research directions in `EXT-005`, `EXT-006`, updated `WE-SIO-004/005/007/008/009`, and updated `SPEC-003/005`. All remain **open**; the tests below are proposals, not completed experiments. An *unknown* is not automatically a *residual*: a residual requires an explicit baseline, observation, comparator, and evidence lineage.
+
+### 15A.1 Mask-First computation and mature-structure preservation
+
+### OQ-041 — When does Mask-First actually outperform rebuilding or full-view computation? [P1]
+How do mask construction, selection, invalidation, cache maintenance, and fallback costs compare with full-view execution, fixed masks, local adaptation, and eager structural rebuild? **Test:** Match hardware, workloads, retrieval guarantees, tuning budgets, and end-to-end cost; include frequent context shifts. **Decision trigger:** Restrict Mask-First to regimes with reproducible net benefit and no unreported correctness loss. **Hypothesis link:** WEH-031.
+
+### OQ-042 — Can a dynamic mask preserve exact candidate coverage? [P0]
+Which node, metric, edge, and operation masks admit formal safe-pruning proofs or conservative candidate supersets? **Test:** Adversarial boundary fixtures and differential comparison against exhaustive full-view queries; measure false omissions. **Decision trigger:** Require a full-view fallback or explicit approximate-mode declaration when completeness cannot be certified. **Contracts:** SPEC-003 MIC, WE-SIO-004.
+
+### OQ-043 — How should stale masks be invalidated across changing versions? [P0]
+Which schema, evidence, perspective, permission, and topology changes invalidate cached Active Computational Views? **Test:** Interleave reads with schema migration, revocation, reindexing, and late observations under snapshot/version checks. **Decision trigger:** Specify mandatory invalidation triggers and fail-closed semantics.
+
+### OQ-044 — What makes a mature structure worth preserving? [P1]
+Can reuse prevent unnecessary reconstruction without entrenching outdated partitions or obsolete knowledge? **Test:** Compare retained mature pathways with adaptive rebuild under drift, fragmentation, and corrupted-index cases. **Decision trigger:** Define quantitative preserve-versus-rebuild thresholds and exceptions. **Hypothesis link:** WEH-032.
+
+### OQ-045 — Can Mask Policy Relay generalize without transferring unsafe assumptions? [P1]
+Which mask policies transfer across tasks, domains, and schemas, and what must be revalidated at the destination? **Test:** Cross-workload transfer with schema mismatches, adversarial changes, and provenance-aware baselines. **Decision trigger:** Require policy compatibility descriptors and destination-specific conformance checks. **Hypotheses:** WEH-034, WEH-039.
+
+### 15A.2 Epistemic separation and qualified residual evidence
+
+### OQ-046 — What is the minimum interoperable separation of Established, Open, and Residual states? [P0]
+Can a single logical interface support scope-relative Established Knowledge, Open Knowledge, and qualified RER evidence without collapsing unknowns into mismatches? **Test:** Classify mixed numeric, relational, missing, and contested records across independent evaluators. **Decision trigger:** Refine state transitions or introduce subtypes when systematic disagreement remains. **Hypothesis:** WEH-033.
+
+### OQ-047 — What qualifies a nonnumeric discrepancy for the Residual Evidence Registry? [P0]
+Can logical contradictions, temporal inconsistencies, and relational violations share a minimal residual admission contract without a meaningless generic “difference” field? **Test:** Explicit baseline/comparator fixtures, including absent baselines, SQL NULL, incompatible perspectives, and contradictory constraints. **Decision trigger:** Split comparator profiles if a common admission contract obscures essential semantics. **Contracts:** SPEC-005 RQC.
+
+### OQ-048 — How do we distinguish real residuals from data and model artifacts? [P0]
+What checks reliably detect duplicate JOIN rows, measurement error, selection bias, miscalibration, leakage, and distribution shift before scientific interpretation? **Test:** Inject known artifacts and compare RER triage against anomaly logging and manual review. **Decision trigger:** Tighten admission or introduce a provisional-only queue when false qualification is high. **Hypothesis:** WEH-038.
+
+### OQ-049 — When is a knowledge claim established, and who may withdraw it? [P0]
+What evidence, scope, independence, negative controls, and review authority are necessary for `Open → Established`, and how should later contradictory evidence propagate? **Test:** Blinded promotion/demotion fixtures with dependency graphs and post-promotion counterexamples. **Decision trigger:** Revise governance gates if unsupported promotions or silent downstream inconsistencies occur. **Hypotheses:** WEH-033, WEH-040.
+
+### OQ-050 — Can masks create systematic epistemic blind spots? [P0]
+Could selection of seemingly relevant metrics conceal contradictory evidence, amplify confirmation bias, or falsely raise discovery confidence? **Test:** Compare masked and unmasked investigations with deliberately hidden counterexamples, matched budgets, and blinded reviewers. **Decision trigger:** Mandate contradiction sweeps, conservative expansion, or full-view review before promotion.
+
+### 15A.3 SQL-native Structural Intelligence
+
+### OQ-051 — What is the safe mapping between SQL constructs and World Entity semantics? [P0]
+When is a table a relation rather than an entity collection, a row an event rather than an entity, or a column an attribute rather than a metric? **Test:** Map normalized, denormalized, event-sourced, many-to-many, and temporal schemas with identity/provenance fixtures. **Decision trigger:** Add explicit mapping profiles and prohibit unsupported identity inference. **Hypothesis:** WEH-035.
+
+### OQ-052 — Can SQL Mask-First localization improve total cost without bypassing SQL security? [P0]
+How do table/column/relation masks interact with row-level security, column permissions, query planning, and transaction snapshots? **Test:** Differential authorized-query comparisons, privilege revocations, joins, and schema changes. **Decision trigger:** Reject mask optimizations that leak data, change promised result semantics, or silently omit valid candidates. **Hypothesis:** WEH-036.
+
+### OQ-053 — How should SQL missingness and source-state updates affect knowledge status? [P0]
+How can `NULL`, absent rows, late transactions, `UPDATE`, and contradictory joins be interpreted without assuming unknown means residual or database change means world change? **Test:** Typed missingness and bitemporal fixtures with independent world-event evidence. **Decision trigger:** Require explicit source-state and epistemic transition contracts. **Hypothesis:** WEH-037.
+
+### OQ-054 — What constitutes successful cross-schema SI transfer? [P1]
+Which parts of a perspective descriptor, mask policy, or residual diagnostic survive schema renaming, normalization changes, and different access policies? **Test:** Cross-database transfer with held-out schemas, matching semantics, and cost accounting. **Decision trigger:** Define compatibility, adaptation, and rejection conditions. **Hypothesis:** WEH-039.
+
+### 15A.4 Five-way Delta and CDE integration
+
+### OQ-055 — Is five-way Delta typing necessary and sufficient? [P0]
+Does separating `ΔA` (Activation/Mask) from `ΔS` (persistent structure) prevent real errors, and what mixed events remain ambiguous among `ΔW`, `ΔO`, `ΔK`, `ΔS`, and `ΔA`? **Test:** Independently label composite events and compare error rates with the original four-way taxonomy. **Decision trigger:** Revise types or allow explicitly composite events when a forced single label is misleading. **Reference:** WE-SIO-009.
+
+### OQ-056 — What are safe CDE rollback semantics for each Delta type? [P0]
+When can an activation, epistemic, structural, observation, or external-world change be reversed, compensated, or only historically annotated? **Test:** Inject failed transitions, stale snapshots, irreversible world actions, and dependent downstream decisions. **Decision trigger:** Require typed reversibility, compensation, and audit contracts; never imply that epistemic rollback undoes external events.
+
+### OQ-057 — How should CDE choose Mask, local update, reindex, or no-op? [P1]
+Can a budgeted transition controller compare candidate `ΔA`, `ΔK`, and `ΔS` paths under uncertainty without destabilizing mature structures? **Test:** Controlled workloads with drift and competing objectives; compare fixed policy, greedy, and adaptive decision rules. **Decision trigger:** Narrow the controller's claimed domain if decision overhead, instability, or missed candidates dominate.
+
+### OQ-058 — Which parts of WE-HDT and CDE qualify as complementary SIF Localization pillars? [P1]
+What independent addressing/localization capabilities does each contribute, and which are already covered by established search, planning, or index techniques? **Test:** Contract-level decomposition, counterexamples, and comparable benchmark tasks. **Decision trigger:** Narrow or revise the proposed pillar positioning when boundaries or gains cannot be demonstrated.
+
+### 15A.5 Evidence, dependencies, and research relay
+
+- **P0 semantic gates:** OQ-042–043, OQ-046–053, OQ-055–056 should be addressed at the contract/fixture level before performance or scientific discovery claims.
+- **P1 comparative experiments:** OQ-041, OQ-044–045, OQ-054, OQ-057–058 require matched baselines, costs, negative results, and documented uncertainty.
+- **Cross-question dependency:** OQ-047 and OQ-048 constrain OQ-049; OQ-042 and OQ-043 constrain OQ-041; OQ-051–053 constrain OQ-054; OQ-055–056 constrain OQ-057.
+- **Registry linkage:** Record formal answers and rejected definitions in `research-trace/DEFINITION-REGISTRY.md`, falsifiable predictions in `research-trace/HYPOTHESIS-REGISTRY.md`, adversarial failures in `research-trace/COUNTEREXAMPLE-REGISTRY.md`, and **only qualified observation–baseline discrepancies** in `research-trace/UNRESOLVED-RESIDUALS.md`. Unanswered questions alone belong here, not automatically in RER.
+- **Primary sources:** `extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md`, `extensions/EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md`, `specs/SPEC-003-WE-HDT-Node-Block-and-Metric-Leaf-Contract.md`, and `specs/SPEC-005-Residual-Evidence-and-Metric-Discovery-Contract.md`.
+
 ## 16. Related repository assets
 
 - `README.md` — research framing and repository overview.
@@ -228,6 +302,10 @@ review_status: proposed
 - `cases/CASE-002-Variable-Size-Blocks-vs-KD-Tree.md` — indexing baselines.
 - `cases/CASE-004-Chess-as-a-CDE-Boundary-Stress-Test.md` — CDE boundary test.
 - `extensions/EXT-001-WE-HDT-as-an-SIF-Localization-Pillar.md` — SIF integration proposal.
+- `extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md` — Mask-First and epistemic separation proposal.
+- `extensions/EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md` — SQL-native integration proposal.
+- `specs/SPEC-003-WE-HDT-Node-Block-and-Metric-Leaf-Contract.md` — Mask-safe structural contracts.
+- `specs/SPEC-005-Residual-Evidence-and-Metric-Discovery-Contract.md` — Residual qualification and knowledge promotion.
 
 ## 17. Explicit leftovers for v0.1.0
 

@@ -348,11 +348,19 @@ The entries below are concise operational summaries; the `DEF` IDs refer to vers
 
 ### 42. Structural / Operational Delta (`ΔS`)
 
-**Meaning:** A change in indexes, agent portfolios, policies, or other operational structures.
+**Meaning:** A persistent change to index topology, block membership, durable service organization, or a versioned operational policy.
 
-**Boundary:** A reindex is not an entity mutation.
+**Boundary:** Task-scoped activation, masking, and computation-path selection are not automatically Structural Deltas; a reindex is not an entity mutation.
 
 **Registry:** `DEF-023`.
+
+### 42A. Activation / Mask Delta (`ΔA`)
+
+**Meaning:** A task-scoped change in the *effective computational view*—which eligible nodes, edges, perspectives, operations, depths, or budgets are activated—without necessarily changing persistent topology or epistemic claims.
+
+**Boundary:** `ΔA ≠ ΔS ≠ ΔK`. A persisted change to a durable mask policy may also require a separately typed `ΔS`.
+
+**Contract:** `docs/WE-SIO-009`, `specs/SPEC-003`. **Registry status:** Candidate addition; assign a stable DEF ID in the Definition Registry rather than reusing `DEF-023` without review.
 
 ### 43. Constrained Delta Evolution (`CDE`)
 
@@ -449,6 +457,152 @@ The entries below are concise operational summaries; the `DEF` IDs refer to vers
 **Boundary:** WE-HDT and CDE are candidate complementary methods, not proven universal pillars.
 
 **Registry:** `DEF-032`.
+
+## 2A. Newly refined epistemic, masking, and SQL-facing terminology
+
+These definitions extend the initial v0.1.0 vocabulary. They are **proposed contract terms**, not claims of experimentally established capabilities. New stable `DEF` identifiers should be assigned during the `DEFINITION-REGISTRY.md` update; existing identifiers remain unchanged.
+
+### E01. Epistemic Separation
+
+**Meaning:** A logical separation between evidence-supported established claims, open or unverified knowledge, and qualified residual evidence, including their scope, versions, and provenance.
+
+**Boundary:** Logical separation does not require physically separate databases. Physical co-location must not erase semantic distinctions.
+
+**Contracts:** `specs/SPEC-005` (ESC); `extensions/EXT-005`.
+
+### E02. Established Knowledge (`EK`)
+
+**Meaning:** A claim supported under declared evidence, perspective, context, time, validation criteria, and version.
+
+**Boundary:** “Established” is scope-relative and revisable, not absolute truth or permanent certainty.
+
+### E03. Open Knowledge (`OK`)
+
+**Meaning:** Unanswered questions, unknown variables, untested hypotheses, contested claims, and unresolved possibilities tracked without pretending they have been verified.
+
+**Boundary:** An unknown is not automatically a residual; absence of information is not a demonstrated model failure.
+
+### E04. Residual Evidence Registry (`RER`)
+
+**Meaning:** An addressable collection of *qualified* discrepancies between observations and explicit baselines, expectations, constraints, or explanatory commitments under typed comparison contracts.
+
+**Boundary:** RER is not a miscellaneous “unknowns bucket.” A SQL `NULL`, unmeasured attribute, or missing prediction alone is not admissible residual evidence.
+
+**Minimum fields:** Entity and perspective scope; baseline/reference/version; observation and source lineage; comparator and discrepancy; uncertainty; qualification status; reviewer/policy; and revision history.
+
+### E05. Residual Qualification / RER Admission
+
+**Meaning:** A governed decision that a candidate discrepancy has a meaningful baseline, comparable observation, adequate provenance, uncertainty characterization, and explicit status.
+
+**Boundary:** Qualified residual evidence does not prove a new mechanism, causal relation, or law.
+
+**Status examples:** Provisional, qualified, rejected, superseded. These are evidence-processing states, not levels of scientific truth.
+
+### E06. Residual Diagnosis
+
+**Meaning:** Investigation of competing explanations for a discrepancy, including sensor error, miscalibration, confounding, selection bias, data leakage, distribution shift, model misspecification, or a potentially missing phenomenon.
+
+**Boundary:** Diagnosing a data artifact is a legitimate scientific outcome; not every residual warrants metric discovery.
+
+### E07. Knowledge Promotion
+
+**Meaning:** A versioned, evidence-reviewed transition of a claim or perspective from candidate/open status to *established for a declared scope*.
+
+**Boundary:** Agent consensus, repeated model execution, or retrieval utility alone do not satisfy independent validation. Promotion is `ΔK`, not necessarily `ΔS`.
+
+### E08. Knowledge Demotion / Withdrawal
+
+**Meaning:** An evidence-governed narrowing, suspension, or retraction of previously accepted knowledge, with dependency review and preserved audit history subject to lawful retention constraints.
+
+**Boundary:** Epistemic rollback cannot reverse an irreversible physical event.
+
+### E09. Mask-First Structural Intelligence (`MFSI`)
+
+**Meaning:** A candidate computational strategy that first selects a task-appropriate view over mature structures, reusing existing pathways before costly regeneration or reconstruction when correctness and net benefit permit.
+
+**Boundary:** A heuristic, not a universal optimality principle. Stale or corrupt structures and incompatible guarantees may require immediate rebuild.
+
+**Heuristic:** *Mask before Rebuild; Reuse before Regenerate; Validate before Promote.*
+
+### E10. Mask
+
+**Meaning:** A versioned, authorized selection rule over eligible nodes, edges, metrics, operations, depth, or resource budgets for a task.
+
+**Boundary:** A mask is not deletion, a proof of irrelevance, a substitute for source authorization, or automatically a persistent structural mutation.
+
+### E11. Unmask / Remask
+
+**Meaning:** `Unmask` broadens or restores the active eligible view within authorization; `Remask` recomputes selection after context, feedback, evidence, or policy changes.
+
+**Boundary:** Unmasking must not bypass access controls. Remasking cannot silently remove candidates when exactness is promised.
+
+### E12. Active Computational View (`ACV`)
+
+**Meaning:** The effective, task-scoped computation graph or selection over a versioned underlying substrate, perspective definitions, and authorized resources.
+
+**Boundary:** `ACV ≠ persistent WE-HDT topology`. An active view can change while the substrate remains unchanged.
+
+**Contract attributes:** Task/context, principal and authorization, substrate/perspective versions, selection policy, completeness guarantee, budget, and provenance.
+
+### E13. Mature-Structure Preservation
+
+**Meaning:** A design preference to retain validated knowledge pathways and durable indexing structures where selective reuse, local adaptation, or masking is sufficient.
+
+**Boundary:** Preservation does not outrank correctness, privacy, security, or demonstrated need to rebuild.
+
+### E14. Coverage-Safe Mask
+
+**Meaning:** A mask that preserves the candidate superset or recall guarantee required by its declared retrieval or discovery contract.
+
+**Boundary:** A high-scoring or apparently relevant mask is not necessarily coverage-safe. Exact retrieval needs a proof, conservative coverage, or safe full-view fallback.
+
+### E15. Mask Policy Invalidation
+
+**Meaning:** Revalidation or replacement of a cached mask when relevant source data, schema, perspective definition, authorization, policy, or structural versions change.
+
+**Boundary:** Reusing a stale mask may create silent omissions or security failures.
+
+### E16. Five-Way Delta Taxonomy
+
+**Meaning:** A research-level classification separating `ΔW` (world), `ΔO` (observation), `ΔK` (knowledge), `ΔS` (persistent structure), and `ΔA` (activation/mask).
+
+**Boundary:** These are semantic types, not proof that all real workflows have exactly one delta. A composite event can contain several separately auditable types.
+
+### E17. SQL-Native Structural Intelligence
+
+**Meaning:** A proposed WE-SIO integration in which established SQL engines provide source data, schema, transactions, indexes, queries, and security controls, while SI layers provide typed entity/perspective mapping, residual investigation, and governed knowledge evolution.
+
+**Boundary:** SQL tables are not necessarily entity types; rows are not necessarily world entities; columns are not automatically mathematical metrics; JOINs do not prove identity.
+
+### E18. SQL Epistemic Missingness
+
+**Meaning:** Interpretation of absent, unknown, withheld, inapplicable, or not-yet-observed values under an explicit missingness contract.
+
+**Boundary:** SQL `NULL` alone cannot determine whether something is an unknown, negative observation, contradiction, or residual.
+
+### E19. Source-State Delta
+
+**Meaning:** A change in recorded source-system state, such as an SQL `UPDATE`, that must be distinguished from a claim about an external-world event.
+
+**Boundary:** A source update may accompany `ΔO`, `ΔK`, or `ΔW`, but does not by itself prove any physical change.
+
+### E20. Evidence Independence
+
+**Meaning:** The degree to which supporting observations or analyses originate from genuinely distinct sources and error processes.
+
+**Boundary:** Multiple agents citing the same dataset, derived measurements, or copied reports are not independent replications.
+
+### E21. Metric Candidate versus Perspective Candidate
+
+**Meaning:** A metric candidate proposes a distance function with axioms on a declared domain; a perspective candidate may instead be a measurement, similarity, directional score, or typed relation.
+
+**Boundary:** A useful comparator is not automatically a mathematical metric; metric pruning requires verified mathematical guarantees.
+
+### E22. Epistemic and Structural Governance Boundary
+
+**Meaning:** The separation of evidence/claim-status decisions (`SPEC-005`) from node, block, mask, and active-view computation contracts (`SPEC-003`).
+
+**Boundary:** Changing a computation view cannot automatically validate a scientific claim; accepting a new claim does not necessarily require a new physical index.
 
 ## 3. Supporting terms and methodological vocabulary
 
@@ -629,7 +783,7 @@ The entries below are concise operational summaries; the `DEF` IDs refer to vers
 | Measurement ≠ metric distance | A measured number does not establish metric axioms. |
 | Candidate localization ≠ resolution | An index proposes candidates; a contract-qualified resolver determines matches. |
 | Index hierarchy ≠ intelligence hierarchy | Physical partitioning and reasoning scope can evolve separately. |
-| Residual ≠ novel mechanism | Residuals may reflect error, confounding, noise, or model inadequacy. |
+| Unknown ≠ qualified residual | Unknown variables, SQL NULLs, and untested ideas lack a required observation–baseline comparison. |\n| Established Knowledge ≠ immutable truth | Acceptance is scoped, versioned, and revisable. |\n| RER ≠ Open Knowledge bucket | RER requires qualified evidence of a discrepancy; open questions need not have a baseline. |\n| Mask ≠ deletion or authorization | Masks select eligible computation but cannot grant access or erase evidence. |\n| Activation Delta ≠ Structural Delta | A task-scoped active view may change without modifying persistent topology. |\n| Source-state update ≠ World Delta | An SQL UPDATE is not evidence by itself of a physical event. |\n| Residual ≠ novel mechanism | Residuals may reflect error, confounding, noise, or model inadequacy. |
 | World Delta ≠ Epistemic Delta | Reality can change without a belief update, and beliefs can change without reality changing. |
 | No-Delta-Reuse ≠ universal CDE invariant | Repetition may be legal or necessary in chess and many dynamic systems. |
 | Self-model ≠ subjective experience | Functional self-monitoring cannot by itself establish consciousness. |
@@ -650,7 +804,7 @@ The entries below are concise operational summaries; the `DEF` IDs refer to vers
 | `ΔW` | World Delta | Actual modeled-world change |
 | `ΔO` | Observation Delta | Data acquisition/correction |
 | `ΔK` | Knowledge/Epistemic Delta | Belief or model revision |
-| `ΔS` | Structural/Operational Delta | Index or policy change |
+| `ΔS` | Structural Delta | Persistent index, topology, or durable policy change |\n| `ΔA` | Activation/Mask Delta | Task-scoped active computational view selection |
 | `H_i` | Testable hypothesis | Falsification and evidence status explicit |
 | `CE_i` | Counterexample | Target claim and reproduction steps explicit |
 
@@ -667,7 +821,7 @@ The entries below are concise operational summaries; the `DEF` IDs refer to vers
 | **AVIB** | Adaptive Variable-Intelligence Blocks |
 | **MLIU** | Metric Leaf Intelligence Unit |
 | **CCC** | Continuous–Correctable–Constructive (project usage; see formal paper for precise semantics) |
-| **CDE** | Constrained Delta Evolution |
+| **ACV** | Active Computational View |\n| **MFSI** | Mask-First Structural Intelligence |\n| **EK** | Established Knowledge |\n| **OK** | Open Knowledge |\n| **RER** | Residual Evidence Registry |\n| **ESC** | Epistemic Separation Contract |\n| **RQC** | Residual Qualification Contract |\n| **KPC** | Knowledge Promotion Contract |\n| **MIC** | Mask-First Investigation Contract |\n| **CDE** | Constrained Delta Evolution |
 | **D-BTP** | Dynamic Bucket Tree of Permutation |
 | **DEL** | Definition Evolution Loop |
 | **SME** | Self-Modeling Entity |
@@ -688,7 +842,7 @@ The entries below are concise operational summaries; the `DEF` IDs refer to vers
 - **WE-HDT and MLIU:** [`specs/SPEC-003-WE-HDT-Node-Block-and-Metric-Leaf-Contract.md`](specs/SPEC-003-WE-HDT-Node-Block-and-Metric-Leaf-Contract.md).
 - **Operations and CCC:** [`specs/SPEC-004-SI-Operations-and-Two-Ways-CCC-Interface.md`](specs/SPEC-004-SI-Operations-and-Two-Ways-CCC-Interface.md).
 - **Residuals and metric discovery:** [`specs/SPEC-005-Residual-Evidence-and-Metric-Discovery-Contract.md`](specs/SPEC-005-Residual-Evidence-and-Metric-Discovery-Contract.md).
-- **Research governance:** [`specs/SPEC-006-Definition-Evolution-and-Research-Relay-Contract.md`](specs/SPEC-006-Definition-Evolution-and-Research-Relay-Contract.md).
+- **Mask-first and epistemic separation:** [`extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md`](extensions/EXT-005-Mask-First-Structural-Intelligence-and-Epistemic-Separation.md).\n- **SQL-native integration:** [`extensions/EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md`](extensions/EXT-006-SQL-Native-Structural-Intelligence-and-Knowledge-Evolution.md).\n- **Five-way deltas:** [`docs/WE-SIO-009-World-Delta-Knowledge-Delta-and-CDE.md`](docs/WE-SIO-009-World-Delta-Knowledge-Delta-and-CDE.md).\n- **Research governance:** [`specs/SPEC-006-Definition-Evolution-and-Research-Relay-Contract.md`](specs/SPEC-006-Definition-Evolution-and-Research-Relay-Contract.md).
 - **Challenges and evidence:** [`research-trace/COUNTEREXAMPLE-REGISTRY.md`](research-trace/COUNTEREXAMPLE-REGISTRY.md), [`research-trace/HYPOTHESIS-REGISTRY.md`](research-trace/HYPOTHESIS-REGISTRY.md), [`research-trace/UNRESOLVED-RESIDUALS.md`](research-trace/UNRESOLVED-RESIDUALS.md).
 
 ## 8. Terminology maintenance protocol

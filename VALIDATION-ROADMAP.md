@@ -4,7 +4,7 @@
 **Release:** v0.1.0 — Research framework / proposed validation program  
 **Authors:** Sizhe Tan & GPT-Obot  
 **Status:** Proposed; no experimental results are asserted by this document  
-**Last updated:** 2026-11-05
+**Last updated:** 2026-11-05 (extension integration update)
 
 > **Conformance before performance. Evidence before promotion. Counterexamples remain first-class research assets.**
 
@@ -57,7 +57,7 @@ Stages may overlap only when their upstream correctness dependencies are satisfi
 5. Separate **index partition granularity** from **intelligence allocation** in PAVB/AVIB.
 6. Define the MLIU operations: Locate, Resolve, Relate, Infer, Question, Evolve; specify resource budgets and audit output.
 7. Type the forward and reverse interfaces of Two-Ways CCC.
-8. Distinguish world, observation, epistemic/knowledge, and structural/operational deltas.
+8. Distinguish world, observation, epistemic/knowledge, persistent structural, and activation/mask deltas (ΔW, ΔO, ΔK, ΔS, ΔA).
 9. Specify CDE's state-transition kernel separately from application-specific path-memory and no-reuse policies.
 10. Define the Definition Evolution Loop (DEL), including backward compatibility and regression requirements.
 
@@ -66,7 +66,7 @@ Stages may overlap only when their upstream correctness dependencies are satisfi
 - Every mandatory field has a definition, type, versioning rule, and invalid-input behavior.
 - The definition registry and counterexample registry identify the principal boundary cases.
 - Cross-perspective conversions require explicit contracts; no implicit unit or relation coercion is accepted.
-- Open disagreements are logged as unresolved residuals with owners or proposed next experiments.
+- Open disagreements are logged as Open Knowledge or contested claims, with owners or proposed next experiments; only qualified observation–baseline discrepancies enter the Residual Evidence Registry (RER).
 
 **Artifacts:** `DEFINITION-REGISTRY.md`, `COUNTEREXAMPLE-REGISTRY.md`, `HYPOTHESIS-REGISTRY.md`, `DECISION-LOG.md`, `specs/SPEC-001` through `SPEC-006`.
 
@@ -391,3 +391,133 @@ Definition evolution should increase explanatory precision, not merely enlarge a
 WE-SIO v0.1.0 is a **research proposal with testable interfaces**, not a report of completed experiments. Its intended contribution is to make structural intelligence claims easier to locate, challenge, reproduce, revise, and relay. The roadmap is successful when it can produce both well-supported advances **and** clear, reusable explanations of where an idea fails.
 
 **Research maxim:** *Preserve the invariant, test the boundary, retain the residual, and relay the evidence.*
+
+## 20. Extension integration: Mask-First, epistemic separation, and SQL-native SI
+
+This addendum extends, rather than replaces, Stages 0–6 and the WEH-001–030 research program. **WEH-031–040 remain proposed (E0); no test results are asserted.** The contracts are candidate requirements for a future implementation, not evidence of conformance.
+
+### 20.1 Updated semantic and conformance prerequisites (P0)
+
+Before performance benchmarking, freeze versioned definitions and negative fixtures for:
+
+1. **Epistemic separation:** Established Knowledge (EK), Open Knowledge (OK), and qualified Residual Evidence Registry (RER) are distinct logical views. A missing variable, SQL NULL, unasked question, or unsupported hypothesis is not automatically a residual. Established claims remain scoped, evidence-linked, and revisable.
+2. **RER qualification:** each admitted discrepancy has a declared baseline/constraint, typed comparator, observation, source lineage, uncertainty, scope, and qualification status. Reject or reroute records without these properties.
+3. **Five-way delta typing:** ΔW world assertion; ΔO observation; ΔK knowledge; ΔS persistent structure; ΔA task-scoped activation/mask. Composite workflows retain separately auditable components.
+4. **Mask/Unmask/Remask:** active computation views are versioned against substrate, perspective, policy, and authorization. Masking cannot mutate entity identity or source knowledge, bypass access controls, or silently downgrade exactness.
+5. **Metric versus relation semantics:** a useful similarity or directional relation does not gain metric-axiom pruning without proof or domain-valid tests.
+6. **SQL mapping discipline:** table ≠ entity type; row ≠ necessarily unique world entity; column ≠ mathematical metric; JOIN ≠ identity; source UPDATE ≠ proven physical world event.
+7. **Knowledge promotion and withdrawal:** independent evidence, negative controls, authority, scope, versioning, and dependency-aware reversal are explicit. Multi-agent agreement over a shared source is not independent replication.
+
+**Exit gate P0:** pass semantic fixtures and applicable `SPEC-003`/`SPEC-005` contract checks, with unresolved exceptions recorded as *open questions*, counterexamples, or qualified residuals according to their actual semantics. Do not treat all leftovers as residual evidence.
+
+### 20.2 Cross-document conformance coverage
+
+| Contract source | New checks | Primary gate | Focus |
+|---|---|---|---|
+| `SPEC-003` | MCT-001–014 | P0, then P1 | Active-view integrity, authorization, exactness, invalidation, durable structure separation |
+| `SPEC-005` | CT-029–042 | P0 | Unknown/RER separation, promotion, source dependence, mask-safe investigation |
+| `WE-SIO-009` | D5-001–014 | P0, then P1 | Five-way delta classification, rollback, SQL source-state versus world claims |
+| `WE-SIO-008` | PE-001–014 | P0, then P2 | Perspective candidates, metric semantics, mask-first exploration, evidence-backed promotion |
+| `WE-SIO-007` | RER qualification fixtures | P0, then P2 | Baseline, comparator, observation, uncertainty, confounders, provenance |
+
+The named checks are *proposed test specifications*, not completed executions. IDs are additive and MUST NOT be silently renumbered. A reference implementation may combine fixtures but MUST report each applicable assertion independently.
+
+## 21. Hypothesis-to-experiment mapping: WEH-031–040
+
+| Hypothesis | Stage / priority | Controlled comparison | Primary endpoints | Disconfirming outcome |
+|---|---|---|---|---|
+| **WEH-031** Mask-first efficiency | 2 / P1 | Full-view vs fixed mask vs adaptive mask vs eager rebuild | Total latency, compute, maintenance, recall/exactness | No net gain after mask overhead, or correctness loss |
+| **WEH-032** Mature-structure preservation | 2–4 / P1 | Reuse/remask/local update vs proactive reconstruction | Rebuild frequency, total cost, drift resilience, correctness | Rebuild is consistently safer/cheaper at matched quality |
+| **WEH-033** Epistemic separation | 0–1 / P0 | Typed EK/OK/RER vs untyped unknown/anomaly store | Misclassification, unsupported promotion, audit completeness | No reduction in errors or new errors introduced |
+| **WEH-034** Mask-policy relay | 5 / P2 | Transfer masks vs task-specific tuning vs no transfer | Compute-adjusted benefit, negative transfer, policy safety | No transfer benefit or unacceptable negative transfer |
+| **WEH-035** SQL-to-WE mapping fidelity | 0–1 / P0 | Explicit semantic mapping vs naïve row/table mapping | Entity/identity errors, join fanout, provenance preservation | Mapping fails or is not meaningfully safer |
+| **WEH-036** SQL schema localization | 2 / P1 | SQL planner alone vs planner plus fixed/adaptive SI mask | Query cost, planning overhead, exactness, authorization | No net improvement or access/recall violation |
+| **WEH-037** SQL epistemic reliability | 1–3 / P0 | Explicit missingness/status model vs conflated NULL/unknown model | False residuals, missingness classification, promotion errors | No measurable gain or unmanageable complexity |
+| **WEH-038** Qualified residual diagnosis | 1–3 / P0 | RER gate + alternatives vs anomaly log/ungated residuals | False alarms, diagnostic precision, time to cause, recall | No benefit or exclusion of valid anomalies |
+| **WEH-039** Cross-schema policy relay | 5 / P2 | Reused policies vs retuned policies vs no relay | Transfer gain, adaptation time, negative transfer, leakage | Transfer fails under schema drift or privacy constraints |
+| **WEH-040** Governed knowledge evolution | 1–4 / P0 | Evidence-gated promotion/withdrawal vs fit-only or consensus-only | Unsupported promotions, reversal quality, audit latency | No gain or excessive missed valid discoveries |
+
+**Study registration:** Each study MUST specify population/workload, hypothesis version, preregistered endpoints where feasible, minimum detectable effect or justified sample plan, baselines, seed, environment, exclusion criteria, and negative controls. Report confidence/uncertainty intervals and failed runs; do not cherry-pick successful datasets.
+
+## 22. Stage-specific integration and exit gates
+
+### Stage 0 — contract freeze and synthetic counterexamples (P0)
+
+Add `SPEC-003` and `SPEC-005` integration review, five-way delta vocabulary, epistemic-state transitions, RER admission criteria, SQL mapping boundaries, and permission-preserving mask semantics. Build a traceability matrix connecting each WEH-031–040 claim to fixtures, evaluators, and registry IDs.
+
+**Gate:** contradictory terminology resolved or explicitly marked provisional; semantic conformance fixtures specified, versioned, and reviewed. No performance claims.
+
+### Stage 1 — executable correctness harness (P0)
+
+Implement a minimal **reference harness** with synthetic WE entities, versioned SQL schemas, MLIU views, RER records, active computation masks, and typed delta events. Test NULL, missing baselines, stale masks, duplicate JOINs, relational contradictions, access-denied unmasking, correlated agent evidence, rollback, and promotion rejection.
+
+**Gate:** mandatory negative fixtures pass; security and exactness failures block advancement. An implementation may report *partial* profile conformance but cannot imply complete conformance.
+
+### Stage 2 — mask-first and SQL benchmark (P1)
+
+Measure total end-to-end cost under matched correctness: mask creation, query execution, cache invalidation, rebuilding, data refresh, and false-negative recovery. Compare full-view, SQL-native planner, fixed masks, adaptive masks, and eager structural adaptation. Separate data retrieval quality from epistemic discovery utility.
+
+**Gate:** no undeclared exact-query omissions; all costs and workload characteristics reported. A null or negative result is retained.
+
+### Stage 3 — RER and perspective discovery trials (P0/P1)
+
+Use blinded synthetic mechanisms and realistic observational datasets with known artifacts: missingness, selection bias, confounding, calibration drift, measurement error, JOIN fanout, and spurious correlations. Evaluate whether qualified RER improves diagnosis and whether candidate perspectives add held-out value beyond conventional feature engineering.
+
+**Gate:** false discovery and missed discovery are both reported; no causal or clinical claims without domain-appropriate independent evidence.
+
+### Stage 4 — typed CDE and governance stress tests (P1)
+
+Apply mixed ΔA/ΔS/ΔK/ΔO/ΔW workflows to scheduling, chess, and versioned knowledge scenarios. Test path constraints, loop-back, irreversible-world-action compensation, state-container provenance, structural fallback, and knowledge withdrawal. Do not universalize D-BTP-specific no-delta-reuse rules.
+
+**Gate:** reversible versus compensatable versus irreversible transitions are distinguished; governance failures cannot be reclassified as successes.
+
+### Stage 5 — multi-agent policy and evidence relay (P2)
+
+Compare source-independent versus correlated agent observations; test mask-policy transfer across tasks and SQL schemas under drift, access restrictions, and compute-matched baselines. Preserve explicit negative transfer and unsupported consensus.
+
+**Gate:** privacy, independence, and transfer accounting are independently reviewable.
+
+### Stage 6 — external replication and claim scoping (P2)
+
+Publish redacted, reproducible conformance suites and baseline scripts, including failed and inconclusive studies. External groups should be able to repeat the claims without privileged knowledge of the original implementation.
+
+**Gate:** claims remain bounded to independently reproduced workloads, scopes, and evidence levels.
+
+## 23. Operational experiment records and evidence registry
+
+Every experiment SHOULD produce a versioned machine-readable record plus a human-readable summary:
+
+```yaml
+experimentId: WE-SIO-EXP-PLACEHOLDER
+hypothesisIds: [WEH-033]
+contractChecks: [CT-029, CT-030]
+status: planned                 # planned | running | completed | aborted
+claimStatus: proposed           # not a substitute for measured evidence
+protocolVersion: candidate-v0.1
+sourceDataAndLicenseRefs: []
+fixtureAndCodeCommitRefs: []
+baselines: []
+metricsAndUncertainty: []
+negativeControls: []
+failedRunsAndCounterexamples: []
+securityAndPrivacyAssessmentRef: null
+independentReviewRef: null
+decision: pending
+openQuestions: []
+```
+
+The placeholder is **not** a completed experiment. Record why a case was excluded, not just the cases that passed. Maintain the chain:
+
+`Hypothesis → Contract → Fixture → Baseline → Result → Counterexample → Review → Decision → Definition/Knowledge Delta → Relay`.
+
+## 24. Priority blockers, stop rules, and release discipline
+
+**P0 blockers:** identity conflation; unknowns misclassified as qualified residuals; implicit metric-axiom claims; unauthorized unmask; false exactness; untraceable knowledge promotion; source-state updates mislabeled as proven world events; correlated evidence counted as independent.
+
+**P1 stop rules:** no meaningful comparator baseline; unstable evaluation protocol; unacceptable mask maintenance overhead; unreported false-negative rates; unreproducible performance claims; improper version mixing.
+
+**P2 stop rules:** unreviewed external transfer, schema-drift leakage, privacy-violating relay, unsupported cross-domain generalization.
+
+**Repository synchronization:** Update `research-trace/HYPOTHESIS-REGISTRY.md` with WEH-031–040 and E0 status; update `research-trace/DEFINITION-REGISTRY.md` with the new glossary terms and stable DEF identifiers; add newly discovered negative cases to `COUNTEREXAMPLE-REGISTRY.md` and genuine qualified residuals to RER-oriented trace artifacts. `README.md`, `CONTENTS.md`, and `CHANGELOG.md` need only navigation/summary edits unless their research claims have changed.
+
+**Status:** This roadmap is a plan, not a claim of completed validation. Failed, inconclusive, and null results are first-class Collective Learning relay assets.

@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: >-
+  If you use this research framework, please cite the versioned GitHub release
+  and its associated DOI when one becomes available.
+type: software
+title: 'World Entity and Structural Intelligence Operations: From Variable-Size Block Indexing to Open-Ended World Modeling, Metric Discovery, and Self-Referential Intelligence'
+abstract: >-
+  WE-SIO is a hypothesis-driven structural-intelligence research framework
+  connecting World Entity representations, perspective-aware indexing,
+  WE-Hybrid Differential Trees, adaptive intelligence blocks, metric-leaf
+  operations, bidirectional constraint and question generation, residual-first
+  scientific discovery, constrained delta evolution, self-modeling, and
+  collective learning. The v0.1.0 release proposes contracts, counterexamples,
+  testable hypotheses, and validation plans; it does not claim empirical
+  validation of the proposed architecture.
+authors:
+  - family-names: Tan
+    given-names: Sizhe
+  - name: GPT-Obot
+    affiliation: AI research collaborator
+version: 0.1.0
+date-released: '2026-11-05'
+repository-code: 'https://github.com/sizhet/World-Entity-and-Structural-Intelligence-Operations'
+url: 'https://github.com/sizhet/World-Entity-and-Structural-Intelligence-Operations'
+license: Apache-2.0
+keywords:
+  - structural intelligence
+  - world entity
+  - perspective-aware indexing
+  - hybrid differential tree
+  - constrained delta evolution
+  - residual-first discovery
+  - metric discovery
+  - collective learning
+  - self-modeling

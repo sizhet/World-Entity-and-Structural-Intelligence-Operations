@@ -1,0 +1,11 @@
+World Entity and Structural Intelligence Operations (WE-SIO), v0.1.0
+
+World Entity and Structural Intelligence Operations (WE-SIO) is an exploratory research framework that extends variable-size block indexing and two-phase search into perspective-aware world-entity representation, structural localization, and open-ended intelligence operations. It proposes a World Entity Hybrid Differential Tree (WE-HDT), Perspective-Adaptive Variable Blocks (PAVB), Adaptive Variable-Intelligence Blocks (AVIB), and Metric Leaf Intelligence Units (MLIU), together with Two-Ways CCC for forward candidate resolution and reverse residual-driven questioning. The framework distinguishes entity identity from representations, mathematical metrics from measurements and directional relations, and real-world changes from observational, epistemic, and structural deltas. It explores residual-first scientific discovery, candidate metric and perspective generation, constrained delta evolution (CDE), self-modeling entities, and multi-agent collective learning, with interfaces to the Structural Intelligence Framework (SIF) and related structural-intelligence research. The v0.1.0 repository provides conceptual papers, specifications, illustrative cases, extensions, hypothesis and counterexample registries, and a validation roadmap. These contributions are research proposals rather than experimentally established performance gains or confirmed scientific discoveries; conformance, controlled benchmarking, and independent replication remain future work.
+
+Repository: https://github.com/sizhet/World-Entity-and-Structural-Intelligence-Operations
+Version: v0.1.0 | Date: 2026-11-05
+Research contributors: Sizhe Tan and GPT-Obot (AI collaborator)
+License: Apache-2.0
+DOI: Pending assignment following release.
+
+Keywords: World Entity; Structural Intelligence; WE-HDT; Perspective-Aware Indexing; Two-Ways CCC; Residual-First Discovery; Metric Discovery; Constrained Delta Evolution; Collective Learning; Self-Modeling.

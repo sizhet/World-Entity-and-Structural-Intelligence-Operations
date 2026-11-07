@@ -153,19 +153,17 @@ Insertion locations are **semantic anchors**: use the named discussion or the cl
 The following links become functional **after** the individual files have been exported to `figures/`.
 
 ```markdown
-![Figure 1 — WE-SIO grand architecture](../figures/Fig-001-WE-SIO-Grand-Architecture.png)
-![Figure 2 — From variable-size blocks to World Entity](../figures/Fig-002-From-Variable-Size-Blocks-to-World-Entity.png)
-![Figure 3 — WE Hybrid Differential Tree](../figures/Fig-003-WE-Hybrid-Differential-Tree.png)
-![Figure 4 — Adaptive Variable-Intelligence Blocks](../figures/Fig-004-Adaptive-Variable-Intelligence-Blocks.png)
-![Figure 5 — Metric Leaf Intelligence Unit](../figures/Fig-005-Metric-Leaf-Intelligence-Unit.png)
-![Figure 6 — Two-Ways CCC cross-metric discovery](../figures/Fig-006-Two-Ways-CCC-Cross-Metric-Discovery.png)
-![Figure 7 — Residual-driven scientific discovery loop](../figures/Fig-007-Residual-Driven-Scientific-Discovery-Loop.png)
-![Figure 8 — World Delta versus Epistemic Delta](../figures/Fig-008-World-Delta-vs-Epistemic-Delta.png)
-![Figure 9 — Definition Evolution Loop](../figures/Fig-009-Definition-Evolution-Loop.png)
-![Figure 10 — From WE to self-modeling and collective relay](../figures/Fig-010-From-WE-to-Self-Modeling-Entity-and-Collective-Relay.png)
+![Figure 1 — WE-SIO grand architecture](figures/Fig-001-WE-SIO-Grand-Architecture.png)
+![Figure 2 — From variable-size blocks to World Entity](figures/Fig-002-From-Variable-Size-Blocks-to-World-Entity.png)
+![Figure 3 — WE Hybrid Differential Tree](figures/Fig-003-WE-Hybrid-Differential-Tree.png)
+![Figure 4 — Adaptive Variable-Intelligence Blocks](figures/Fig-004-Adaptive-Variable-Intelligence-Blocks.png)
+![Figure 5 — Metric Leaf Intelligence Unit](figures/Fig-005-Metric-Leaf-Intelligence-Unit.png)
+![Figure 6 — Two-Ways CCC cross-metric discovery](figures/Fig-006-Two-Ways-CCC-Cross-Metric-Discovery.png)
+![Figure 7 — Residual-driven scientific discovery loop](figures/Fig-007-Residual-Driven-Scientific-Discovery-Loop.png)
+![Figure 8 — World Delta versus Epistemic Delta](figures/Fig-008-World-Delta-vs-Epistemic-Delta.png)
+![Figure 9 — Definition Evolution Loop](figures/Fig-009-Definition-Evolution-Loop.png)
+![Figure 10 — From WE to self-modeling and collective relay](figures/Fig-010-From-WE-to-Self-Modeling-Entity-and-Collective-Relay.png)
 ```
-
-**Path convention:** From `docs/`, `cases/`, `extensions/`, or `research-trace/`, use `../figures/`. From a root-level Markdown file, use `figures/` without `../`.
 
 ## 4. Diagram Conformance and Publication Checklist
 

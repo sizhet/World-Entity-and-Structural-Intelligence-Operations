@@ -274,4 +274,11 @@ For detailed items and tracking, consult [`research-trace/UNRESOLVED-RESIDUALS.m
 
 ---
 
+## 📚 DBM-SI Series Navigation
+
+See:\
+[./docs/DBM-SI-Series-of-gitHub-Repositories/DBM-SI-Series-of-gitHub-Repositories.md](./docs/DBM-SI-Series-of-gitHub-Repositories/DBM-SI-Series-of-gitHub-Repositories.md)
+
+---
+
 **WE-SIO research principle:** *Answers should remain accountable, questions should remain generative, and unresolved evidence should remain visible.*

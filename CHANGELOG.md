@@ -114,14 +114,14 @@ Registry entries describe research proposals, candidate tests, and traceable dec
 - `START-HERE.md`: introductory reading and contribution paths.
 - `CONTENTS.md`: repository inventory and topic navigation.
 - `GLOSSARY.md`: terminology, abbreviations, and semantic distinctions.
-- `FIGURE-INDEX.md`: planned figure captions, links, and placement guidance.
+- `FIGURE-INDEX.md`: figure captions, links, and placement guidance.
 - `FUTURE-DIRECTIONS.md`: research program and long-term questions.
 - `OPEN-QUESTIONS.md`: OQ-001–040 open research questions.
 - `TESTABLE-HYPOTHESES.md`: falsifiable experimental protocols and baselines.
 - `VALIDATION-ROADMAP.md`: staged conformance, benchmark, discovery, and replication plan.
 - `CHANGELOG.md`: this release history and explicit scope statement.
 
-### Figures — planned assets and current caveat
+### Figures 
 
 The following figure identities are part of the v0.1.0 documentation plan:
 

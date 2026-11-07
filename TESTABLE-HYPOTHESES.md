@@ -523,7 +523,7 @@ The following are **protocol drafts**. No numerical results or effect sizes are 
 
 **Threats to validity:** Workload selection, implementation quality, correlated evidence and evaluation leakage.
 
-**Source cross-references:** WE-SIO-012; SPEC-006; research-trace/UNRESOLVED-RESIDUALS.md (planned).
+**Source cross-references:** WE-SIO-012; SPEC-006; research-trace/UNRESOLVED-RESIDUALS.md.
 
 **Required evidence:** paired baseline results, negative-control or adversarial cases, raw trace manifest, uncertainty estimate and an explicit `Supported / Mixed / Refuted / Suspended` recommendation.
 

@@ -422,8 +422,6 @@ The roadmap should be read alongside:
 - `cases/CASE-001` through `cases/CASE-005` — application and stress-test cases.
 - `extensions/EXT-001` through `extensions/EXT-004` — ecosystem integration.
 
-The shorthand references above identify planned or corresponding documents; repository maintainers should verify exact links and filenames before release.
-
 ## 20. Explicit leftovers
 
 **L-001 — Novelty:** Which WE-SIO elements are genuinely distinct from existing indexing and knowledge-system designs?

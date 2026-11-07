@@ -197,7 +197,7 @@ For an overview of the full paper sequence, consult [`CONTENTS.md`](CONTENTS.md)
 
 ## 11. Visual route
 
-The planned `figures/` series is:
+The `figures/` series is:
 
 1. `Fig-001-WE-SIO-Grand-Architecture.png`
 2. `Fig-002-From-Variable-Size-Blocks-to-World-Entity.png`

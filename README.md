@@ -126,7 +126,7 @@ World-Entity-and-Structural-Intelligence-Operations/
 ├── cases/                 # CASE-001 … CASE-005
 ├── extensions/            # EXT-001 … EXT-004
 ├── research-trace/        # origin, synthesis and five registries/logs
-├── figures/               # Fig-001 … Fig-010 (planned individual PNGs)
+├── figures/               # Fig-001 … Fig-010 (individual PNGs)
 └── release/               # GitHub release notes and ResearchGate assets
 ```
 
@@ -185,7 +185,7 @@ The tree is the **target release layout**. Check the actual repository before pu
 
 Registry entries are **research proposals or candidate tests** unless an entry explicitly links to a completed, reproducible result.
 
-## 7. Ten planned figures
+## 7. Ten figures
 
 | Figure | Title | Primary purpose |
 |---|---|---|

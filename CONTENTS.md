@@ -68,8 +68,6 @@
 
 ## 3. Visual Architecture — Figure Index
 
-The ten figures below are **planned individual files**. A composite overview illustration was generated; each figure should be exported, checked for legibility, and committed separately before links are treated as available.
-
 - `figures/Fig-001-WE-SIO-Grand-Architecture.png` — Figure 001: WE SIO Grand Architecture.
 - `figures/Fig-002-From-Variable-Size-Blocks-to-World-Entity.png` — Figure 002: From Variable Size Blocks to World Entity.
 - `figures/Fig-003-WE-Hybrid-Differential-Tree.png` — Figure 003: WE Hybrid Differential Tree.
@@ -161,22 +159,22 @@ World-Entity-and-Structural-Intelligence-Operations/
 ├── README.md
 ├── START-HERE.md
 ├── CONTENTS.md
-├── GLOSSARY.md                       # planned root reference
-├── FIGURE-INDEX.md                   # planned root reference
-├── FUTURE-DIRECTIONS.md              # planned root reference
-├── OPEN-QUESTIONS.md                 # planned root reference
-├── TESTABLE-HYPOTHESES.md            # planned root reference
-├── VALIDATION-ROADMAP.md             # planned root reference
-├── CHANGELOG.md                      # planned root reference
-├── CITATION.cff                      # planned metadata
-├── .zenodo.json                      # planned metadata
+├── GLOSSARY.md                       
+├── FIGURE-INDEX.md                   
+├── FUTURE-DIRECTIONS.md              
+├── OPEN-QUESTIONS.md                 
+├── TESTABLE-HYPOTHESES.md            
+├── VALIDATION-ROADMAP.md             
+├── CHANGELOG.md                      
+├── CITATION.cff                      # metadata
+├── .zenodo.json                      # metadata
 ├── LICENSE                           # Apache-2.0; verify before release
 ├── docs/                             # 12 research papers
 ├── specs/                            # 6 specifications
 ├── cases/                            # 5 cases
 ├── extensions/                       # 4 extensions
 ├── research-trace/                   # 7 trace documents
-├── figures/                          # 10 planned individual PNGs
+├── figures/                          # 10 individual PNGs
 └── release/                          # release notes, RG description, PDF
 ```
 

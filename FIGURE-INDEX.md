@@ -22,7 +22,7 @@
 | Fig-009 | `Fig-009-Definition-Evolution-Loop.png` | Counterexample-driven definition governance | WE-SIO-011 |
 | Fig-010 | `Fig-010-From-WE-to-Self-Modeling-Entity-and-Collective-Relay.png` | Self-modeling and collective learning | WE-SIO-010 |
 
-All planned paths are relative to `figures/` at the repository root.
+All paths are relative to `figures/` at the repository root.
 
 ## 2. Recommended Insertion Locations
 

@@ -349,7 +349,7 @@ Preserve rejected proposals and failed benchmarks when they illuminate a boundar
 - **CASE-002:** strong k-d-tree comparison and variable-block baselines.
 - **CASE-004:** chess as a CDE definition stress test.
 
-A proposed figure is `figures/Fig-001-WE-SIO-Grand-Architecture.png`, supplemented by `Fig-003-WE-Hybrid-Differential-Tree.png` and `Fig-009-Definition-Evolution-Loop.png`. These references are planned assets, not evidence that the figures already exist.
+A proposed figure is `figures/Fig-001-WE-SIO-Grand-Architecture.png`, supplemented by `Fig-003-WE-Hybrid-Differential-Tree.png` and `Fig-009-Definition-Evolution-Loop.png`. 
 
 ## 15. Explicit leftovers
 

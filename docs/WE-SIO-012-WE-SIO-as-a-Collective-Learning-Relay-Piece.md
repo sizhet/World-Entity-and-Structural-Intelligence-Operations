@@ -462,7 +462,7 @@ Recommended contribution pathway:
 
 **Governance principle:** competing interpretations may coexist as versioned perspectives where evidence does not justify convergence. Collective learning is not forced consensus.
 
-**Licensing and attribution:** repository code and documentation should use the declared project license (Apache-2.0 is the planned choice), with accurate contributor attribution and citation metadata. External datasets and third-party content retain their own licensing and privacy requirements.
+**Licensing and attribution:** repository code and documentation should use the declared project license (Apache-2.0), with accurate contributor attribution and citation metadata. External datasets and third-party content retain their own licensing and privacy requirements.
 
 ---
 
@@ -483,7 +483,7 @@ Recommended contribution pathway:
 | WE-SIO-011 | Minimal kernels, conformance contracts, and definition evolution |
 | **WE-SIO-012** | **Integrated collective-learning relay and validation program** |
 
-Related planned documents:
+Related documents:
 
 - `specs/SPEC-004-SI-Operations-and-Two-Ways-CCC-Interface.md`
 - `specs/SPEC-005-Residual-Evidence-and-Metric-Discovery-Contract.md`

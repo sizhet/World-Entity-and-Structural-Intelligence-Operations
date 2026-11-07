@@ -573,8 +573,8 @@ Metric discovery in WE-SIO is best treated as **controlled perspective construct
 - WE-SIO-005 — Metric-Leaf Intelligence and SI Operations.
 - WE-SIO-006 — Two-Ways CCC and Cross-Metric Discovery.
 - WE-SIO-007 — Residual-First Scientific Discovery.
-- WE-SIO-009 — World Delta, Knowledge Delta, and CDE (planned).
+- WE-SIO-009 — World Delta, Knowledge Delta, and CDE.
 - WE-SIO-011 — Minimal Kernel, Contracts, and Definition Evolution.
-- SPEC-002 / SPEC-005 / SPEC-006 — proposed conformance and relay contracts (planned).
+- SPEC-002 / SPEC-005 / SPEC-006 — proposed conformance and relay contracts.
 
 *Research note: Concepts and mechanisms in this paper are proposals for systematic investigation. Examples are illustrative, and no benchmark performance, clinical efficacy, or scientific discovery has been established by this document.*

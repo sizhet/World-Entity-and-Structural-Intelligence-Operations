@@ -382,8 +382,6 @@ These are research questions, not implicit claims of solved functionality.
 **Fig-007 — Residual-Driven Scientific Discovery Loop** can support Section 8.  
 **Fig-009 — Definition Evolution Loop** can support Section 14.
 
-Figures are planned assets; this document does not assume that they already exist.
-
 ## 18. Conclusion
 
 WE-SIO requires a disciplined distinction between the world, observations of the world, knowledge about the world, and the structures used to operate on that knowledge. Typed deltas provide a candidate way to maintain that distinction across WE-HDT, MLIU, Two-Ways CCC, residual-driven discovery, and perspective evolution. CDE may offer a unifying transition and governance vocabulary, provided its kernel remains minimal, its constraints remain application-specific, and its claimed advantages are tested against existing methods.

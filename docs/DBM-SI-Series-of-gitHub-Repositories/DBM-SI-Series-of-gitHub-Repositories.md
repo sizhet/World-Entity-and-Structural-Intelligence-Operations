@@ -317,3 +317,7 @@
     From Classical Deduction to Differential Computation, In-Situ Learning, Constrained State Evolution, and Structural Capability Spillover \
     Repository: https://github.com/sizhet/Object-Centric-Structural-Reasoning-and-Evolution
      
+89. Beyond Static Computation: Object-Centric Structural Evolution and Persistent Intelligence - \
+    An integrative Structural Intelligence (SI) research program connecting five DOI research lines, six conceptual papers, three proposed interface specifications, and three falsifiable experimental laboratories. \
+    Repository: https://github.com/sizhet/Beyond-Static-Computation-and-Structural-Evolution
+          

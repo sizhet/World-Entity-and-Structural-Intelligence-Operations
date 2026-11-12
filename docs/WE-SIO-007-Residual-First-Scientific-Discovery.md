@@ -22,13 +22,13 @@ Consider a group of patients with similar measured profiles but different treatm
 
 ### 2.1 Residual is not synonymous with discovery
 
-For observation \(y\), expectation \(\hat y\), and a comparison rule \(d_p\) appropriate to perspective \(p\), a residual can be written:
+For observation $y$, expectation $\hat y$, and a comparison rule $d_p$ appropriate to perspective $p$, a residual can be written:
 
-\[
+$$
  r_p = d_p(y,\hat y).
-\]
+$$
 
-For numerical predictions, a signed difference \(r=y-\hat y\) may be useful. For categorical, relational, directional, or uncertain observations, a scalar subtraction may be invalid; the residual can instead be a structured discrepancy with a declared comparator and uncertainty model.
+For numerical predictions, a signed difference $r=y-\hat y$ may be useful. For categorical, relational, directional, or uncertain observations, a scalar subtraction may be invalid; the residual can instead be a structured discrepancy with a declared comparator and uncertainty model.
 
 A residual is **evidence of a gap between observation and expectation**, not necessarily evidence of a new phenomenon.
 

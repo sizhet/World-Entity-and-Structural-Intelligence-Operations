@@ -187,9 +187,9 @@ Record reviewers, accepted scope, unresolved counterexamples, and monitoring tri
 
 A heuristic prioritization score can help allocate experimental effort:
 
-\[
+$$
 U(p) = w_E E(p) + w_D D(p) + w_R R(p) - w_C C(p) - w_K K(p)
-\]
+$$
 
 where `E` denotes explanatory gain, `D` discriminative or predictive gain, `R` robustness, `C` computational/measurement cost, and `K` governance or epistemic risk. These quantities are task-specific and should be normalized and reported separately. **No weighted score may override hard conformance failures** such as invalid provenance or a falsely claimed metric property. Optimize for Pareto tradeoffs where a single scalar score would conceal material conflicts.
 
@@ -218,17 +218,17 @@ A perspective change should produce an explicit query-plan delta with pre/postco
 
 Treat the perspective portfolio and its operational structures as a versioned state container:
 
-\[
+$$
 S_t = (P_t, I_t, Q_t, E_t, R_t, G_t)
-\]
+$$
 
 where `P` is the perspective registry, `I` indexes, `Q` query plans, `E` evidence, `R` residuals, and `G` governance constraints.
 
 A candidate constrained delta is:
 
-\[
+$$
 \Delta_p : (S_t, C_t) \rightharpoonup S_{t+1}
-\]
+$$
 
 The arrow indicates a partial transition: a delta is applicable only when its preconditions and constraints hold. Useful operations include `ADD`, `REFINE`, `SPLIT`, `MERGE`, `RECALIBRATE`, `DEPRECATE`, and `ROLLBACK`.
 

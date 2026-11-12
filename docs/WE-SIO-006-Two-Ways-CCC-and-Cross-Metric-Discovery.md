@@ -97,26 +97,26 @@ The project uses CCC provisionally as **Condition/Constraint-guided Candidate Co
 
 A CCC request can be modeled as:
 
-\[
+$$
 Q = (E_0, P, C, G, B, V)
-\]
+$$
 
 where:
 
-- \(E_0\): starting entity set or discovery scope;
-- \(P\): requested perspectives and their contracts;
-- \(C\): hard constraints and soft conditions, separately typed;
-- \(G\): goal or evidence question;
-- \(B\): resource, risk, and exploration budget;
-- \(V\): version and provenance context.
+- $E_0$: starting entity set or discovery scope;
+- $P$: requested perspectives and their contracts;
+- $C$: hard constraints and soft conditions, separately typed;
+- $G$: goal or evidence question;
+- $B$: resource, risk, and exploration budget;
+- $V$: version and provenance context.
 
 A candidate evaluation yields:
 
-\[
+$$
 R = (E_c, S, X, U, L)
-\]
+$$
 
-where \(E_c\) is a candidate set, \(S\) contains scores or predicate outcomes with explicit semantics, \(X\) supporting evidence, \(U\) uncertainty, and \(L\) explicit leftovers including unresolved residuals. Scores from different perspectives must not be aggregated as if they shared a scale without calibration or a declared aggregation policy.
+where $E_c$ is a candidate set, $S$ contains scores or predicate outcomes with explicit semantics, $X$ supporting evidence, $U$ uncertainty, and $L$ explicit leftovers including unresolved residuals. Scores from different perspectives must not be aggregated as if they shared a scale without calibration or a declared aggregation policy.
 
 ### 3.1 Hard constraints vs soft evidence
 
@@ -146,13 +146,13 @@ privacy_and_access_policy: policy_ref
 conformance_tests: test_refs
 ```
 
-A **cross-perspective mapping** is a versioned hypothesis or validated transform, not an assumed identity. For perspectives \(P_i\) and \(P_j\), represent a mapping as:
+A **cross-perspective mapping** is a versioned hypothesis or validated transform, not an assumed identity. For perspectives $P_i$ and $P_j$, represent a mapping as:
 
-\[
+$$
 T_{i\to j}: (x_i, c, e) \mapsto (\widehat{x}_j, u, p)
-\]
+$$
 
-where \(c\) is context, \(e\) supporting evidence, \(u\) uncertainty, and \(p\) provenance. Some mappings are partial, many-to-many, stochastic, or impossible. Reverse mappings need not exist; \(T_{j\to i}\) is not automatically an inverse.
+where $c$ is context, $e$ supporting evidence, $u$ uncertainty, and $p$ provenance. Some mappings are partial, many-to-many, stochastic, or impossible. Reverse mappings need not exist; $T_{j\to i}$ is not automatically an inverse.
 
 ### 4.1 Four discovery patterns
 
@@ -263,11 +263,11 @@ Every proposal should record its originating residual, supporting and contradict
 
 Constrained Delta Evolution (CDE) can express approved representation changes as typed transitions:
 
-\[
-(S_{t+1},\tau)=\operatorname{Apply}(S_t,\Delta,C)
-\]
+$$
+(S_{t+1},\tau)=\mathrm{Apply}(S_t,\Delta,C)
+$$
 
-Here \(S_t\) is a versioned representation state, \(\Delta\) a proposed change, \(C\) applicability/constraint policy, and \(\tau\) the trace. The physical world need not change when the representation changes. No-Delta-Reuse is **not** a universal CDE axiom; path-memory and cycle policies are application-specific contracts.
+Here $S_t$ is a versioned representation state, $\Delta$ a proposed change, $C$ applicability/constraint policy, and $\tau$ the trace. The physical world need not change when the representation changes. No-Delta-Reuse is **not** a universal CDE axiom; path-memory and cycle policies are application-specific contracts.
 
 ### 11.3 Three kinds of delta
 

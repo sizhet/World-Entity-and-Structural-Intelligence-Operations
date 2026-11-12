@@ -130,18 +130,18 @@ Candidate adaptation signals include:
 
 An illustrative heuristic for deciding whether to *investigate* greater granularity or capability is:
 
-\[
+$$
 S(B)=w_DD(B)+w_HH(B)+w_UU(B)+w_RR(B)+w_TT(B)-w_CC(B).
-\]
+$$
 
 Here the features and weights must be defined and calibrated for the application; the formula is **not** a universal scoring law. Signals may be correlated, noisy, manipulable, or incomparable. A high score should propose an experiment, not directly authorize an expensive or irreversible transformation.
 
 A more rigorous decision objective compares estimated marginal benefit against cost:
 
-\[
+$$
 \Delta V(a\mid B)=\widehat{Q}_{\text{after}}(a,B)-\widehat{Q}_{\text{before}}(B)
 -\lambda\widehat{C}(a,B)-\mu\widehat{Risk}(a,B).
-\]
+$$
 
 `Q` is an application-defined, independently measured quality metric. An adaptation is eligible only if it passes correctness constraints and its expected gain is positive with adequate confidence. This explicitly separates **hard conformance gates** from **soft optimization preferences**.
 
@@ -232,9 +232,9 @@ Residual pressure can motivate finer partitions or stronger reasoning, but it ca
 
 Constrained Delta Evolution (CDE) provides a candidate way to model versioned block transformations:
 
-\[
+$$
 (B_t, C_t) \xrightarrow{\delta_t} B_{t+1},
-\]
+$$
 
 where `C_t` encodes correctness, cost, provenance, and application constraints. A delta may alter partitioning, capability, evidence links, or index descriptors. Some deltas may be reversible; others require compensating migrations. A block evolution controller should support bounded branching, rollback, and explicit termination conditions.
 

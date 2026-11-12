@@ -87,19 +87,19 @@ Following WE-SIO-011, the definition should capture invariant operational requir
 
 Let an SME candidate be represented as:
 
-\[
+$$
 \mathrm{SME}=(E, I_s, M_s, O, A, U, B)
-\]
+$$
 
 where:
 
-- \(E\): entity referent and environment interface;
-- \(I_s\): self-reference and identity-resolution policy;
-- \(M_s\): versioned self-model;
-- \(O\): observation and evidence interface;
-- \(A\): actions or consequential operations influenced by the model;
-- \(U\): authorized update and validation policy;
-- \(B\): declared system boundaries, constraints, and permissions.
+- $E$: entity referent and environment interface;
+- $I_s$: self-reference and identity-resolution policy;
+- $M_s$: versioned self-model;
+- $O$: observation and evidence interface;
+- $A$: actions or consequential operations influenced by the model;
+- $U$: authorized update and validation policy;
+- $B$: declared system boundaries, constraints, and permissions.
 
 This tuple is a *working contract*. It is not a claim that these fields are necessary or sufficient for all possible self-modeling systems.
 
@@ -134,25 +134,25 @@ A cloud service may migrate across machines; a robot may replace sensors; a coll
 
 ### 4.2 Recursive self-reference
 
-A model may represent its own model, producing a hierarchy such as \(M_s^{(0)}, M_s^{(1)}, \ldots\). Unrestricted recursion can be computationally unbounded or semantically circular. Candidate safeguards include bounded reflection depth, lazy materialization, versioned snapshots, and explicit stopping criteria. No infinite hierarchy is required for the minimal SME contract.
+A model may represent its own model, producing a hierarchy such as $M_s^{(0)}, M_s^{(1)}, \ldots$. Unrestricted recursion can be computationally unbounded or semantically circular. Candidate safeguards include bounded reflection depth, lazy materialization, versioned snapshots, and explicit stopping criteria. No infinite hierarchy is required for the minimal SME contract.
 
 ## 5. The Self-Model Action–Observation Loop
 
 A simple operational formulation is:
 
-\[
+$$
  a_t = \pi(M_s(t), W_s(t), G_s(t), C_t),
-\]
+$$
 
-\[
+$$
  o_{t+1} \sim \mathcal{O}(E_{t+1}, A_t),
-\]
+$$
 
-\[
+$$
  M_s(t+1)=U(M_s(t),a_t,o_{t+1},C_t),
-\]
+$$
 
-where \(W_s\) is the system's accessible world representation, \(G_s\) is a goal or task specification (possibly externally assigned), and \(C_t\) denotes constraints and evidence conditions. The stochastic observation notation permits noise and incomplete observability; it does not require a particular probabilistic implementation.
+where $W_s$ is the system's accessible world representation, $G_s$ is a goal or task specification (possibly externally assigned), and $C_t$ denotes constraints and evidence conditions. The stochastic observation notation permits noise and incomplete observability; it does not require a particular probabilistic implementation.
 
 The key feature is **closed-loop self-model revision**. A predicted capability, resource level, failure mode, or behavioral tendency can be checked against observed outcomes. The resulting mismatch becomes a typed residual, not automatically a reason to rewrite the model.
 
@@ -264,11 +264,11 @@ A knowledge update does not itself imply a physical change. Reverting a model ve
 
 Constrained Delta Evolution (CDE) provides a candidate control plane for allowed self-model transitions:
 
-\[
+$$
 \Delta:(S,C)\rightharpoonup S'
-\]
+$$
 
-where \(S\) is the current model or system state and \(C\) denotes applicability and governance constraints. Candidate operations include `ADD_PERSPECTIVE`, `REVISE_CLAIM`, `SPLIT_MODEL`, `MERGE_MODEL`, `RECALIBRATE`, `DEPRECATE`, and `ROLLBACK_REPRESENTATION`.
+where $S$ is the current model or system state and $C$ denotes applicability and governance constraints. Candidate operations include `ADD_PERSPECTIVE`, `REVISE_CLAIM`, `SPLIT_MODEL`, `MERGE_MODEL`, `RECALIBRATE`, `DEPRECATE`, and `ROLLBACK_REPRESENTATION`.
 
 The CDE kernel should not universally prohibit repeated deltas or revisited states. Chess and other cyclic domains demonstrate why path-memory and cycle restrictions must be configurable contracts rather than assumed universal axioms.
 

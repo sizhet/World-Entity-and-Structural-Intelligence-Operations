@@ -46,9 +46,9 @@ This is useful as an engineering entry point but should not be mistaken for an o
 
 A provisional representation is:
 
-\[
+$$
 R_t(e,p) = (id(e), p, I_t(e,p), V_t, E_t, U_t, H_t)
-\]
+$$
 
 where `I` denotes descriptors, `V` their values or expressions, `E` evidence and provenance, `U` uncertainty, and `H` versioned history. This is a **candidate schema**, not a universal ontology.
 
@@ -128,12 +128,12 @@ BlockDescriptor {
 
 A tentative refinement utility is:
 
-\[
-J(B) = \operatorname{ExpectedQueryGain}(B)
-     + \operatorname{ExpectedLearningGain}(B)
-     - \lambda\operatorname{ComputeCost}(B)
-     - \mu\operatorname{MaintenanceCost}(B).
-\]
+$$
+J(B) = \mathrm{ExpectedQueryGain}(B)
+     + \mathrm{ExpectedLearningGain}(B)
+     - \lambda\mathrm{ComputeCost}(B)
+     - \mu\mathrm{MaintenanceCost}(B).
+$$
 
 This expression is a design placeholder. Its terms require operational definitions, calibrated estimators, and out-of-sample tests. Splitting, merging, and attaching new intelligence components should be governed by explicit contracts and reversible or auditable structural changes where feasible.
 
@@ -173,15 +173,15 @@ Operations should return provenance, confidence or uncertainty where meaningful,
 
 WE-HDT could extend **Two-Ways CCC** from explicit candidate matching to feedback between localization and interpretation:
 
-\[
+$$
 \text{Localization} \rightarrow \text{Metric/Relational Analysis}
 \rightarrow \text{Residual Detection}
-\]
+$$
 
-\[
+$$
 \text{Residual} \rightarrow \text{Candidate Perspective or Metric}
 \rightarrow \text{Revised Localization / Validation}
-\]
+$$
 
 The backward direction must not convert a weak pattern into a fact. Proposed new descriptors, metrics, or relations require conformance checks and independent evidence. This is a research hypothesis about discoverability and operational efficiency, not an established improvement in accuracy.
 
@@ -214,9 +214,9 @@ WE-SIO distinguishes two kinds of change:
 
 They may coincide, diverge, or be temporally separated. A representation update can be modeled as:
 
-\[
-R_{t+1} = \operatorname{Apply}(R_t, \Delta_K; C)
-\]
+$$
+R_{t+1} = \mathrm{Apply}(R_t, \Delta_K; C)
+$$
 
 where `C` includes integrity, provenance, identity, and validation constraints. This connects naturally to **Constrained Delta Evolution (CDE)** as a candidate structural evolution mechanism, without requiring every application to share the same delta format or path policy.
 
@@ -226,9 +226,9 @@ The chess counterexample is instructive: a global *No-Delta-Reuse* rule is not v
 
 An entity representation can describe a subject that observes, acts, and updates a model of itself. A candidate self-modeling loop is:
 
-\[
+$$
 M_t \rightarrow a_t \rightarrow o_{t+1} \rightarrow M_{t+1}.
-\]
+$$
 
 This suggests a bridge from WE-SIO to **Subjective Structural Intelligence (SSI)**: self-reference, history, boundaries, perspectives, and feedback. However, an operational self-model does **not** demonstrate consciousness, subjective experience, or philosophical personhood. Those questions remain open and must not be conflated with software functionality.
 

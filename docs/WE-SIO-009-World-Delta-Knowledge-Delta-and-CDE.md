@@ -47,9 +47,9 @@ It does **not** claim that CDE replaces established event sourcing, temporal dat
 
 Let `e` denote a persistent entity reference, `p` a perspective descriptor, and `t` a time index. A conceptual WE representation is:
 
-\[
+$$
 R_t(e) = \{(p_i, v_i, q_i, \tau_i, \pi_i)\}_{i=1}^{n_t}
-\]
+$$
 
 where `v` is a value or relation, `q` captures uncertainty or quality, `τ` captures temporal semantics, and `π` is provenance. This is a representation, not the entity itself.
 
@@ -135,17 +135,17 @@ Bitemporal database conventions can support part of this, but the WE-SIO researc
 
 CDE is treated as a **candidate constrained state-evolution framework**, not as a universal algorithm proven to outperform existing search methods. A useful minimal formulation is:
 
-\[
+$$
 \mathcal{E} = (S, \mathcal{D}, A, T, P)
-\]
+$$
 
 where `S` is the state space, `D` the family of delta descriptions, `A(s,δ)` an applicability predicate, `T(s,δ)` a partial or nondeterministic transition relation, and `P` the evolution and selection policy. Constraints and evidence obligations are specified through contracts associated with each application.
 
 A deterministic instance may use:
 
-\[
+$$
 T : (S,\delta) \rightharpoonup S'
-\]
+$$
 
 A nondeterministic or adversarial instance may instead use a relation `T ⊆ S × D × S`. Neither transition form alone guarantees convergence, termination, optimality, or scientific validity.
 
@@ -268,9 +268,9 @@ A chess move changes the formal game state (a world-state transition *within the
 
 Typed deltas may be composed only when their preconditions, target versions, and semantic effects are compatible. A candidate composition is:
 
-\[
+$$
 \delta_b \circ \delta_a : S \to S''
-\]
+$$
 
 when `δa` is applicable at `S`, `δb` is applicable after `δa`, and the combined transition preserves required invariants. Commutativity must not be assumed: a perspective redefinition followed by an index rebuild is not necessarily equivalent to the reverse order.
 

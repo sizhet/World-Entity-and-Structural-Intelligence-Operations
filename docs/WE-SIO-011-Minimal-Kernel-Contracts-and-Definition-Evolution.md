@@ -62,19 +62,19 @@ WE-SIO must distinguish an entity in the world from the system's representation 
 
 Let:
 
-- \(e\) denote a referent or hypothesized world entity;
-- \(p\) denote a perspective, observer, or interpretive context;
-- \(t\) denote a time or version context;
-- \(R(e,p,t)\) denote a **representation** of \(e\), not the entity itself;
-- \(I\) denote a collection of typed perspective descriptors;
-- \(E\) denote evidence and provenance;
-- \(U\) denote uncertainty or unresolved status.
+- $e$ denote a referent or hypothesized world entity;
+- $p$ denote a perspective, observer, or interpretive context;
+- $t$ denote a time or version context;
+- $R(e,p,t)$ denote a **representation** of $e$, not the entity itself;
+- $I$ denote a collection of typed perspective descriptors;
+- $E$ denote evidence and provenance;
+- $U$ denote uncertainty or unresolved status.
 
 A working representation schema is:
 
-\[
+$$
 R(e,p,t)=(id_e,p,t,I,E,U,links).
-\]
+$$
 
 The earlier `Object[metricIdx]` remains a compact notation for an indexed view of this representation. The following are **candidate kernel obligations**, subject to refinement:
 
@@ -132,17 +132,17 @@ A residual record should distinguish expectation, observation, discrepancy, mode
 
 A minimal deterministic transition can be expressed as a partial function:
 
-\[
+$$
 \delta_C:S\rightharpoonup S',
-\]
+$$
 
-where the constraints \(C\) determine admissibility. This notation is a useful starting point, not a complete CDE definition. For nondeterministic or multi-result systems, a transition relation is more appropriate:
+where the constraints $C$ determine admissibility. This notation is a useful starting point, not a complete CDE definition. For nondeterministic or multi-result systems, a transition relation is more appropriate:
 
-\[
+$$
 T_C\subseteq S\times A\times S.
-\]
+$$
 
-Here \(A\) is a set of candidate actions or Deltas. A distinctive CDE profile must add meaningful obligations for constrained Delta generation, admissibility, path/history management, branch control, and evolution; otherwise it collapses into an ordinary state-transition system.
+Here $A$ is a set of candidate actions or Deltas. A distinctive CDE profile must add meaningful obligations for constrained Delta generation, admissibility, path/history management, branch control, and evolution; otherwise it collapses into an ordinary state-transition system.
 
 ### 5.1 Why chess matters
 
@@ -177,15 +177,15 @@ Moving No-Delta-Reuse into an optional path policy is a **boundary correction**,
 
 A research definition is represented as a versioned object:
 
-\[
+$$
 D_t=(K_t,C_t,X_t,W_t,N_t),
-\]
+$$
 
-where \(K\) is the kernel, \(C\) contracts, \(X\) extensions, \(W\) positive/negative witnesses and evidence, and \(N\) unresolved questions and residuals. A proposed change \(\Delta D_t\) is evaluated before adoption:
+where $K$ is the kernel, $C$ contracts, $X$ extensions, $W$ positive/negative witnesses and evidence, and $N$ unresolved questions and residuals. A proposed change $\Delta D_t$ is evaluated before adoption:
 
-\[
-D_{t+1}=\operatorname{AcceptRevision}(D_t,\Delta D_t,Tests,Review).
-\]
+$$
+D_{t+1}=\mathrm{AcceptRevision}(D_t,\Delta D_t,Tests,Review).
+$$
 
 This notation is procedural, not an assertion that theory evolution is automatically computable or guaranteed to converge.
 
@@ -244,12 +244,12 @@ This is an illustrative record; the corresponding registry and tests remain to b
 
 WE-HDT may support a two-direction research loop:
 
-\[
+$$
 \text{Known descriptors}\rightarrow\text{candidate matches}\rightarrow\text{residuals}
-\]
-\[
+$$
+$$
 \text{residuals}\rightarrow\text{candidate new descriptors}\rightarrow\text{new tests}.
-\]
+$$
 
 A generated “metric” is not automatically a mathematical metric; it may instead be a similarity function, directional score, predicate, or learned representation. Each must declare its properties, domain, training/evaluation separation, and provenance. In medical or scientific applications, candidate associations require independent validation, confounding analysis, and appropriate study design before causal or clinical claims.
 

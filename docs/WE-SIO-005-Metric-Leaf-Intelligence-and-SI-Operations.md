@@ -236,9 +236,9 @@ WE-SIO-004 distinguishes **partition granularity** from **intelligence capabilit
 
 A candidate dispatcher optimizes an explicit objective:
 
-\[
+$$
 J = \alpha Q_{\mathrm{task}} + \beta G_{\mathrm{evidence}} - \gamma C_{\mathrm{compute}} - \delta R_{\mathrm{error}}
-\]
+$$
 
 where quality, evidence gain, compute cost, and error risk require task-specific operational definitions. This is a **design heuristic**, not a validated universal scoring law. Any adaptive policy must be benchmarked against simpler static policies and measured for calibration and selection bias.
 

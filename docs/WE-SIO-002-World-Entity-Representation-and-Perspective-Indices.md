@@ -29,15 +29,15 @@ The notation is a useful engineering entry point, but its literal reading risks 
 
 Let `e` denote a referent in the chosen domain, `p` a perspective, and `t` a time or validity interval. Define:
 
-\[
+$$
 R(e,p,t) = (\mathrm{id},\mathrm{schema},\mathrm{values},\mathrm{evidence},\mathrm{uncertainty},\mathrm{provenance})_{p,t}.
-\]
+$$
 
 `R` is a representation *of* `e`; it is not identical to `e`. An index `I` is a mechanism for retrieving or comparing selected parts of `R` under an explicit query contract:
 
-\[
+$$
 I_{p,q}: R(e,p,t) \longrightarrow \mathrm{KeysOrFeatures}_{p,q}.
-\]
+$$
 
 Here `q` is a task or query context. A missing or unobservable attribute must not be silently converted into a zero-valued attribute. An unindexed entity can still exist in the domain of discourse.
 
@@ -45,9 +45,9 @@ Here `q` is a task or query context. A missing or unobservable attribute must no
 
 Two entities may share all observed feature values without being identical; one entity may change all its observed features without ceasing to be the same referent. Accordingly:
 
-\[
+$$
 \mathrm{EntityID}(e) \ne \mathrm{FeatureSignature}(R(e,p,t)).
-\]
+$$
 
 Entity identity requires a declared resolution policy, with provenance, time and ambiguity handling. The policy may be application-specific; a globally infallible identity oracle is not assumed.
 
@@ -74,15 +74,15 @@ This is a semantic sketch, not a mandatory serialization format. Concrete contra
 
 A perspective is a bounded interpretation context, not merely a column name. Define a descriptor:
 
-\[
+$$
 P=(\mathrm{scope},\mathrm{domain},\mathrm{semantics},\mathrm{operations},\mathrm{validity},\mathrm{evidencePolicy}).
-\]
+$$
 
 Two perspectives may disagree without one being immediately discarded. They may use different populations, scales, observational windows, causal assumptions, or definitions. A WE representation therefore consists of one or more *perspective views* sharing a referent where identity resolution permits:
 
-\[
+$$
 \mathcal R(e)=\{R(e,p,t):p\in\mathcal P_e\}.
-\]
+$$
 
 Views can be materialized, computed on demand, or linked by references. The model does **not** require physically duplicating the entire tree for each perspective.
 
@@ -110,9 +110,9 @@ A descriptor may have no distance function. This is a legitimate relational desc
 
 An Euclidean descriptor maps selected observations into a vector space:
 
-\[
+$$
 \phi_{E,p}(e,t)\in\mathbb R^{d_p}.
-\]
+$$
 
 A Euclidean distance is meaningful only if dimensions, units, scaling, missingness and query semantics justify it. A numeric SQL column does not automatically pass this test. Space-time coordinates, for example, require an explicit weighting or a more appropriate geometric model; physical spacetime is not generally a four-dimensional Euclidean metric.
 
@@ -122,13 +122,13 @@ Euclidean indices are candidates for fast block-based localization and two-phase
 
 A metric descriptor supplies a function `d` satisfying, on its stated domain, nonnegativity, identity of indiscernibles, symmetry and the triangle inequality:
 
-\[
+$$
 d(x,y)\ge 0,\quad d(x,y)=0\Leftrightarrow x=y,\quad d(x,y)=d(y,x),
-\]
+$$
 
-\[
+$$
 d(x,z)\le d(x,y)+d(y,z).
-\]
+$$
 
 Some useful comparisons are pseudometrics, quasi-metrics, divergences or task-specific scores instead. They must be labeled accurately rather than silently treated as metrics. A metric may be non-Euclidean, and a Euclidean embedding may distort its original relationships.
 
@@ -136,9 +136,9 @@ Some useful comparisons are pseudometrics, quasi-metrics, divergences or task-sp
 
 Examples include dependency, trust, causality hypotheses, role, precedence, graph reachability and directional preference. Such relations need not be symmetric or even scalar-valued. Represent them as typed predicates or operators:
 
-\[
+$$
 \rho_p(e_i,e_j,\mathrm{context})\to\mathrm{ResultWithEvidence}.
-\]
+$$
 
 These descriptors may be indexed through graph, inverted, symbolic or learned structures; WE-HDT must not force them into a Euclidean distance.
 
@@ -146,9 +146,9 @@ These descriptors may be indexed through graph, inverted, symbolic or learned st
 
 Known/unknown is not an index class. Each of the three classes can be well-observed, partially observed, inferred, contested or unobserved. Thus:
 
-\[
+$$
 \mathrm{IndexClass}\ \perp\ \mathrm{EpistemicStatus}
-\]
+$$
 
 as a **modeling separation**, not a statistical independence claim.
 
@@ -224,9 +224,9 @@ Distinguish changes in the referent from changes in the system's knowledge:
 
 The two can coincide, diverge, or be unidentifiable from available observations. A representation update should carry an explicit `delta_kind`, evidence references, a before/after version and a constraint check. A CDE-inspired transition contract is:
 
-\[
-R_{t+1}=\operatorname{Apply}(R_t,\Delta_t;C_t)
-\]
+$$
+R_{t+1}=\mathrm{Apply}(R_t,\Delta_t;C_t)
+$$
 
 when the applicability contract `C_t` passes. This does not require that all deltas be invertible or that repeated deltas be universally forbidden. Path-memory and cycle policies are optional, domain-specific contracts.
 
@@ -267,10 +267,10 @@ A Metric Leaf Intelligence Unit (MLIU) may hold lightweight state and invoke sha
 
 A forward route may use known descriptors to locate candidate relationships and residuals. A reverse route may use residuals to propose alternative descriptors, candidate sets or queries:
 
-\[
+$$
 \mathrm{Descriptors}\to\mathrm{Candidates}\to\mathrm{Residuals}
 \to\mathrm{Hypotheses}\to\mathrm{RevisedDescriptors}.
-\]
+$$
 
 Any newly proposed metric or relation must pass its own conformance and out-of-sample validation before being promoted to a trusted index. This is a proposed discovery loop, not a demonstrated performance result.
 

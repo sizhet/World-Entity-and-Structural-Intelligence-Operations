@@ -44,9 +44,9 @@ This document concerns **structural modeling and evaluation**. It does not asser
 
 Define a candidate SME state as:
 
-\[
+$$
 S_t = (E, P_t, O_t, H_t, G_t, C_t, U_t, V_t)
-\]
+$$
 
 where:
 
@@ -162,9 +162,9 @@ These categories may coincide but are not interchangeable. Updating a database e
 
 A candidate CDE transition is:
 
-\[
+$$
 (S_{t+1}, L_{t+1}) = T(S_t, \delta_t, C_t, L_t)
-\]
+$$
 
 where `L_t` is a trace of prior transitions and `C_t` contains applicability, authorization, safety, budget, and rollback constraints. The transition must preserve identity references, evidence lineage, and auditability. Cycles and revisits may be legal; universal No-Delta-Reuse is **not** assumed. A policy may restrict cycles when needed for termination or cost control.
 

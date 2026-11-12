@@ -77,17 +77,17 @@ This is a **logical interface diagram**. It does not prescribe one runtime, one 
 
 Let a query be represented as:
 
-\[
+$$
 Q=(\mathcal{E},P,C,G,B,V)
-\]
+$$
 
-where \(\mathcal{E}\) is the entity scope, \(P\) the perspective set, \(C\) the conditions, \(G\) the requested guarantee, \(B\) the resource budget, and \(V\) the version/snapshot policy. This notation is a **candidate specification**, not a proven minimal kernel.
+where $\mathcal{E}$ is the entity scope, $P$ the perspective set, $C$ the conditions, $G$ the requested guarantee, $B$ the resource budget, and $V$ the version/snapshot policy. This notation is a **candidate specification**, not a proven minimal kernel.
 
-A dispatcher selects locators \(L_1,\ldots,L_n\), each returning candidates, guarantee metadata, evidence, and provenance:
+A dispatcher selects locators $L_1,\ldots,L_n$, each returning candidates, guarantee metadata, evidence, and provenance:
 
-\[
+$$
 L_i(Q)\rightarrow(C_i,\gamma_i,E_i,T_i).
-\]
+$$
 
 A resolver combines or rechecks the results according to the declared semantics. Set union, intersection, ranking, and join are **not interchangeable**: they must be chosen from query semantics and locator guarantees.
 
@@ -100,7 +100,7 @@ A result must distinguish:
 - **Approximate**, with documented approximation assumptions or measured recall.
 - **Exploratory**, suitable for hypothesis generation but not definitive exclusion.
 
-For an exact query with true answer set \(A(Q)\), a two-phase architecture using candidate set \(C(Q)\) must establish \(A(Q)\subseteq C(Q)\) before exact resolution can claim complete retrieval. A precise second stage cannot recover a valid entity omitted in the first stage.
+For an exact query with true answer set $A(Q)$, a two-phase architecture using candidate set $C(Q)$ must establish $A(Q)\subseteq C(Q)$ before exact resolution can claim complete retrieval. A precise second stage cannot recover a valid entity omitted in the first stage.
 
 ### 4.2 Euclidean is optional
 

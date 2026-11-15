@@ -320,4 +320,20 @@
 89. Beyond Static Computation: Object-Centric Structural Evolution and Persistent Intelligence - \
     An integrative Structural Intelligence (SI) research program connecting five DOI research lines, six conceptual papers, three proposed interface specifications, and three falsifiable experimental laboratories. \
     Repository: https://github.com/sizhet/Beyond-Static-Computation-and-Structural-Evolution
-          
+ 
+90. Structural Intelligence and Consciousness (SCI-CON) - \
+    Structural Intelligence, Consciousness, and the Evolution of Subjectivity. \
+    From Understanding and In-Situ Residual Intelligence to Collective Subjects, Relay, and Testable Consciousness Criteria. \
+    Repository: https://github.com/sizhet/Structural-Intelligence-and-Consciousness
+ 
+91. SELS-P — Structural Evidence Localization, Solving, and Perception - \
+    From UnalignedAND Equation Solving to Evidence Fields, Multi-Channel Perception, and Adaptive Structural Intelligence. \
+    Repository: https://github.com/sizhet/Structural-Evidence-Localization-Solving-and-Perception
+
+92. Brunelleschi’s Dome and Generative Structural Computing (BD-GSC) - \
+    From Incremental Physical Models to CDE–FEM Hybrid Intelligence. \
+    Repository: https://github.com/sizhet/BD-GSC
+ 
+93. Scene-Based Delta Intelligence (SBDI) - \
+    Adaptive Scene Boundaries, Framework–Plugin Co-Evolution, and Cross-Domain Structural Spillover. \
+    Repository: https://github.com/sizhet/Scene-Based-Delta-Intelligence-SBDI        

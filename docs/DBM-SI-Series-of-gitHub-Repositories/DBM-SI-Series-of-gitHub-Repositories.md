@@ -341,3 +341,7 @@
 94. Method Evolution and Transfer (MET) - \
     From implicit capabilities to explicit, testable, transferable, and evolving methods. \
     Repository: https://github.com/sizhet/Method-Evolution-and-Transfer
+    
+95. SP-READTI - \
+    Subject–Perspective Residual/Evidence-Driven Autonomous Differential Tree Intelligence. \
+    Repository: https://github.com/sizhet/SP-READTI

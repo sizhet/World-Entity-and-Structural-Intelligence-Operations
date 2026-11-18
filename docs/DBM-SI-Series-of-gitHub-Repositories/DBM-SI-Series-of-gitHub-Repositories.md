@@ -345,3 +345,9 @@
 95. SP-READTI - \
     Subject–Perspective Residual/Evidence-Driven Autonomous Differential Tree Intelligence. \
     Repository: https://github.com/sizhet/SP-READTI
+    
+96. Contextual Equality, Validation, and Intelligence (CEVI) - \
+    From Ex-Ante Prediction and Subject-Conditioned Equivalence to Validation-Bounded Method Learning. \
+    Repository: https://github.com/sizhet/Contextual-Equality-Validation-and-Intelligence    
+    
+    

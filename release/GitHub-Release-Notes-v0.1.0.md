@@ -127,7 +127,7 @@ CDE is explored as a candidate constrained state-and-Delta evolution method, com
 
 The clinical case is a **methodological, synthetic research illustration**, not medical guidance or evidence of treatment effectiveness.
 
-### 3.4 Four extensions (`extensions/`)
+### 3.4 Six extensions (`extensions/`)
 
 - [EXT-001 — WE-HDT as an SIF Localization Pillar](extensions/EXT-001-WE-HDT-as-an-SIF-Localization-Pillar.md)
 - [EXT-002 — Multi-Agent WE-SI and Collective Learning](extensions/EXT-002-Multi-Agent-WE-SI-and-Collective-Learning.md)
@@ -152,7 +152,7 @@ The registries are proposed governance and testing assets; their entries should 
 - [START-HERE](START-HERE.md) — suggested reading paths.
 - [CONTENTS](CONTENTS.md) — repository navigation.
 - [GLOSSARY](GLOSSARY.md) — terminology and type distinctions.
-- [FIGURE-INDEX](FIGURE-INDEX.md) — planned figures and placements.
+- [FIGURE-INDEX](FIGURE-INDEX.md) — figures and placements.
 - [FUTURE-DIRECTIONS](FUTURE-DIRECTIONS.md) — research opportunities.
 - [OPEN-QUESTIONS](OPEN-QUESTIONS.md) — outstanding questions.
 - [TESTABLE-HYPOTHESES](TESTABLE-HYPOTHESES.md) — falsifiable proposals and experimental protocols.
@@ -271,7 +271,7 @@ Citation metadata is provided in [`CITATION.cff`](CITATION.cff), with deposit me
 - No universal CDE termination or non-reuse rule; these are policy- and domain-dependent.
 - No claim that self-modeling establishes subjective consciousness.
 - No guarantee that multi-agent consensus provides independent validation.
-- The planned ten individual figure files require final preparation and checking.
+- The ten individual figure files require final preparation and checking.
 - Release metadata, license presence, links, and final archive contents require a pre-release audit.
 
 Track open items in [UNRESOLVED-RESIDUALS.md](research-trace/UNRESOLVED-RESIDUALS.md), [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md), and [COUNTEREXAMPLE-REGISTRY.md](research-trace/COUNTEREXAMPLE-REGISTRY.md).

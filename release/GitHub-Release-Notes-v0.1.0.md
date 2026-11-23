@@ -258,7 +258,7 @@ Contributions are most useful when they provide a traceable research relay:
 
 The repository is intended for public research dissemination under **Apache License 2.0**. See `LICENSE` for the authoritative license text once included.
 
-Citation metadata is provided in [`CITATION.cff`](CITATION.cff), with deposit metadata in [`.zenodo.json`](.zenodo.json). A DOI should be inserted **only after it has been issued**; no DOI is asserted in these notes.
+Citation metadata is provided in [`CITATION.cff`](CITATION.cff), with deposit metadata in [`.zenodo.json`](.zenodo.json). DOI: 10.5281/zenodo.24485079.
 
 **Attribution:** Sizhe Tan and GPT-Obot, as indicated in the project metadata. Repository owners should review creator fields against the receiving archive's authorship and AI-contribution policies before deposit.
 

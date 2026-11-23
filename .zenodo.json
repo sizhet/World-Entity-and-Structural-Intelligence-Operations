@@ -38,5 +38,5 @@
       "scheme": "url"
     }
   ],
-  "notes": "Initial research-framework release (v0.1.0). DOI will be assigned by Zenodo upon publication. The listed AI collaborator is credited consistently with the repository CITATION.cff; confirm repository and Zenodo authorship policies before publication."
+  "notes": "Initial research-framework release (v0.1.0)."
 }

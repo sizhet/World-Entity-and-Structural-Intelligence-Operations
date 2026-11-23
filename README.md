@@ -124,7 +124,7 @@ World-Entity-and-Structural-Intelligence-Operations/
 ├── docs/                  # WE-SIO-001 … WE-SIO-012
 ├── specs/                 # SPEC-001 … SPEC-006
 ├── cases/                 # CASE-001 … CASE-005
-├── extensions/            # EXT-001 … EXT-004
+├── extensions/            # EXT-001 … EXT-006
 ├── research-trace/        # origin, synthesis and five registries/logs
 ├── figures/               # Fig-001 … Fig-010 (individual PNGs)
 └── release/               # GitHub release notes and ResearchGate assets
@@ -189,18 +189,16 @@ Registry entries are **research proposals or candidate tests** unless an entry e
 
 | Figure | Title | Primary purpose |
 |---|---|---|
-| Fig-001 | WE-SIO Grand Architecture | Overall research stack and feedback |
-| Fig-002 | From Variable-Size Blocks to World Entity | Origin and conceptual transition |
-| Fig-003 | WE Hybrid Differential Tree | Multi-perspective localization |
-| Fig-004 | Adaptive Variable-Intelligence Blocks | Decoupled partition and capability adaptation |
-| Fig-005 | Metric Leaf Intelligence Unit | Local operations and evidence contracts |
-| Fig-006 | Two-Ways CCC Cross-Metric Discovery | Forward answers and backward questions |
-| Fig-007 | Residual-Driven Scientific Discovery Loop | Discovery and validation workflow |
-| Fig-008 | World Delta vs Epistemic Delta | Change-type distinctions |
-| Fig-009 | Definition Evolution Loop | Counterexample-driven definition revision |
-| Fig-010 | From WE to Self-Modeling Entity and Collective Relay | Self-modeling and multi-agent relay |
-
-**Figure integrity note:** A combined overview image does not by itself create ten individual figure files. Before release, ensure the filenames, diagrams, captions and `FIGURE-INDEX.md` agree.
+| Fig-001 | [Fig-001-WE-SIO-Grand-Architecture.png](figures/Fig-001-WE-SIO-Grand-Architecture.png) | Overall research stack and feedback |
+| Fig-002 | [Fig-002-From-Variable-Size-Blocks-to-World-Entity.png](figures/Fig-002-From-Variable-Size-Blocks-to-World-Entity.png) | Origin and conceptual transition |
+| Fig-003 | [Fig-003-WE-Hybrid-Differential-Tree.png](figures/Fig-003-WE-Hybrid-Differential-Tree.png) | Multi-perspective localization |
+| Fig-004 | [Fig-004-Adaptive-Variable-Intelligence-Blocks.png](figures/Fig-004-Adaptive-Variable-Intelligence-Blocks.png) | Decoupled partition and capability adaptation |
+| Fig-005 | [Fig-005-Metric-Leaf-Intelligence-Unit.png](figures/Fig-005-Metric-Leaf-Intelligence-Unit.png) | Local operations and evidence contracts |
+| Fig-006 | [Fig-006-Two-Ways-CCC-Cross-Metric-Discovery.png](figures/Fig-006-Two-Ways-CCC-Cross-Metric-Discovery.png) | Forward answers and backward questions |
+| Fig-007 | [Fig-007-Residual-Driven-Scientific-Discovery-Loop.png](figures/Fig-007-Residual-Driven-Scientific-Discovery-Loop.png) | Discovery and validation workflow |
+| Fig-008 | [Fig-008-World-Delta-vs-Epistemic-Delta.png](figures/Fig-008-World-Delta-vs-Epistemic-Delta.png) | Change-type distinctions |
+| Fig-009 | [Fig-009-Definition-Evolution-Loop.png](figures/Fig-009-Definition-Evolution-Loop.png) | Counterexample-driven definition revision |
+| Fig-010 | [Fig-010-From-WE-to-Self-Modeling-Entity-and-Collective-Relay.png](figures/Fig-010-From-WE-to-Self-Modeling-Entity-and-Collective-Relay.png) | Self-modeling and multi-agent relay |
 
 ## 8. Research claims and validation boundaries
 
@@ -249,13 +247,13 @@ This process is designed to make research **cumulative without treating every pr
 
 ## 11. Release and citation
 
-**Target release:** v0.1.0, research-framework publication. DOI should be added **only after** a real archival release has received one. Do not insert a placeholder DOI as though it were registered.
+**Target release:** v0.1.0, research-framework publication.  
 
 Suggested citation until an archival record is available:
 
-> Tan, S., & GPT-Obot. (2026). *World Entity and Structural Intelligence Operations: From Variable-Size Block Indexing to Open-Ended World Modeling, Metric Discovery, and Self-Referential Intelligence* (v0.1.0). Research framework. GitHub repository: `sizhet/World-Entity-and-Structural-Intelligence-Operations` (repository URL and release to be verified before publication).
+> Tan, S., & GPT-Obot. (2026). *World Entity and Structural Intelligence Operations: From Variable-Size Block Indexing to Open-Ended World Modeling, Metric Discovery, and Self-Referential Intelligence* (v0.1.0). Research framework. GitHub repository: `sizhet/World-Entity-and-Structural-Intelligence-Operations`.
 
-**License:** Apache-2.0 is the intended repository license; confirm that a complete `LICENSE` file is included before publishing. Citation and Zenodo metadata must match the actual release and author attribution.
+**License:** Apache-2.0.
 
 ## 12. Explicit leftovers
 
@@ -268,7 +266,7 @@ Suggested citation until an archival record is available:
 7. Collective Learning needs provenance-aware evidence independence and transfer metrics.
 8. Self-modeling needs calibrated behavioral evaluation; subjective experience remains unresolved.
 9. Definition Evolution needs regression and governance procedures demonstrated in practice.
-10. Release assets, including ten individual figure PNGs, need final repository-level integrity checks.
+10. Release assets need final repository-level integrity checks.
 
 For detailed items and tracking, consult [`research-trace/UNRESOLVED-RESIDUALS.md`](research-trace/UNRESOLVED-RESIDUALS.md).
 

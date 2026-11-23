@@ -4,7 +4,7 @@
 **Research roadmap for v0.1.0 and beyond**  
 **Status:** Proposed research directions; not validated system capabilities  
 **Authors:** Sizhe Tan & GPT-Obot  
-**Date:** 2026-11-05
+**Date:** 2026-11-23
 
 > Define the invariant, not the inventory. Preserve the evidence, not just the conclusion.
 
@@ -460,4 +460,4 @@ The project should grow by demonstrating which interfaces preserve correctness a
 
 ---
 
-*WE-SIO v0.1.0 · Future Directions · Sizhe Tan & GPT-Obot · 2026-11-05*
+*WE-SIO v0.1.0 · Future Directions · Sizhe Tan & GPT-Obot · 2026-11-23*

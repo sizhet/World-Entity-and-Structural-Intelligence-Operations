@@ -30,7 +30,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) in s
 - How can correlated multi-agent evidence be prevented from appearing as independent corroboration?
 - How can self-modeling utility be evaluated without conflating it with subjective experience?
 
-## [0.1.0] — 2026-11-05
+## [0.1.0] — 2026-11-23
 
 ### Release characterization
 

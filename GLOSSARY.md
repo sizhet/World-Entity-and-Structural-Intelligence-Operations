@@ -4,7 +4,7 @@
 **Research status:** Proposed framework; definitions and hypotheses require conformance and validation  
 **Research attribution:** Sizhe Tan & GPT-Obot  
 **Repository location:** `GLOSSARY.md`  
-**Date:** 2026-11-05
+**Date:** 2026-11-23
 
 > **Terminology principle:** Define the invariant, not the inventory. Definition incomplete does not mean definition imprecise.
 

@@ -4,7 +4,7 @@
 **Research release:** v0.1.0  
 **Status:** Open research agenda; questions and proposed experiments, not established results  
 **Research contributors:** Sizhe Tan & GPT-Obot  
-**Date:** 2026-11-05
+**Date:** 2026-11-23
 
 > Define the invariant, not the inventory. Preserve what remains unknown.
 

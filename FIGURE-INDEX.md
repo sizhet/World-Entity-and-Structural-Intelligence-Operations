@@ -5,22 +5,20 @@
 **Contributors:** Sizhe Tan & GPT-Obot  
 **Repository:** `World-Entity-and-Structural-Intelligence-Operations`
 
-> **Asset-status note (2026-11-05):** A single composite infographic was generated in the working session. The ten individually named PNG files listed below have **not yet been verified as separately exported assets**. Their paths are the intended repository paths, not a claim that the files currently exist. Before publishing, export and inspect each figure separately and check the internal links.
-
 ## 1. Figure Catalog
 
-| ID | Planned PNG file | Primary research focus | Primary paper |
+| ID | PNG file | Primary research focus | Primary paper |
 |---|---|---|---|
-| Fig-001 | `Fig-001-WE-SIO-Grand-Architecture.png` | End-to-end framework and governance | WE-SIO-001 |
-| Fig-002 | `Fig-002-From-Variable-Size-Blocks-to-World-Entity.png` | Historical and conceptual transition | WE-SIO-001 |
-| Fig-003 | `Fig-003-WE-Hybrid-Differential-Tree.png` | Hybrid localization and typed perspectives | WE-SIO-003 |
-| Fig-004 | `Fig-004-Adaptive-Variable-Intelligence-Blocks.png` | Partition and capability adaptation | WE-SIO-004 |
-| Fig-005 | `Fig-005-Metric-Leaf-Intelligence-Unit.png` | Leaf intelligence contracts and operations | WE-SIO-005 |
-| Fig-006 | `Fig-006-Two-Ways-CCC-Cross-Metric-Discovery.png` | Forward resolution and reverse questioning | WE-SIO-006 |
-| Fig-007 | `Fig-007-Residual-Driven-Scientific-Discovery-Loop.png` | Residual-to-hypothesis validation cycle | WE-SIO-007 |
-| Fig-008 | `Fig-008-World-Delta-vs-Epistemic-Delta.png` | Distinct classes of state and knowledge change | WE-SIO-009 |
-| Fig-009 | `Fig-009-Definition-Evolution-Loop.png` | Counterexample-driven definition governance | WE-SIO-011 |
-| Fig-010 | `Fig-010-From-WE-to-Self-Modeling-Entity-and-Collective-Relay.png` | Self-modeling and collective learning | WE-SIO-010 |
+| Fig-001 | [Fig-001-WE-SIO-Grand-Architecture.png](figures/Fig-001-WE-SIO-Grand-Architecture.png) | End-to-end framework and governance | WE-SIO-001 |
+| Fig-002 | [Fig-002-From-Variable-Size-Blocks-to-World-Entity.png](figures/Fig-002-From-Variable-Size-Blocks-to-World-Entity.png) | Historical and conceptual transition | WE-SIO-001 |
+| Fig-003 | [Fig-003-WE-Hybrid-Differential-Tree.png](figures/Fig-003-WE-Hybrid-Differential-Tree.png) | Hybrid localization and typed perspectives | WE-SIO-003 |
+| Fig-004 | [Fig-004-Adaptive-Variable-Intelligence-Blocks.png](figures/Fig-004-Adaptive-Variable-Intelligence-Blocks.png) | Partition and capability adaptation | WE-SIO-004 |
+| Fig-005 | [Fig-005-Metric-Leaf-Intelligence-Unit.png](figures/Fig-005-Metric-Leaf-Intelligence-Unit.png) | Leaf intelligence contracts and operations | WE-SIO-005 |
+| Fig-006 | [Fig-006-Two-Ways-CCC-Cross-Metric-Discovery.png](figures/Fig-006-Two-Ways-CCC-Cross-Metric-Discovery.png) | Forward resolution and reverse questioning | WE-SIO-006 |
+| Fig-007 | [Fig-007-Residual-Driven-Scientific-Discovery-Loop.png](figures/Fig-007-Residual-Driven-Scientific-Discovery-Loop.png) | Residual-to-hypothesis validation cycle | WE-SIO-007 |
+| Fig-008 | [Fig-008-World-Delta-vs-Epistemic-Delta.png](figures/Fig-008-World-Delta-vs-Epistemic-Delta.png) | Distinct classes of state and knowledge change | WE-SIO-009 |
+| Fig-009 | [Fig-009-Definition-Evolution-Loop.png](figures/Fig-009-Definition-Evolution-Loop.png) | Counterexample-driven definition governance | WE-SIO-011 |
+| Fig-010 | [Fig-010-From-WE-to-Self-Modeling-Entity-and-Collective-Relay.png](figures/Fig-010-From-WE-to-Self-Modeling-Entity-and-Collective-Relay.png) | Self-modeling and collective learning | WE-SIO-010 |
 
 All paths are relative to `figures/` at the repository root.
 

@@ -23,6 +23,7 @@ date-released: '2026-11-23'
 repository-code: 'https://github.com/sizhet/World-Entity-and-Structural-Intelligence-Operations'
 url: 'https://github.com/sizhet/World-Entity-and-Structural-Intelligence-Operations'
 license: Apache-2.0
+doi: 10.5281/zenodo.24485079
 keywords:
   - structural intelligence
   - world entity

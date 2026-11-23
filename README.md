@@ -255,6 +255,8 @@ Suggested citation until an archival record is available:
 
 **License:** Apache-2.0.
 
+**DOI:** 10.5281/zenodo.24485079
+
 ## 12. Explicit leftovers
 
 1. A formal, implementation-independent WE-HDT definition and exactness theorem remain open.
